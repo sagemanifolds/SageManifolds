@@ -1,0 +1,8 @@
+27 November 2012: start of the project; svn server set up; first commit of manifold.py
+3 June 2013: web page http://sagemanifolds.obspm.fr opened 
+7 July 2013: first public release (version 0.1 = svn revision 318); first post on sage-devel
+12 September 2013: version 0.2 released (svn revision 395)
+18 October 2013: migration svn (revision 429) --> git (on gitroc.obspm.fr)
+24 November 2013: version 0.3 released; 19938 lines of Python code (including comments and doctests)
+30 December 2013: migration to github, as a git branch of Sage 6.0
+

@@ -1,0 +1,35 @@
+= Manifolds =
+
+== Description ==
+
+Differential geometry and tensor calculus with Sage
+
+== License ==
+
+SageManifolds is distributed under the terms of the GNU General Public License
+(GPL) as published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version. See http://www.gnu.org/licenses
+
+== SPKG Maintainers ==
+
+* Michał Bejger 
+* Eric Gourgoulhon
+
+== Upstream Contact ==
+
+http://sagemanifolds.obspm.fr
+
+== Dependencies ==
+
+* python
+* cython
+
+== Special Update/Build Instructions ==
+
+None at the moment
+
+== Changelog ==
+
+=== manifolds-0.1 ===
+
+ * This is an initial release (svn revision 318)

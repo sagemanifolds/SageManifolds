@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if [ "$SAGE_LOCAL" = "" ]; then
+   echo "SAGE_LOCAL undefined ... exiting";
+   echo "Maybe run 'sage -sh'?"
+   exit 1
+fi
+
+# Remove old version
+rm -fr "$SAGE_LOCAL"/lib/python/site-packages/manifolds*
+
+# Install new version
+cd src
+echo "Building sage-manifolds..."
+
+python setup.py install
+
+if [ $? -ne 0 ]; then
+   echo "Error installing manifolds."
+   exit 1
+fi
+
+# Remove old documentation
+rm -fr "$SAGE_ROOT"/devel/sage/doc/en/sagemanifolds*
+cp -r doc/en/sagemanifolds "$SAGE_ROOT"/devel/sage/doc/en
+
+exit 0

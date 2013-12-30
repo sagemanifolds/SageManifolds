@@ -1,0 +1,81 @@
+= Manifolds =
+
+== Description ==
+
+Differential geometry and tensor calculus with Sage
+
+== License ==
+
+SageManifolds is distributed under the terms of the GNU General Public License
+(GPL) as published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version. See http://www.gnu.org/licenses
+
+== SPKG Maintainers ==
+
+* Michał Bejger 
+* Eric Gourgoulhon
+
+== Upstream Contact ==
+
+http://sagemanifolds.obspm.fr
+
+== Dependencies ==
+
+* python
+
+== Special Update/Build Instructions ==
+
+  None 
+
+== Changelog ==
+
+VERSION 0.3 (24 November 2013):
+------------------------------------------------
+* Changes towards a better integration in Sage:
+    - Parent/Element scheme used for Manifold/Point
+    - construction of objects via factory methods (no need to have the various class constructors in the global namespace)
+    - use of the preparser tool <x,y,...> to explicitly set the coordinates in the global namespace
+
+* New classes Domain and OpenDomain to deal with manifold subdomains: mappings and tensor fields can be now defined on subdomains only.
+
+* class Manifold:
+    - inherits from OpenDomain and Sage's Parent
+
+* class Point:
+    - inherits from Sage's Element
+
+* class Chart:
+    - the coordinates are no longer set by default to global variables: the preparser tool <,> must be used for this
+    - added coordinate restrictions, subcharts and supercharts to deal with subdomains
+    - new methods subchart(), transition_map(), valid_coordinates(), __getitem__()
+    - method __call__() applies now to a point and returns the point's coordinates
+
+* class DiffMapping:
+    - mappings between manifolds now defined on subdomains
+    - new method add_expr() in addition to set_expr()
+
+* class Submanifold:
+    - complete reorganization (in particular subclass MCurve has been suppressed)
+    - method pushforward()added
+
+* class VectorFrame:
+    - added subframes and superframes to deal with subdomains
+
+* class Components:
+    - construction is now on the vector frame + number of indices
+
+* class ScalarField:
+    - new methods common_charts() and add_expr()
+    - method gradient() renamed to differential()
+    - multi-domain handling in the arithmetic
+
+* class TensorField:
+    - tensor fields are now defined on subdomains (instead of the whole manifold)
+    - new method add_comp() in addition to set_comp()
+    - method show() renamed to view()
+
+* New example worksheets have been added (sphere S^2, de Sitter and anti-de Sitter spaces) and other worksheets have been updated
+
+=== manifolds-0.3 ===
+
+ * This is version 0.3 (see https://gitroc.obspm.fr/SageManifolds.git)

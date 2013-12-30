@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+if [ "$SAGE_LOCAL" = "" ]; then
+   echo "SAGE_LOCAL undefined ... exiting";
+   echo "Maybe run 'sage -sh'?"
+   exit 1
+fi
+
+# Remove old version
+rm -fr "$SAGE_LOCAL"/lib/python/site-packages/manifolds*
+
+# Apply patches.  See SPKG.txt for information about what each patch
+# does.
+
+here=${PWD}
+
+echo "Applying patches..."
+
+#cd ${SAGE_ROOT}/devel/sage/sage/symbolic
+#patch -f -p2 < ${here}/patches/pynac.pyx.patch
+
+cp ${here}/patches/symbolic-patched/pynac.pyx ${SAGE_ROOT}/devel/sage/sage/symbolic
+${SAGE_ROOT}/sage -b
+
+# Install new version
+
+cd ${here}/src
+
+echo "Building sage-manifolds..."
+
+python setup.py install
+
+if [ $? -ne 0 ]; then
+   echo "Error installing manifolds."
+   exit 1
+fi
+
+# Remove old documentation
+rm -fr "$SAGE_ROOT"/devel/sage/doc/en/sagemanifolds*
+cp -r doc/en/sagemanifolds "$SAGE_ROOT"/devel/sage/doc/en
+
+exit 0

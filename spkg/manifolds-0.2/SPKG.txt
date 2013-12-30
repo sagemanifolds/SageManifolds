@@ -1,0 +1,67 @@
+= Manifolds =
+
+== Description ==
+
+Differential geometry and tensor calculus with Sage
+
+== License ==
+
+SageManifolds is distributed under the terms of the GNU General Public License
+(GPL) as published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version. See http://www.gnu.org/licenses
+
+== SPKG Maintainers ==
+
+* Michał Bejger 
+* Eric Gourgoulhon
+
+== Upstream Contact ==
+
+http://sagemanifolds.obspm.fr
+
+== Dependencies ==
+
+* python
+* cython
+
+== Special Update/Build Instructions ==
+
+This package patches the symbolic/pynac.pyx file 
+in order to give the user an option to chose 
+the derivative printout output (see patches). 
+
+== Changelog ==
+
+VERSION 0.2 (?? September 2013, svn revision 382):
+------------------------------------------------
+* change doctests to comply with Sage 5.11 (new ordering in symbolic expressions
+resulting from some change in pynac, cf. http://trac.sagemath.org/ticket/9880)
+
+* class Chart:
+ - the coordinate ranges are now passed in the arguments (as intervals) and
+   are used to set assumptions on the coordinates
+
+* class MultiFunctionChart:
+ - the various functions are now stored as instances of class FunctionChart
+   (and no longer as symbolic expressions)
+ - new methods: expr()
+ - modified methods:
+    - jacobian(): returns an array of FunctionChart
+    - jacobian_det(): returns a FunctionChart
+
+* class Point:
+ - added fields name and latex_name
+ - method change_coord() suppressed: the change-of-coordinate computation is
+   now taken in charge by method coord()
+
+* class DiffMapping:
+ - new methods: multi_function_chart(), expr(), show(), pullback()
+ - method new_coord_representation() changed to set_express()
+
+* class Components and TensorField:
+ - method mtrace() for component and tensor self-contraction
+    using list of indices
+
+=== manifolds-0.2 ===
+
+ * This is version 0.2 (svn revision 389)

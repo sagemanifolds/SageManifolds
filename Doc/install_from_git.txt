@@ -1,0 +1,101 @@
+===================================================
+Installing the development version of SageManifolds
+===================================================
+
+                2013.12.30
+
+0/ Prerequisites
+   -------------
+
+A version of Sage >= 6.0 must have been installed *from the sources* on your
+computer, by a clone of the Sage git repository:
+
+git clone git://github.com/sagemath/sage.git
+cd sage
+make
+
+In what follows, the environment variable SAGE_ROOT refers to the root
+of Sage installation, e.g. 
+    export SAGE_ROOT=/home/eric/sage
+
+1/ Download the SageManifolds sources from the git repository on github
+   --------------------------------------------------------------------
+
+cd $SAGE_ROOT
+git remote add sm-github https://github.com/sagemanifolds/sage.git -t master
+git fetch sm-github master
+git checkout -b sagemanifolds FETCH_HEAD
+
+The last step has created a git branch "sagemanifold": the command
+    git branch
+should output
+      master
+    * sagemanifolds
+
+The sources of SageManifolds are located in the directory
+$SAGE_ROOT/src/sage/geometry/manifolds
+
+2/ Rebuilt Sage
+   ------------
+   
+    cd $SAGE_ROOT
+    ./sage -b
+
+3/ It's ready!
+   ----------
+
+If you run
+    ./sage
+    sage: M = Manifold(2,'M') ; M
+the output should be
+    2-dimensional manifold 'M'
+
+You are advised to check the doctests in SageManifolds sources: 
+
+    ./sage -t src/sage/geometry/manifolds/*.py
+
+4/ Building the documentation:
+   --------------------------
+
+4a/ SageManifolds reference manual
+    ..............................
+   
+    cd $SAGE_ROOT
+    ./sage -b
+    ./sage -docbuild sagemanifolds html
+
+The HTML version of the SageManifolds reference manual is then in 
+
+    $SAGE_ROOT/src/doc/output/html/en/sagemanifolds/index.html
+    
+
+For the PDF documentation: 
+
+    cd $SAGE_ROOT
+    ./sage -b
+    ./sage -docbuild sagemanifolds pdf
+
+The PDF version of the SageManifolds manual is then in 
+
+    $SAGE_ROOT/src/doc/output/pdf/en/sagemanifolds/sagemanifolds_ref.pdf 
+
+4b/ Whole Sage reference manual 
+    ...........................
+... including SageManifolds in the section "Differentiable geometry"
+
+    cd $SAGE_ROOT
+    ./sage -b
+    ./sage -docbuild reference html
+    ./sage -docbuild reference pdf
+
+5/ Download further documentation and example worksheets
+   -----------------------------------------------------
+   
+In a directory different from $SAGE_ROOT, perform
+
+git clone https://github.com/sagemanifolds/SageManifolds.git
+
+and take a look at
+
+SageManifolds/README.md
+
