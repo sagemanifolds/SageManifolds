@@ -5,4 +5,6 @@
 18 October 2013: migration svn (revision 429) --> git (on gitroc.obspm.fr)
 24 November 2013: version 0.3 released; 19938 lines of Python code (including comments and doctests)
 30 December 2013: migration to github, as a git branch of Sage 6.0
+10 February 2014: version 0.4 released (git commit = 2dff92f153819994e0476244a85762d0e089de37); 
+    19746 lines of Python code (including comments and doctests)
 

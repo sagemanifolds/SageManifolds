@@ -1,7 +1,8 @@
 ===========
-Version 0.4 (?? December 2013)
+Version 0.4 (10 February 2014)
 ===========
 - class Domain:
+    Parent/Element scheme used for Domain/Point, with Domain in the category of Sets
     members atlas, frames and coframes are now lists (and no longer dictionary)
 - class Chart:
     member name suppressed
@@ -21,6 +22,8 @@ Version 0.4 (?? December 2013)
 - class CoFrame:
     method __call__ changed to __getitem__
 - class CoordBasis renamed to CoordFrame
+- class CompWithSym:
+    corrected treatment of pre-existing symmetries in methods symmetrize and antisymmetrize 
 
 ===========
 Version 0.3 (24 November 2013)
