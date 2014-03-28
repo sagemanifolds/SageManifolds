@@ -489,7 +489,7 @@ cdef public stdstring* py_print_fderivative(unsigned id, object params,
                 op = ''.join(['D^',str(len(params)),'/D'])
             else: 
                 op = 'D/D' 
-            ostr = ''.join([op, ''.join([repr(args[int(x)]) for x in params]), ' '])
+            ostr = ''.join([op, 'D'.join([repr(args[int(x)]) for x in params]), ' '])
             bra = False
 
     fstr = py_print_function_pystring(id, args, bra)
@@ -565,10 +565,10 @@ cdef public stdstring* py_latex_fderivative(unsigned id, object params,
                 op = ''.join(['\\frac{\partial^',str(len(params)),'}{\partial\,'])
             else: 
                 op = '\\frac{\partial}{\partial\,'
-            ostr = ''.join([op, ''.join([latex(args[int(x)]) for x in params]), '}'])
+            ostr = ''.join([op, '\,\partial\,'.join([latex(args[int(x)]) for x in params]), '}'])
             bra = False
 
-    fstr = py_print_function_pystring(id, args, bra)
+    fstr = py_latex_function_pystring(id, args, bra)
     py_res = ostr + fstr
     return string_from_pystr(py_res)
 
