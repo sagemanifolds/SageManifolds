@@ -562,10 +562,15 @@ cdef public stdstring* py_latex_fderivative(unsigned id, object params,
         if textbook_style_deriv_choice:
             from sage.misc.latex import latex 
             if(len(params)>1):
-                op = ''.join(['\\frac{\partial^',str(len(params)),'}{\partial\,'])
+                op = ''.join(['\\frac{\partial^',str(len(params)),'}{\partial '])
             else: 
-                op = '\\frac{\partial}{\partial\,'
-            ostr = ''.join([op, '\,\partial\,'.join([latex(args[int(x)]) for x in params]), '}'])
+                op = '\\frac{\partial}{\partial '
+
+#            ostr = ''.join([op, '\,\partial\,'.join([latex(args[int(x)])) for x in list(set(params))]), '}'])
+
+            ostr = ''.join([op, '\partial '.join([''.join([latex(args[int(x)]), '^{', str(params.count(int(x)) if  params.count(int(x)) > 1 else ""), '}']) for x in list(set(params))]), '}'])
+
+
             bra = False
 
     fstr = py_latex_function_pystring(id, args, bra)
