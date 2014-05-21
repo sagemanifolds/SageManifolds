@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1052.3622"
+   height="744.09448"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="tensorfield_classes.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.511894"
+     inkscape:cx="575.17443"
+     inkscape:cy="552.88954"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="1,0"
+       position="478.86955,550.96455"
+       id="guide3992" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="90.614818,461.67258"
+       id="guide3994" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid3996" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path3817"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path3793"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path3799"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendW"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1MendW"
+       style="overflow:visible;">
+      <path
+         id="path4986"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="marker-start:none;stroke:#502d16;stroke-width:1.0pt;fill:#502d16;fill-rule:evenodd"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1MendWO"
+       style="overflow:visible;">
+      <path
+         id="path5078"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;marker-start:none;stroke:#784421;stroke-width:1.0pt;fill:#784421"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-6"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-1"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-5"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-5"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-9"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-6"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-93"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-50"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-34"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-8"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-67"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-8"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-91"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-80"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-88"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-63"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-0"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-4"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-2"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-51"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-883"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-38"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-84"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-44"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-22"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-46"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-20"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-89"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-308.2677)">
+    <g
+       id="g5159"
+       transform="translate(-314.77452,135.93923)">
+      <rect
+         y="457.05685"
+         x="463.44604"
+         height="61.86277"
+         width="181.50681"
+         id="rect2985-52-5"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.23589754;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2"
+         y="481.21024"
+         x="507.34152"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="481.21024"
+           x="507.34152"
+           id="tspan3757-5-98"
+           sodipodi:role="line">VectorField</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017"
+         d="m 556.19367,454.75037 0.30213,-66.84335"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="475.05276"
+         y="514.78351"
+         id="text3998-5"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4000-4"
+           x="475.05276"
+           y="514.78351"
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">Parent: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan4028">VectorFieldModule</tspan></tspan></text>
+    </g>
+    <g
+       transform="translate(-174.40208,6.3147743)"
+       id="g5159-4" />
+    <rect
+       style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:4.58872604;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+       id="rect2985-52-5-6-2"
+       width="214.22508"
+       height="61.509941"
+       x="608.65778"
+       y="457.80246" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+       x="636.53552"
+       y="480.45657"
+       id="text3755-6-2-1-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3757-5-98-0-4"
+         x="636.53552"
+         y="480.45657"
+         style="font-size:18px">FreeModuleTensor</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+       d="M 695.27622,456.04219 518.20414,403.2798"
+       id="path3017-5-9"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g4117"
+       transform="translate(6.6142203,-0.66142203)">
+      <rect
+         y="457.32019"
+         x="152.51927"
+         height="61.870155"
+         width="180.85277"
+         id="rect2985-52-5-6-9-00"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.22851133;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-4-3"
+         y="481.77942"
+         x="190.66142"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="481.77942"
+           x="190.66142"
+           id="tspan3757-5-98-0-79-13"
+           sodipodi:role="line">TensorField</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-5-2-3"
+         d="M 243.28633,456.40147 433.77587,406.32551"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998"
+         y="511.98038"
+         x="162.0484"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="511.98038"
+           x="162.0484"
+           id="tspan4000"
+           sodipodi:role="line">Parent: <tspan
+   id="tspan4002"
+   style="font-style:normal;-inkscape-font-specification:Sans">TensorFieldModule</tspan></tspan></text>
+    </g>
+    <g
+       id="g4054"
+       transform="translate(-10.582752,1.3228441)">
+      <g
+         id="g5159-9-4"
+         transform="translate(-74.981326,130.59589)">
+        <rect
+           style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.30175114;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+           id="rect2985-52-5-6-9"
+           width="187.39375"
+           height="61.796917"
+           x="471.41602"
+           y="461.05829" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           x="487.0332"
+           y="484.81952"
+           id="text3755-6-2-1-4"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3757-5-98-0-79"
+             x="487.0332"
+             y="484.81952"
+             style="font-size:20px">TensorFieldParal</tspan></text>
+        <path
+           sodipodi:nodetypes="cc"
+           style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+           d="M 565.56408,458.77087 371.65692,390.18433"
+           id="path3017-5-2"
+           inkscape:connector-curvature="0" />
+        <path
+           sodipodi:nodetypes="cc"
+           style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+           d="M 565.56408,458.77087 742.35615,390.87334"
+           id="path3017-5-2-46"
+           inkscape:connector-curvature="0" />
+      </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-9"
+         y="645.43134"
+         x="399.05161"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="645.43134"
+           x="399.05161"
+           id="tspan4000-7"
+           sodipodi:role="line">Parent: <tspan
+   id="tspan4002-2"
+   style="font-style:normal;-inkscape-font-specification:Sans">TensorFieldFreeModule</tspan></tspan></text>
+    </g>
+    <g
+       id="g4156">
+      <rect
+         y="735.98944"
+         x="387.42441"
+         height="61.782433"
+         width="188.7021"
+         id="rect2985-52-5-6-9-0"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.31623602;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-4-2"
+         y="762.08691"
+         x="407.42783"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="762.08691"
+           x="407.42783"
+           id="tspan3757-5-98-0-79-1"
+           sodipodi:role="line">VectorFieldParal</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-5-2-4"
+         d="M 480.79332,735.02686 480,658.49402"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-8"
+         y="789.62134"
+         x="391.1145"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="789.62134"
+           x="391.1145"
+           id="tspan4000-44-9"
+           sodipodi:role="line">Parent: <tspan
+   id="tspan4150"
+   style="font-style:normal;-inkscape-font-specification:Sans">VectorFieldFreeModule</tspan></tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-5-2-4-9"
+         d="m 480.79914,733.26278 -234.93672,-75.21"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-5-2-4-3"
+         d="M 480.79914,733.26278 688.35376,656.06852"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g4193">
+      <rect
+         y="592.16364"
+         x="608.38824"
+         height="61.496445"
+         width="215.53442"
+         id="rect2985-52-5-6-4"
+         style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:4.60222292;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-5"
+         y="614.14966"
+         x="614.18744"
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:18px"
+           y="614.14966"
+           x="614.18744"
+           id="tspan3757-5-98-0-7"
+           sodipodi:role="line">FiniteFreeModuleElement</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-5-7"
+         d="m 698.96849,591.05811 0,-68.59578"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-6"
+         y="645.43127"
+         x="639.8092"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="645.43127"
+           x="639.8092"
+           id="tspan4000-44-0"
+           sodipodi:role="line">Parent: <tspan
+   id="tspan4002-8-3"
+   style="font-style:normal;-inkscape-font-specification:Sans">FiniteFreeModule</tspan></tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="636.50208"
+       y="509.17838"
+       id="text3998-2-82"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4000-44-04"
+         x="636.50208"
+         y="509.17838"
+         style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">Parent: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan4002-8-4">TensorFreeModule</tspan></tspan></text>
+    <g
+       transform="translate(-74.337742,-229.9939)"
+       id="g5159-9-4-5-0">
+      <rect
+         y="460.246"
+         x="473.91083"
+         height="62.098667"
+         width="161.23862"
+         id="rect2985-52-5-6-9-1-1"
+         style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-4-6-6"
+         y="493.77725"
+         x="484.85318"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="493.77725"
+           x="484.85318"
+           id="tspan3757-5-98-0-79-7-6"
+           sodipodi:role="line">      Element</tspan></text>
+    </g>
+    <g
+       id="g4387">
+      <g
+         id="g5159-9-4-5"
+         transform="translate(-74.853181,-120.83233)">
+        <rect
+           style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+           id="rect2985-52-5-6-9-1"
+           width="161.23862"
+           height="62.098667"
+           x="473.91083"
+           y="460.246" />
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           x="486.83743"
+           y="485.17877"
+           id="text3755-6-2-1-4-6"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3757-5-98-0-79-7"
+             x="486.83743"
+             y="485.17877"
+             style="font-size:20px">ModuleElement</tspan></text>
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-0"
+         d="m 479.54094,340.17945 -0.67139,-43.69358"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-4"
+         y="392.7681"
+         x="432.12268"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="392.7681"
+           x="432.12268"
+           id="tspan4000-44-4"
+           sodipodi:role="line">Parent: <tspan
+   id="tspan4002-8-8"
+   style="font-style:normal;-inkscape-font-specification:Sans">Module</tspan></tspan></text>
+    </g>
+  </g>
+</svg>
