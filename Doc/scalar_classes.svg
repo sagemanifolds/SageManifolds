@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="domain_classes.svg">
+   sodipodi:docname="scalar_classes.svg">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -22,11 +22,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.511894"
-     inkscape:cx="460.88522"
-     inkscape:cy="576.40685"
+     inkscape:zoom="1.1887098"
+     inkscape:cx="532.38894"
+     inkscape:cy="543.24101"
      inkscape:document-units="px"
-     inkscape:current-layer="g4117"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1535"
      inkscape:window-height="876"
@@ -37,11 +37,11 @@
      inkscape:guide-bbox="true">
     <sodipodi:guide
        orientation="1,0"
-       position="478.86955,550.96455"
+       position="383.60917,544.28757"
        id="guide3992" />
     <sodipodi:guide
        orientation="0,1"
-       position="105.1661,246.049"
+       position="383.60917,662.06232"
        id="guide3994" />
     <inkscape:grid
        type="xygrid"
@@ -436,6 +436,48 @@
          style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
          transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-83"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-9"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-36"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-12"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3177"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3179"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
   </defs>
   <metadata
      id="metadata7">
@@ -459,7 +501,7 @@
        id="g5159-4" />
     <g
        id="g3110"
-       transform="translate(-3.3071097,-39.685322)">
+       transform="translate(-335.68827,-84.792419)">
       <rect
          y="529.48047"
          x="389.15906"
@@ -478,7 +520,7 @@
            y="566.47021"
            x="426.60318"
            id="tspan3757-5-98-0-79"
-           sodipodi:role="line">OpenDomain</tspan></text>
+           sodipodi:role="line">DiffMapping</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-46"
@@ -487,7 +529,7 @@
          sodipodi:nodetypes="cc" />
     </g>
     <g
-       transform="translate(-198.60339,-215.44262)"
+       transform="translate(105.92845,-132.15906)"
        id="g5159-9-4-5-0">
       <rect
          y="460.246"
@@ -510,7 +552,7 @@
            sodipodi:role="line">      Parent</tspan></text>
     </g>
     <g
-       transform="translate(50.237238,-248.51371)"
+       transform="translate(312.70667,-166.07139)"
        id="g5159-9-4-5-0-0">
       <g
          id="g3122"
@@ -538,7 +580,7 @@
     </g>
     <g
        id="g4117"
-       transform="translate(235.46624,-86.646286)">
+       transform="translate(521.49063,-2.5214678)">
       <rect
          y="458.01459"
          x="149.90657"
@@ -549,15 +591,15 @@
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-4-3"
-         y="478.47229"
-         x="209.18124"
+         y="480.45654"
+         x="177.43298"
          style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          xml:space="preserve"><tspan
            style="font-size:20px"
-           y="478.47229"
-           x="209.18124"
+           y="480.45654"
+           x="177.43298"
            id="tspan3757-5-98-0-79-13"
-           sodipodi:role="line">Domain</tspan></text>
+           sodipodi:role="line">ScalarFieldRing</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-3"
@@ -568,16 +610,16 @@
          sodipodi:linespacing="125%"
          id="text3998"
          y="511.98038"
-         x="156.09561"
+         x="154.77277"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
            y="511.98038"
-           x="156.09561"
+           x="154.77277"
            id="tspan4000"
            sodipodi:role="line">Element: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
-   id="tspan3104">Point</tspan></tspan></text>
+   id="tspan3078">ScalarField</tspan></tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-3-3"
@@ -587,73 +629,113 @@
       <text
          sodipodi:linespacing="125%"
          id="text3998-3"
-         y="495.94995"
-         x="155.37709"
+         y="497.2728"
+         x="154.05424"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="495.94995"
-           x="155.37709"
+           y="497.2728"
+           x="154.05424"
            sodipodi:role="line"
            id="tspan3112">category: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
-   id="tspan3104-9">Sets</tspan></tspan></text>
+   id="tspan3104-9">CommutativeRings</tspan></tspan></text>
     </g>
     <g
-       id="g3110-9"
-       transform="translate(-2.6635469,78.769718)">
+       transform="translate(-408.15296,-133.80414)"
+       id="g5159-9-4-5-0-06">
       <rect
-         y="529.48047"
-         x="389.15906"
-         height="61.796913"
-         width="187.39377"
-         id="rect2985-52-5-6-9-8"
-         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.30175114;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+         y="460.246"
+         x="473.91083"
+         height="62.098667"
+         width="161.23862"
+         id="rect2985-52-5-6-9-1-1-3"
+         style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
       <text
          sodipodi:linespacing="125%"
-         id="text3755-6-2-1-4-5"
-         y="563.82446"
-         x="446.44583"
+         id="text3755-6-2-1-4-6-6-93"
+         y="497.08435"
+         x="507.09146"
          style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          xml:space="preserve"><tspan
            style="font-size:20px"
-           y="563.82446"
-           x="446.44583"
-           id="tspan3757-5-98-0-79-1"
-           sodipodi:role="line">Manifold</tspan></text>
+           y="497.08435"
+           x="507.09146"
+           id="tspan3757-5-98-0-79-7-6-2"
+           sodipodi:role="line">SageObject</tspan></text>
+    </g>
+    <g
+       transform="translate(-170.92096,-133.80415)"
+       id="g5159-9-4-5-0-06-9">
+      <rect
+         y="460.7149"
+         x="437.36484"
+         height="61.16087"
+         width="249.47314"
+         id="rect2985-52-5-6-9-1-1-3-5"
+         style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:4.93779469;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-4-6-6-93-3"
+         y="497.08435"
+         x="445.68036"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="497.08435"
+           x="445.68036"
+           id="tspan3757-5-98-0-79-7-6-2-8"
+           sodipodi:role="line">CommutativeRingElement</tspan></text>
+    </g>
+    <g
+       id="g4156"
+       transform="translate(68.12828,41.397723)" />
+    <g
+       id="g4117-5"
+       transform="translate(45.4165,135.434)">
+      <rect
+         y="458.01459"
+         x="149.90657"
+         height="61.80418"
+         width="186.73959"
+         id="rect2985-52-5-6-9-00-0"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.29448843;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-4-3-3"
+         y="480.45654"
+         x="193.4167"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="480.45654"
+           x="193.4167"
+           id="tspan3757-5-98-0-79-13-1"
+           sodipodi:role="line">ScalarField</tspan></text>
       <path
          inkscape:connector-curvature="0"
-         id="path3017-5-2-46-1"
-         d="m 482.17666,529.17736 0,-51.36199"
+         id="path3017-5-2-3-32"
+         d="M 243.28633,456.40147 123.04183,373.33083"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
-    </g>
-    <g
-       id="g3110-3"
-       transform="translate(-3.3249694,195.84142)">
-      <rect
-         y="529.48047"
-         x="389.15906"
-         height="61.796913"
-         width="187.39377"
-         id="rect2985-52-5-6-9-4"
-         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.30175114;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
       <text
          sodipodi:linespacing="125%"
-         id="text3755-6-2-1-4-35"
-         y="567.13165"
-         x="432.55597"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         id="text3998-7"
+         y="511.98038"
+         x="154.77277"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
-           style="font-size:20px"
-           y="567.13165"
-           x="432.55597"
-           id="tspan3757-5-98-0-79-0"
-           sodipodi:role="line">Submanifold</tspan></text>
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="511.98038"
+           x="154.77277"
+           id="tspan4000-7"
+           sodipodi:role="line">Parent: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan3078-5">ScalarFieldRing</tspan></tspan></text>
       <path
          inkscape:connector-curvature="0"
-         id="path3017-5-2-46-4"
-         d="m 482.17666,529.17736 0,-51.36199"
+         id="path3017-5-2-3-3-0"
+         d="M 243.65044,456.56313 338.19267,254.86586"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
     </g>

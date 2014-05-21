@@ -24,12 +24,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.511894"
      inkscape:cx="575.17443"
-     inkscape:cy="552.88954"
+     inkscape:cy="507.0827"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4193"
      showgrid="false"
-     inkscape:window-width="1855"
-     inkscape:window-height="1056"
+     inkscape:window-width="1535"
+     inkscape:window-height="876"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -387,14 +387,14 @@
       <text
          xml:space="preserve"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         x="475.05276"
-         y="514.78351"
+         x="466.45428"
+         y="512.13782"
          id="text3998-5"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan4000-4"
-           x="475.05276"
-           y="514.78351"
+           x="466.45428"
+           y="512.13782"
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">Parent: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
    id="tspan4028">VectorFieldModule</tspan></tspan></text>
@@ -459,12 +459,12 @@
          sodipodi:linespacing="125%"
          id="text3998"
          y="511.98038"
-         x="162.0484"
+         x="157.41844"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
            y="511.98038"
-           x="162.0484"
+           x="157.41844"
            id="tspan4000"
            sodipodi:role="line">Parent: <tspan
    id="tspan4002"
@@ -607,13 +607,13 @@
       <text
          sodipodi:linespacing="125%"
          id="text3998-2-6"
-         y="645.43127"
-         x="639.8092"
+         y="644.76984"
+         x="614.67517"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="645.43127"
-           x="639.8092"
+           y="644.76984"
+           x="614.67517"
            id="tspan4000-44-0"
            sodipodi:role="line">Parent: <tspan
    id="tspan4002-8-3"
@@ -622,14 +622,14 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="636.50208"
-       y="509.17838"
+       x="614.01373"
+       y="509.83978"
        id="text3998-2-82"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4000-44-04"
-         x="636.50208"
-         y="509.17838"
+         x="614.01373"
+         y="509.83978"
          style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">Parent: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
    id="tspan4002-8-4">TensorFreeModule</tspan></tspan></text>
@@ -690,13 +690,13 @@
       <text
          sodipodi:linespacing="125%"
          id="text3998-2-4"
-         y="392.7681"
-         x="432.12268"
+         y="394.09094"
+         x="406.32721"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="392.7681"
-           x="432.12268"
+           y="394.09094"
+           x="406.32721"
            id="tspan4000-44-4"
            sodipodi:role="line">Parent: <tspan
    id="tspan4002-8-8"

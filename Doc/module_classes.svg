@@ -24,12 +24,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.511894"
      inkscape:cx="460.88522"
-     inkscape:cy="552.88954"
+     inkscape:cy="397.21828"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1855"
-     inkscape:window-height="1056"
+     inkscape:window-width="1535"
+     inkscape:window-height="876"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -436,17 +436,31 @@
       <text
          sodipodi:linespacing="125%"
          id="text3998-9"
-         y="644.10852"
-         x="387.80743"
+         y="645.43134"
+         x="370.61047"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="644.10852"
-           x="387.80743"
+           y="645.43134"
+           x="370.61047"
            id="tspan4000-7"
            sodipodi:role="line">Element: <tspan
    id="tspan4002-2"
    style="font-style:normal;-inkscape-font-specification:Sans">VectorFieldFreeParal</tspan></tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-9-0"
+         y="630.21863"
+         x="372.04828"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="630.21863"
+           x="372.04828"
+           id="tspan4000-7-2"
+           sodipodi:role="line">ring: <tspan
+   id="tspan4002-2-6"
+   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldRing</tspan></tspan></text>
     </g>
     <g
        id="g4156"
@@ -461,25 +475,25 @@
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-4-2"
-         y="762.74835"
+         y="761.42554"
          x="375.01816"
          style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          xml:space="preserve"><tspan
            style="font-size:20px"
-           y="762.74835"
+           y="761.42554"
            x="375.01816"
            id="tspan3757-5-98-0-79-1"
            sodipodi:role="line">TensorFieldFreeModule</tspan></text>
       <text
          sodipodi:linespacing="125%"
          id="text3998-2-8"
-         y="788.29852"
-         x="398.39014"
+         y="791.60565"
+         x="371.93326"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="788.29852"
-           x="398.39014"
+           y="791.60565"
+           x="371.93326"
            id="tspan4000-44-9"
            sodipodi:role="line">Element: <tspan
    id="tspan4150"
@@ -490,6 +504,20 @@
          d="M 484.16093,734.58562 654.62124,678.55687"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-8-6"
+         y="777.71576"
+         x="373.91959"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="777.71576"
+           x="373.91959"
+           id="tspan4000-44-9-1"
+           sodipodi:role="line">ring: <tspan
+   id="tspan4150-1"
+   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldRing</tspan></tspan></text>
     </g>
     <g
        id="g4193">
@@ -522,12 +550,12 @@
          sodipodi:linespacing="125%"
          id="text3998-2-6"
          y="645.43127"
-         x="639.8092"
+         x="614.67517"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
            y="645.43127"
-           x="639.8092"
+           x="614.67517"
            id="tspan4000-44-0"
            sodipodi:role="line">Element: <tspan
    id="tspan4002-8-3"
@@ -557,29 +585,43 @@
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-9"
-         y="479.79517"
-         x="641.8269"
+         y="477.81091"
+         x="645.79541"
          style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          xml:space="preserve"><tspan
            style="font-size:18px"
-           y="479.79517"
-           x="641.8269"
+           y="477.81091"
+           x="645.79541"
            id="tspan3757-5-98-0-4"
            sodipodi:role="line">FiniteFreeModule</tspan></text>
       <text
          sodipodi:linespacing="125%"
          id="text3998-2-82"
-         y="509.83978"
+         y="510.50119"
          x="612.02948"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="509.83978"
+           y="510.50119"
            x="612.02948"
            id="tspan4000-44-04"
            sodipodi:role="line">Element: <tspan
    id="tspan4002-8-4"
    style="font-style:normal;-inkscape-font-specification:Sans">FiniteFreeModuleElement</tspan></tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-82-6"
+         y="495.28851"
+         x="614.53406"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="495.28851"
+           x="614.53406"
+           id="tspan4000-44-04-5"
+           sodipodi:role="line">ring: <tspan
+   id="tspan4002-8-4-7"
+   style="font-style:normal;-inkscape-font-specification:Sans">CommutativeRing</tspan></tspan></text>
     </g>
     <g
        transform="translate(-41.184953,-243.22234)"
@@ -621,13 +663,13 @@
            xml:space="preserve"
            style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
            x="517.92426"
-           y="485.84018"
+           y="483.85593"
            id="text3755-6-2-1-4-6"
            sodipodi:linespacing="125%"><tspan
              sodipodi:role="line"
              id="tspan3757-5-98-0-79-7"
              x="517.92426"
-             y="485.84018"
+             y="483.85593"
              style="font-size:20px">Module</tspan></text>
       </g>
       <path
@@ -639,17 +681,31 @@
       <text
          sodipodi:linespacing="125%"
          id="text3998-2-4"
-         y="392.7681"
+         y="394.75235"
          x="403.68152"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="392.7681"
+           y="394.75235"
            x="403.68152"
            id="tspan4000-44-4"
            sodipodi:role="line">Element: <tspan
    id="tspan4002-8-8"
    style="font-style:normal;-inkscape-font-specification:Sans">ModuleElement</tspan></tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-4-0"
+         y="380.20105"
+         x="403.30447"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="380.20105"
+           x="403.30447"
+           id="tspan4000-44-4-4"
+           sodipodi:role="line">category: <tspan
+   id="tspan4002-8-8-3"
+   style="font-style:normal;-inkscape-font-specification:Sans">Modules</tspan></tspan></text>
     </g>
     <g
        transform="translate(-269.89102,-224.04109)"
@@ -709,13 +765,13 @@
       <text
          xml:space="preserve"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         x="72.309128"
+         x="45.852245"
          y="533.65106"
          id="text3998-5"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan4000-4"
-           x="72.309128"
+           x="45.852245"
            y="533.65106"
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">Element: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
@@ -726,6 +782,20 @@
          d="M 132.88618,476.37123 256.57201,97.998106"
          id="path3017-7"
          inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="46.136009"
+         y="521.08691"
+         id="text3998-5-3"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan4000-4-0"
+           x="46.136009"
+           y="521.08691"
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">ring: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan4028-4">ScalarFieldRing</tspan></tspan></text>
     </g>
     <g
        id="g4117"
@@ -759,12 +829,12 @@
          sodipodi:linespacing="125%"
          id="text3998"
          y="511.31897"
-         x="183.21391"
+         x="156.75703"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
            y="511.31897"
-           x="183.21391"
+           x="156.75703"
            id="tspan4000"
            sodipodi:role="line">Element: <tspan
    id="tspan4002"
@@ -775,6 +845,20 @@
          d="m 243.65044,456.56313 200.41088,-65.9501"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-8"
+         y="498.59561"
+         x="157.54495"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="498.59561"
+           x="157.54495"
+           id="tspan4000-6"
+           sodipodi:role="line">ring: <tspan
+   id="tspan4002-4"
+   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldRing</tspan></tspan></text>
     </g>
   </g>
 </svg>
