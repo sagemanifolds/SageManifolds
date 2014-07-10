@@ -24,12 +24,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.511894"
      inkscape:cx="460.88522"
-     inkscape:cy="397.21828"
+     inkscape:cy="529.50269"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1535"
-     inkscape:window-height="876"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -403,7 +403,7 @@
        id="g5159-4" />
     <g
        id="g4054"
-       transform="translate(-3.3071097,0.66142207)">
+       transform="translate(44.976699,1.9842661)">
       <g
          id="g5159-9-4"
          transform="translate(-74.981326,130.59589)">
@@ -460,11 +460,11 @@
            id="tspan4000-7-2"
            sodipodi:role="line">ring: <tspan
    id="tspan4002-2-6"
-   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldRing</tspan></tspan></text>
+   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldAlgebra</tspan></tspan></text>
     </g>
     <g
        id="g4156"
-       transform="translate(-5.2913767,-21.826927)">
+       transform="translate(66.803625,-21.165505)">
       <rect
          y="736.17908"
          x="367.10995"
@@ -517,10 +517,11 @@
            id="tspan4000-44-9-1"
            sodipodi:role="line">ring: <tspan
    id="tspan4150-1"
-   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldRing</tspan></tspan></text>
+   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldAlgebra</tspan></tspan></text>
     </g>
     <g
-       id="g4193">
+       id="g4193"
+       transform="translate(62.835093,0.66142203)">
       <rect
          y="592.16364"
          x="608.38824"
@@ -543,7 +544,7 @@
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-7"
-         d="m 716.16546,591.05811 0,-68.59578"
+         d="M 716.16546,591.05811 715.50404,524.4466"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
       <text
@@ -561,70 +562,80 @@
    id="tspan4002-8-3"
    style="font-style:normal;-inkscape-font-specification:Sans">FreeModuleTensor</tspan></tspan></text>
     </g>
+    <rect
+       style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:4.92019033;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+       id="rect2985-52-5-6-2"
+       width="247.62614"
+       height="61.178478"
+       x="653.13873"
+       y="459.95245" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+       d="M 760.09559,458.02646 381.28978,308.03504"
+       id="path3017-5-9"
+       inkscape:connector-curvature="0" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+       d="M 761.60336,457.72144 617.60238,311.03713"
+       id="path3017-5-9-3"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+       x="689.44928"
+       y="479.13376"
+       id="text3755-6-2-1-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3757-5-98-0-4"
+         x="689.44928"
+         y="479.13376"
+         style="font-size:18px">FiniteRankFreeModule</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="656.34473"
+       y="512.48547"
+       id="text3998-2-82"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4000-44-04"
+         x="656.34473"
+         y="512.48547"
+         style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">Element: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan4002-8-4">FiniteRankFreeModuleElement</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="658.8493"
+       y="497.27277"
+       id="text3998-2-82-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4000-44-04-5"
+         x="658.8493"
+         y="497.27277"
+         style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">ring: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan4002-8-4-7">CommutativeRing</tspan></tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3125"
+       y="431.9483"
+       x="743.43835"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+       xml:space="preserve"><tspan
+         y="431.9483"
+         x="743.43835"
+         id="tspan3127"
+         sodipodi:role="line"><tspan
+   id="tspan3129"
+   style="font-style:italic;-inkscape-font-specification:Liberation Sans Italic">category:</tspan> Modules</tspan></text>
     <g
-       id="g3159">
-      <rect
-         y="457.80246"
-         x="608.65778"
-         height="61.509941"
-         width="214.22508"
-         id="rect2985-52-5-6-2"
-         style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:4.58872604;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path3017-5-9"
-         d="M 715.78031,456.04219 355.49432,333.83049"
-         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         sodipodi:nodetypes="cc" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path3017-5-9-3"
-         d="M 717.28808,455.73717 573.2871,393.05345"
-         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         sodipodi:nodetypes="cc" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3755-6-2-1-9"
-         y="477.81091"
-         x="645.79541"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
-         xml:space="preserve"><tspan
-           style="font-size:18px"
-           y="477.81091"
-           x="645.79541"
-           id="tspan3757-5-98-0-4"
-           sodipodi:role="line">FiniteFreeModule</tspan></text>
-      <text
-         sodipodi:linespacing="125%"
-         id="text3998-2-82"
-         y="510.50119"
-         x="612.02948"
-         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="510.50119"
-           x="612.02948"
-           id="tspan4000-44-04"
-           sodipodi:role="line">Element: <tspan
-   id="tspan4002-8-4"
-   style="font-style:normal;-inkscape-font-specification:Sans">FiniteFreeModuleElement</tspan></tspan></text>
-      <text
-         sodipodi:linespacing="125%"
-         id="text3998-2-82-6"
-         y="495.28851"
-         x="614.53406"
-         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="495.28851"
-           x="614.53406"
-           id="tspan4000-44-04-5"
-           sodipodi:role="line">ring: <tspan
-   id="tspan4002-8-4-7"
-   style="font-style:normal;-inkscape-font-specification:Sans">CommutativeRing</tspan></tspan></text>
-    </g>
-    <g
-       transform="translate(-41.184953,-243.22234)"
+       transform="translate(13.713076,-216.10404)"
        id="g5159-9-4-5-0">
       <rect
          y="460.246"
@@ -636,79 +647,18 @@
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-4-6-6"
-         y="493.77725"
-         x="488.82172"
+         y="496.42294"
+         x="491.46738"
          style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          xml:space="preserve"><tspan
            style="font-size:20px"
-           y="493.77725"
-           x="488.82172"
+           y="496.42294"
+           x="491.46738"
            id="tspan3757-5-98-0-79-7-6"
            sodipodi:role="line">      Parent</tspan></text>
     </g>
     <g
-       id="g4387"
-       transform="translate(35.798476,-11.244175)">
-      <g
-         id="g5159-9-4-5"
-         transform="translate(-74.853181,-120.83233)">
-        <rect
-           style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
-           id="rect2985-52-5-6-9-1"
-           width="161.23862"
-           height="62.098667"
-           x="473.91083"
-           y="460.246" />
-        <text
-           xml:space="preserve"
-           style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
-           x="517.92426"
-           y="483.85593"
-           id="text3755-6-2-1-4-6"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan3757-5-98-0-79-7"
-             x="517.92426"
-             y="483.85593"
-             style="font-size:20px">Module</tspan></text>
-      </g>
-      <path
-         inkscape:connector-curvature="0"
-         id="path3017-0"
-         d="m 479.54094,340.17945 -0.67139,-43.69358"
-         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         sodipodi:nodetypes="cc" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3998-2-4"
-         y="394.75235"
-         x="403.68152"
-         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="394.75235"
-           x="403.68152"
-           id="tspan4000-44-4"
-           sodipodi:role="line">Element: <tspan
-   id="tspan4002-8-8"
-   style="font-style:normal;-inkscape-font-specification:Sans">ModuleElement</tspan></tspan></text>
-      <text
-         sodipodi:linespacing="125%"
-         id="text3998-2-4-0"
-         y="380.20105"
-         x="403.30447"
-         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="380.20105"
-           x="403.30447"
-           id="tspan4000-44-4-4"
-           sodipodi:role="line">category: <tspan
-   id="tspan4002-8-8-3"
-   style="font-style:normal;-inkscape-font-specification:Sans">Modules</tspan></tspan></text>
-    </g>
-    <g
-       transform="translate(-269.89102,-224.04109)"
+       transform="translate(-232.18996,-249.17513)"
        id="g5159-9-4-5-0-0">
       <g
          id="g3122"
@@ -736,7 +686,7 @@
     </g>
     <g
        id="g3224"
-       transform="translate(22.488349,236.78609)">
+       transform="translate(-54.898029,102.51742)">
       <rect
          y="477.90866"
          x="41.521164"
@@ -759,7 +709,7 @@
       <path
          inkscape:connector-curvature="0"
          id="path3017"
-         d="M 134.26879,475.60217 476.8853,158.07987"
+         d="M 134.26879,475.60217 582.0514,207.68653"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
       <text
@@ -779,7 +729,7 @@
       <path
          sodipodi:nodetypes="cc"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         d="M 132.88618,476.37123 256.57201,97.998106"
+         d="M 132.88618,476.37123 380.25793,206.47133"
          id="path3017-7"
          inkscape:connector-curvature="0" />
       <text
@@ -795,11 +745,11 @@
            y="521.08691"
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">ring: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
-   id="tspan4028-4">ScalarFieldRing</tspan></tspan></text>
+   id="tspan4028-4">ScalarFieldAlgebra</tspan></tspan></text>
     </g>
     <g
        id="g4117"
-       transform="translate(11.905596,2.6456888)">
+       transform="translate(42.331008,79.370633)">
       <rect
          y="457.32019"
          x="152.51927"
@@ -822,7 +772,7 @@
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-3"
-         d="m 243.28633,456.40147 46.29955,-123.4938"
+         d="M 243.28633,456.40147 290.2473,231.7101"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
       <text
@@ -842,7 +792,7 @@
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-3-3"
-         d="m 243.65044,456.56313 200.41088,-65.9501"
+         d="M 243.65044,456.56313 515.4949,229.88747"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
       <text
@@ -858,7 +808,119 @@
            id="tspan4000-6"
            sodipodi:role="line">ring: <tspan
    id="tspan4002-4"
-   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldRing</tspan></tspan></text>
+   style="font-style:normal;-inkscape-font-specification:Sans">ScalarFieldAlgebra</tspan></tspan></text>
     </g>
+    <g
+       transform="translate(-120.45369,14.786487)"
+       id="g3250">
+      <rect
+         y="325.54187"
+         x="105.2853"
+         height="27.001724"
+         width="48.349747"
+         id="rect2985-52-5-6-9-00-4"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:1.44436562;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3137"
+         y="333.39642"
+         x="166.01691"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="333.39642"
+           x="166.01691"
+           id="tspan3139"
+           sodipodi:role="line">SageManifolds class</tspan><tspan
+           id="tspan3141"
+           style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+           y="353.39642"
+           x="166.01691"
+           sodipodi:role="line"><tspan
+             id="tspan3242"
+             style="font-style:normal;-inkscape-font-specification:Liberation Sans">(differential part) </tspan></tspan></text>
+      <rect
+         y="277.06213"
+         x="105.2942"
+         height="25.665323"
+         width="48.437401"
+         id="rect2985-52-5-6-2-6"
+         style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:1.40944481;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <g
+         id="g5159-9-4-5-0-0-4"
+         transform="matrix(1.0036076,0,0,1,-269.35312,-237.26955)">
+        <rect
+           style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:1.43875325;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+           id="rect2985-52-5-6-9-1-1-0"
+           width="48.051006"
+           height="26.958857"
+           x="373.4169"
+           y="465.57962" />
+      </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3137-5"
+         y="284.54071"
+         x="165.28899"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="284.54071"
+           x="165.28899"
+           id="tspan3139-7"
+           sodipodi:role="line">SageManifolds class</tspan><tspan
+           id="tspan3141-3"
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="304.54071"
+           x="165.28899"
+           sodipodi:role="line">(algebraic part) </tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3137-5-3"
+         y="245.5168"
+         x="165.95039"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="245.5168"
+           x="165.95039"
+           id="tspan3139-7-9"
+           sodipodi:role="line">native Sage class</tspan><tspan
+           id="tspan3141-3-0"
+           style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+           y="265.51678"
+           x="165.95039"
+           sodipodi:role="line" /></text>
+    </g>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3125-9-4"
+       y="557.93103"
+       x="124.02309"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+       xml:space="preserve"><tspan
+         y="557.93103"
+         x="124.02309"
+         id="tspan3127-9-8"
+         sodipodi:role="line"><tspan
+   id="tspan3129-4-0"
+   style="font-style:italic;-inkscape-font-specification:Liberation Sans Italic">category:</tspan> </tspan><tspan
+         y="575.43103"
+         x="124.02309"
+         sodipodi:role="line"
+         id="tspan3207">Modules</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3125-9-0"
+       y="518.90717"
+       x="319.14258"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+       xml:space="preserve"><tspan
+         y="518.90717"
+         x="319.14258"
+         id="tspan3127-9-0"
+         sodipodi:role="line"><tspan
+   id="tspan3129-4-1"
+   style="font-style:italic;-inkscape-font-specification:Liberation Sans Italic">category:</tspan> Modules</tspan></text>
   </g>
 </svg>

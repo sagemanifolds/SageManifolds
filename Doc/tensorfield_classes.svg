@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="tensorfield_classes.svg">
+   sodipodi:docname="tensorfield_classes.pdf">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -22,14 +22,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.511894"
-     inkscape:cx="575.17443"
-     inkscape:cy="507.0827"
+     inkscape:zoom="1.5882151"
+     inkscape:cx="487.22038"
+     inkscape:cy="538.60249"
      inkscape:document-units="px"
-     inkscape:current-layer="g4193"
+     inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1535"
-     inkscape:window-height="876"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -37,7 +37,7 @@
      inkscape:guide-bbox="true">
     <sodipodi:guide
        orientation="1,0"
-       position="478.86955,550.96455"
+       position="104.50468,558.90162"
        id="guide3992" />
     <sodipodi:guide
        orientation="0,1"
@@ -46,6 +46,14 @@
     <inkscape:grid
        type="xygrid"
        id="grid3996" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="142.20574,845.29736"
+       id="guide3161" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="154.25633,764.49722"
+       id="guide3400" />
   </sodipodi:namedview>
   <defs
      id="defs4">
@@ -347,7 +355,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -427,49 +435,45 @@
        d="M 695.27622,456.04219 518.20414,403.2798"
        id="path3017-5-9"
        inkscape:connector-curvature="0" />
-    <g
-       id="g4117"
-       transform="translate(6.6142203,-0.66142203)">
-      <rect
-         y="457.32019"
-         x="152.51927"
-         height="61.870155"
-         width="180.85277"
-         id="rect2985-52-5-6-9-00"
-         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.22851133;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3755-6-2-1-4-3"
-         y="481.77942"
-         x="190.66142"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
-         xml:space="preserve"><tspan
-           style="font-size:20px"
-           y="481.77942"
-           x="190.66142"
-           id="tspan3757-5-98-0-79-13"
-           sodipodi:role="line">TensorField</tspan></text>
-      <path
-         inkscape:connector-curvature="0"
-         id="path3017-5-2-3"
-         d="M 243.28633,456.40147 433.77587,406.32551"
-         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         sodipodi:nodetypes="cc" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3998"
-         y="511.98038"
-         x="157.41844"
-         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="511.98038"
-           x="157.41844"
-           id="tspan4000"
-           sodipodi:role="line">Parent: <tspan
-   id="tspan4002"
-   style="font-style:normal;-inkscape-font-specification:Sans">TensorFieldModule</tspan></tspan></text>
-    </g>
+    <rect
+       style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.22851133;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+       id="rect2985-52-5-6-9-00"
+       width="180.85277"
+       height="61.870155"
+       x="159.1335"
+       y="456.65878" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+       x="197.27565"
+       y="481.11801"
+       id="text3755-6-2-1-4-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3757-5-98-0-79-13"
+         x="197.27565"
+         y="481.11801"
+         style="font-size:20px">TensorField</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+       d="M 249.90055,455.74005 440.39009,405.66409"
+       id="path3017-5-2-3"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="164.03267"
+       y="511.31897"
+       id="text3998"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4000"
+         x="164.03267"
+         y="511.31897"
+         style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic">Parent: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan4002">TensorFieldModule</tspan></tspan></text>
     <g
        id="g4054"
        transform="translate(-10.582752,1.3228441)">
@@ -580,12 +584,12 @@
     <g
        id="g4193">
       <rect
-         y="592.16364"
-         x="608.38824"
-         height="61.496445"
-         width="215.53442"
+         y="592.37518"
+         x="608.59979"
+         height="61.073353"
+         width="258.7652"
          id="rect2985-52-5-6-4"
-         style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:4.60222292;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+         style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:5.02531338;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-5"
@@ -597,11 +601,11 @@
            y="614.14966"
            x="614.18744"
            id="tspan3757-5-98-0-7"
-           sodipodi:role="line">FiniteFreeModuleElement</tspan></text>
+           sodipodi:role="line">FiniteRankFreeModuleElement</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-7"
-         d="m 698.96849,591.05811 0,-68.59578"
+         d="m 731.37817,589.73527 -0.66142,-64.62725"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
       <text
@@ -617,7 +621,7 @@
            id="tspan4000-44-0"
            sodipodi:role="line">Parent: <tspan
    id="tspan4002-8-3"
-   style="font-style:normal;-inkscape-font-specification:Sans">FiniteFreeModule</tspan></tspan></text>
+   style="font-style:normal;-inkscape-font-specification:Sans">FiniteRankFreeModule</tspan></tspan></text>
     </g>
     <text
        xml:space="preserve"
@@ -701,6 +705,87 @@
            sodipodi:role="line">Parent: <tspan
    id="tspan4002-8-8"
    style="font-style:normal;-inkscape-font-specification:Sans">Module</tspan></tspan></text>
+    </g>
+    <g
+       id="g3250">
+      <rect
+         y="325.54187"
+         x="105.2853"
+         height="27.001724"
+         width="48.349747"
+         id="rect2985-52-5-6-9-00-4"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:1.44436562;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3137"
+         y="333.39642"
+         x="166.01691"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="333.39642"
+           x="166.01691"
+           id="tspan3139"
+           sodipodi:role="line">SageManifolds class</tspan><tspan
+           id="tspan3141"
+           style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+           y="353.39642"
+           x="166.01691"
+           sodipodi:role="line"><tspan
+             id="tspan3242"
+             style="font-style:normal;-inkscape-font-specification:Liberation Sans">(differential part) </tspan></tspan></text>
+      <rect
+         y="277.06213"
+         x="105.2942"
+         height="25.665323"
+         width="48.437401"
+         id="rect2985-52-5-6-2-6"
+         style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:1.40944481;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <g
+         id="g5159-9-4-5-0-0"
+         transform="matrix(1.0036076,0,0,1,-269.35312,-237.26955)">
+        <rect
+           style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:1.43875325;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+           id="rect2985-52-5-6-9-1-1-0"
+           width="48.051006"
+           height="26.958857"
+           x="373.4169"
+           y="465.57962" />
+      </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3137-5"
+         y="284.54071"
+         x="165.28899"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="284.54071"
+           x="165.28899"
+           id="tspan3139-7"
+           sodipodi:role="line">SageManifolds class</tspan><tspan
+           id="tspan3141-3"
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="304.54071"
+           x="165.28899"
+           sodipodi:role="line">(algebraic part) </tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3137-5-3"
+         y="245.5168"
+         x="165.95039"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+           y="245.5168"
+           x="165.95039"
+           id="tspan3139-7-9"
+           sodipodi:role="line">native Sage class</tspan><tspan
+           id="tspan3141-3-0"
+           style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+           y="265.51682"
+           x="165.95039"
+           sodipodi:role="line"> </tspan></text>
     </g>
   </g>
 </svg>
