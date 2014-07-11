@@ -3,7 +3,7 @@
 #cd $SAGE_ROOT
 
 echo -e "\n$(tput setaf 4)Downloading the package SageManifolds v0.5...$(tput sgr 0)"
-wget -N http://sagemanifolds.obspm.fr/spkg/manifolds-0.5.tar.gz
+curl http://sagemanifolds.obspm.fr/spkg/manifolds-0.5.tar.gz > manifolds-0.5.tar.gz
 
 # untaring the SM tree (tensor/modules, geometry/manifolds 
 # and the documentation files)
