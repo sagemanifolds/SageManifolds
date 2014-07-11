@@ -22,14 +22,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1887098"
-     inkscape:cx="532.38894"
-     inkscape:cy="543.24101"
+     inkscape:zoom="1.4387978"
+     inkscape:cx="577.16865"
+     inkscape:cy="398.64845"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4117"
      showgrid="false"
-     inkscape:window-width="1535"
-     inkscape:window-height="876"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -478,6 +478,34 @@
          style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
          transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-42"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-43"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-21"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-7"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
   </defs>
   <metadata
      id="metadata7">
@@ -500,36 +528,7 @@
        transform="translate(-174.40208,6.3147743)"
        id="g5159-4" />
     <g
-       id="g3110"
-       transform="translate(-335.68827,-84.792419)">
-      <rect
-         y="529.48047"
-         x="389.15906"
-         height="61.796913"
-         width="187.39377"
-         id="rect2985-52-5-6-9"
-         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.30175114;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3755-6-2-1-4"
-         y="566.47021"
-         x="426.60318"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
-         xml:space="preserve"><tspan
-           style="font-size:20px"
-           y="566.47021"
-           x="426.60318"
-           id="tspan3757-5-98-0-79"
-           sodipodi:role="line">DiffMapping</tspan></text>
-      <path
-         inkscape:connector-curvature="0"
-         id="path3017-5-2-46"
-         d="m 482.17666,529.17736 0,-51.36199"
-         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         sodipodi:nodetypes="cc" />
-    </g>
-    <g
-       transform="translate(105.92845,-132.15906)"
+       transform="translate(-197.22631,-68.301007)"
        id="g5159-9-4-5-0">
       <rect
          y="460.246"
@@ -552,7 +551,7 @@
            sodipodi:role="line">      Parent</tspan></text>
     </g>
     <g
-       transform="translate(312.70667,-166.07139)"
+       transform="translate(-451.98796,-101.29527)"
        id="g5159-9-4-5-0-0">
       <g
          id="g3122"
@@ -580,42 +579,42 @@
     </g>
     <g
        id="g4117"
-       transform="translate(521.49063,-2.5214678)">
+       transform="translate(1.5992317,61.413396)">
       <rect
-         y="458.01459"
-         x="149.90657"
-         height="61.80418"
-         width="186.73959"
+         y="474.97363"
+         x="138.26318"
+         height="61.536003"
+         width="211.70886"
          id="rect2985-52-5-6-9-00"
-         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.29448843;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.56266403;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-4-3"
-         y="480.45654"
-         x="177.43298"
+         y="496.44025"
+         x="159.76677"
          style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          xml:space="preserve"><tspan
            style="font-size:20px"
-           y="480.45654"
-           x="177.43298"
+           y="496.44025"
+           x="159.76677"
            id="tspan3757-5-98-0-79-13"
-           sodipodi:role="line">ScalarFieldRing</tspan></text>
+           sodipodi:role="line">ScalarFieldAlgebra</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-3"
-         d="m 243.28633,456.40147 -99.2133,-58.67444"
+         d="m 243.82033,472.53881 -99.7473,-74.81178"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
       <text
          sodipodi:linespacing="125%"
          id="text3998"
-         y="511.98038"
-         x="154.77277"
+         y="528.80536"
+         x="142.99529"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="511.98038"
-           x="154.77277"
+           y="528.80536"
+           x="142.99529"
            id="tspan4000"
            sodipodi:role="line">Element: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
@@ -623,57 +622,130 @@
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-3-3"
-         d="m 243.65044,456.56313 98.55188,-59.33588"
+         d="m 244.48984,472.70232 97.71248,-75.47507"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
       <text
          sodipodi:linespacing="125%"
          id="text3998-3"
-         y="497.2728"
-         x="154.05424"
+         y="464.30862"
+         x="269.46259"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="497.2728"
-           x="154.05424"
+           y="464.30862"
+           x="269.46259"
            sodipodi:role="line"
            id="tspan3112">category: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
-   id="tspan3104-9">CommutativeRings</tspan></tspan></text>
-    </g>
-    <g
-       transform="translate(-408.15296,-133.80414)"
-       id="g5159-9-4-5-0-06">
-      <rect
-         y="460.246"
-         x="473.91083"
-         height="62.098667"
-         width="161.23862"
-         id="rect2985-52-5-6-9-1-1-3"
-         style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+   id="tspan3104-9">CommutativeAlgebras</tspan></tspan></text>
+      <g
+         transform="translate(-80.467983,387.41635)"
+         id="g3250">
+        <rect
+           y="325.54187"
+           x="105.2853"
+           height="27.001724"
+           width="48.349747"
+           id="rect2985-52-5-6-9-00-4"
+           style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:1.44436562;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text3137"
+           y="333.39642"
+           x="166.01691"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           xml:space="preserve"><tspan
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="333.39642"
+             x="166.01691"
+             id="tspan3139"
+             sodipodi:role="line">SageManifolds class</tspan><tspan
+             id="tspan3141"
+             style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+             y="353.39642"
+             x="166.01691"
+             sodipodi:role="line"><tspan
+               id="tspan3242"
+               style="font-style:normal;-inkscape-font-specification:Liberation Sans">(differential part) </tspan></tspan></text>
+        <rect
+           y="277.06213"
+           x="105.2942"
+           height="25.665323"
+           width="48.437401"
+           id="rect2985-52-5-6-2-6"
+           style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:1.40944481;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+        <g
+           id="g5159-9-4-5-0-0-4"
+           transform="matrix(1.0036076,0,0,1,-269.35312,-237.26955)">
+          <rect
+             style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:1.43875325;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+             id="rect2985-52-5-6-9-1-1-0"
+             width="48.051006"
+             height="26.958857"
+             x="373.4169"
+             y="465.57962" />
+        </g>
+        <text
+           sodipodi:linespacing="125%"
+           id="text3137-5"
+           y="284.54071"
+           x="165.28899"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           xml:space="preserve"><tspan
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="284.54071"
+             x="165.28899"
+             id="tspan3139-7"
+             sodipodi:role="line">SageManifolds class</tspan><tspan
+             id="tspan3141-3"
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="304.54071"
+             x="165.28899"
+             sodipodi:role="line">(algebraic part) </tspan></text>
+        <text
+           sodipodi:linespacing="125%"
+           id="text3137-5-3"
+           y="245.5168"
+           x="165.95039"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           xml:space="preserve"><tspan
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="245.5168"
+             x="165.95039"
+             id="tspan3139-7-9"
+             sodipodi:role="line">native Sage class</tspan><tspan
+             id="tspan3141-3-0"
+             style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+             y="265.51678"
+             x="165.95039"
+             sodipodi:role="line" /></text>
+      </g>
       <text
          sodipodi:linespacing="125%"
-         id="text3755-6-2-1-4-6-6-93"
-         y="497.08435"
-         x="507.09146"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         id="text3998-6"
+         y="514.22845"
+         x="143.6394"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
-           style="font-size:20px"
-           y="497.08435"
-           x="507.09146"
-           id="tspan3757-5-98-0-79-7-6-2"
-           sodipodi:role="line">SageObject</tspan></text>
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="514.22845"
+           x="143.6394"
+           id="tspan4000-2"
+           sodipodi:role="line">ring: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan3078-4">SR</tspan></tspan></text>
     </g>
     <g
-       transform="translate(-170.92096,-133.80415)"
+       transform="translate(64.148219,-68.73559)"
        id="g5159-9-4-5-0-06-9">
       <rect
-         y="460.7149"
-         x="437.36484"
-         height="61.16087"
-         width="249.47314"
+         y="460.85699"
+         x="437.50693"
+         height="60.876709"
+         width="280.31516"
          id="rect2985-52-5-6-9-1-1-3-5"
-         style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:4.93779469;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+         style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:5.22195578;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-4-6-6-93-3"
@@ -685,17 +757,17 @@
            y="497.08435"
            x="445.68036"
            id="tspan3757-5-98-0-79-7-6-2-8"
-           sodipodi:role="line">CommutativeRingElement</tspan></text>
+           sodipodi:role="line">CommutativeAlgebraElement</tspan></text>
     </g>
     <g
        id="g4156"
        transform="translate(68.12828,41.397723)" />
     <g
        id="g4117-5"
-       transform="translate(45.4165,135.434)">
+       transform="translate(528.87417,186.20134)">
       <rect
-         y="458.01459"
-         x="149.90657"
+         y="356.76865"
+         x="22.585642"
          height="61.80418"
          width="186.73959"
          id="rect2985-52-5-6-9-00-0"
@@ -703,39 +775,76 @@
       <text
          sodipodi:linespacing="125%"
          id="text3755-6-2-1-4-3-3"
-         y="480.45654"
-         x="193.4167"
+         y="379.2106"
+         x="66.095779"
          style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
          xml:space="preserve"><tspan
            style="font-size:20px"
-           y="480.45654"
-           x="193.4167"
+           y="379.2106"
+           x="66.095779"
            id="tspan3757-5-98-0-79-13-1"
            sodipodi:role="line">ScalarField</tspan></text>
-      <path
-         inkscape:connector-curvature="0"
-         id="path3017-5-2-3-32"
-         d="M 243.28633,456.40147 123.04183,373.33083"
-         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         sodipodi:nodetypes="cc" />
       <text
          sodipodi:linespacing="125%"
          id="text3998-7"
-         y="511.98038"
-         x="154.77277"
+         y="410.73444"
+         x="27.451838"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="511.98038"
-           x="154.77277"
+           y="410.73444"
+           x="27.451838"
            id="tspan4000-7"
            sodipodi:role="line">Parent: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
-   id="tspan3078-5">ScalarFieldRing</tspan></tspan></text>
+   id="tspan3078-5">ScalarFieldAlgebra</tspan></tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path3017-5-2-3-3-0"
-         d="M 243.65044,456.56313 338.19267,254.86586"
+         d="m 112.41572,354.47594 -1.36007,-81.54129"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g4117-5-7"
+       transform="translate(531.11254,338.35151)">
+      <rect
+         y="356.76865"
+         x="22.585642"
+         height="61.80418"
+         width="186.73959"
+         id="rect2985-52-5-6-9-00-0-0"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.29448843;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-4-3-3-0"
+         y="377.82056"
+         x="45.940063"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="377.82056"
+           x="45.940063"
+           id="tspan3757-5-98-0-79-13-1-9"
+           sodipodi:role="line">ZeroScalarField</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-7-7"
+         y="410.73444"
+         x="27.451838"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="410.73444"
+           x="27.451838"
+           id="tspan4000-7-2"
+           sodipodi:role="line">Parent: <tspan
+   style="font-style:normal;-inkscape-font-specification:Sans"
+   id="tspan3078-5-2">ScalarFieldAlgebra</tspan></tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-5-2-3-3-0-9"
+         d="m 112.41572,354.47594 -1.36007,-81.54129"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
          sodipodi:nodetypes="cc" />
     </g>

@@ -24,12 +24,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.511894"
      inkscape:cx="460.88522"
-     inkscape:cy="576.40685"
+     inkscape:cy="523.49309"
      inkscape:document-units="px"
      inkscape:current-layer="g4117"
      showgrid="false"
-     inkscape:window-width="1535"
-     inkscape:window-height="876"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -487,7 +487,7 @@
          sodipodi:nodetypes="cc" />
     </g>
     <g
-       transform="translate(-198.60339,-215.44262)"
+       transform="translate(66.626844,-215.44262)"
        id="g5159-9-4-5-0">
       <rect
          y="460.246"
@@ -510,7 +510,7 @@
            sodipodi:role="line">      Parent</tspan></text>
     </g>
     <g
-       transform="translate(50.237238,-248.51371)"
+       transform="translate(-202.42598,-248.51371)"
        id="g5159-9-4-5-0-0">
       <g
          id="g3122"
@@ -587,17 +587,99 @@
       <text
          sodipodi:linespacing="125%"
          id="text3998-3"
-         y="495.94995"
-         x="155.37709"
+         y="447.00473"
+         x="275.75589"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           y="495.94995"
-           x="155.37709"
+           y="447.00473"
+           x="275.75589"
            sodipodi:role="line"
            id="tspan3112">category: <tspan
    style="font-style:normal;-inkscape-font-specification:Sans"
    id="tspan3104-9">Sets</tspan></tspan></text>
+      <g
+         transform="translate(-267.95081,511.51444)"
+         id="g3250">
+        <rect
+           y="325.54187"
+           x="105.2853"
+           height="27.001724"
+           width="48.349747"
+           id="rect2985-52-5-6-9-00-4"
+           style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:1.44436562;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text3137"
+           y="333.39642"
+           x="166.01691"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           xml:space="preserve"><tspan
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="333.39642"
+             x="166.01691"
+             id="tspan3139"
+             sodipodi:role="line">SageManifolds class</tspan><tspan
+             id="tspan3141"
+             style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+             y="353.39642"
+             x="166.01691"
+             sodipodi:role="line"><tspan
+               id="tspan3242"
+               style="font-style:normal;-inkscape-font-specification:Liberation Sans">(differential part) </tspan></tspan></text>
+        <rect
+           y="277.06213"
+           x="105.2942"
+           height="25.665323"
+           width="48.437401"
+           id="rect2985-52-5-6-2-6"
+           style="fill:#f4d7d7;fill-opacity:1;stroke:#d4aa00;stroke-width:1.40944481;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+        <g
+           id="g5159-9-4-5-0-0-4"
+           transform="matrix(1.0036076,0,0,1,-269.35312,-237.26955)">
+          <rect
+             style="fill:#d5fff6;fill-opacity:1;stroke:#008066;stroke-width:1.43875325;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009"
+             id="rect2985-52-5-6-9-1-1-0"
+             width="48.051006"
+             height="26.958857"
+             x="373.4169"
+             y="465.57962" />
+        </g>
+        <text
+           sodipodi:linespacing="125%"
+           id="text3137-5"
+           y="284.54071"
+           x="165.28899"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           xml:space="preserve"><tspan
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="284.54071"
+             x="165.28899"
+             id="tspan3139-7"
+             sodipodi:role="line">SageManifolds class</tspan><tspan
+             id="tspan3141-3"
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="304.54071"
+             x="165.28899"
+             sodipodi:role="line">(algebraic part) </tspan></text>
+        <text
+           sodipodi:linespacing="125%"
+           id="text3137-5-3"
+           y="245.5168"
+           x="165.95039"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+           xml:space="preserve"><tspan
+             style="font-size:16px;font-style:normal;-inkscape-font-specification:Liberation Sans"
+             y="245.5168"
+             x="165.95039"
+             id="tspan3139-7-9"
+             sodipodi:role="line">native Sage class</tspan><tspan
+             id="tspan3141-3-0"
+             style="font-size:16px;font-style:italic;-inkscape-font-specification:Liberation Sans Italic"
+             y="265.51678"
+             x="165.95039"
+             sodipodi:role="line" /></text>
+      </g>
     </g>
     <g
        id="g3110-9"
