@@ -22,17 +22,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.511894"
-     inkscape:cx="460.88522"
-     inkscape:cy="529.50269"
+     inkscape:zoom="1.3894845"
+     inkscape:cx="487.17369"
+     inkscape:cy="541.63561"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4156-8"
      showgrid="false"
-     inkscape:window-width="1855"
-     inkscape:window-height="1056"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1"
+     inkscape:window-width="1563"
+     inkscape:window-height="945"
+     inkscape:window-x="178"
+     inkscape:window-y="64"
+     inkscape:window-maximized="0"
      showguides="true"
      inkscape:guide-bbox="true">
     <sodipodi:guide
@@ -380,6 +380,20 @@
          style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
          transform="matrix(-0.4,0,0,-0.4,-4,0)" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow1MendWO"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1MendWO-07"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5078-42"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#784421;fill-rule:evenodd;stroke:#784421;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
   </defs>
   <metadata
      id="metadata7">
@@ -521,7 +535,7 @@
     </g>
     <g
        id="g4193"
-       transform="translate(62.835093,0.66142203)">
+       transform="translate(42.630932,2.2777549)">
       <rect
          y="592.16364"
          x="608.38824"
@@ -729,7 +743,7 @@
       <path
          sodipodi:nodetypes="cc"
          style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
-         d="M 132.88618,476.37123 380.25793,206.47133"
+         d="M 132.88618,476.37123 377.83343,208.08766"
          id="path3017-7"
          inkscape:connector-curvature="0" />
       <text
@@ -895,18 +909,18 @@
     <text
        sodipodi:linespacing="125%"
        id="text3125-9-4"
-       y="557.93103"
-       x="124.02309"
+       y="558.7392"
+       x="128.87209"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
        xml:space="preserve"><tspan
-         y="557.93103"
-         x="124.02309"
+         y="558.7392"
+         x="128.87209"
          id="tspan3127-9-8"
          sodipodi:role="line"><tspan
-   id="tspan3129-4-0"
-   style="font-style:italic;-inkscape-font-specification:Liberation Sans Italic">category:</tspan> </tspan><tspan
-         y="575.43103"
-         x="124.02309"
+           id="tspan3129-4-0"
+           style="font-style:italic;-inkscape-font-specification:Liberation Sans Italic">category:</tspan></tspan><tspan
+         y="576.2392"
+         x="128.87209"
          sodipodi:role="line"
          id="tspan3207">Modules</tspan></text>
     <text
@@ -922,5 +936,62 @@
          sodipodi:role="line"><tspan
    id="tspan3129-4-1"
    style="font-style:italic;-inkscape-font-specification:Liberation Sans Italic">category:</tspan> Modules</tspan></text>
+    <g
+       id="g4156-8"
+       transform="translate(397.69551,-19.8106)">
+      <rect
+         y="735.20325"
+         x="397.65268"
+         height="61.738396"
+         width="192.70963"
+         id="rect2985-52-5-6-9-0-5"
+         style="fill:#ffff00;fill-opacity:1;stroke:#d4aa00;stroke-width:4.36027336;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:1.38000009" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6-2-1-4-2-4"
+         y="759.00104"
+         x="425.93265"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
+         xml:space="preserve"><tspan
+           style="font-size:20px"
+           y="759.00104"
+           x="425.93265"
+           id="tspan3757-5-98-0-79-1-7"
+           sodipodi:role="line">TangentSpace</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-8-1"
+         y="789.98932"
+         x="405.06808"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="789.98932"
+           x="405.06808"
+           id="tspan4000-44-9-8"
+           sodipodi:role="line">Element: <tspan
+   id="tspan4150-4"
+   style="font-style:normal;-inkscape-font-specification:Sans">TangentVector</tspan></tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3017-5-2-4-3-2"
+         d="M 493.05076,734.58562 489.75529,547.9997"
+         style="fill:#784421;stroke:#784421;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1MendWO)"
+         sodipodi:nodetypes="cc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3998-2-8-6-2"
+         y="776.09943"
+         x="405.43808"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:12px;font-style:italic;-inkscape-font-specification:Sans Italic"
+           y="776.09943"
+           x="405.43808"
+           id="tspan4000-44-9-1-4"
+           sodipodi:role="line">ring: <tspan
+   id="tspan4150-1-3"
+   style="font-style:normal;-inkscape-font-specification:Sans">SR</tspan></tspan></text>
+    </g>
   </g>
 </svg>
