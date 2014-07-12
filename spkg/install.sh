@@ -45,8 +45,14 @@ if [[ -z $(grep "manifolds/index" src/doc/en/reference/index.rst) ]]; then
 
 fi
 
-echo -e "\n$(tput bold)$(tput setaf 4)Done! Running ./sage -b to re-build sage.$(tput sgr 0)"
+echo -e "\n$(tput bold)$(tput setaf 4)Running ./sage -b to re-build sage.$(tput sgr 0)"
 ./sage -b 
+
+echo -e "\n$(tput bold)$(tput setaf 4)Building the html documentation.$(tput sgr 0)"
+./sage -docbuild reference inventory
+./sage -docbuild reference html
+./sage -docbuild tensors_free_module html
+./sage -docbuild sagemanifolds html
 
 exit 0
 

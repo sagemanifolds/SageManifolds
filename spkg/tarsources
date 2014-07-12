@@ -1,0 +1,4 @@
+#!/bin/bash
+tar -cvf manifolds-0.5.tar src/doc/en/sagemanifolds/*.py src/doc/en/sagemanifolds/*.rst src/doc/en/reference/manifolds/*.py src/doc/en/reference/manifolds/*.rst src/doc/en/tensors_free_module/*.py src/doc/en/tensors_free_module/*.rst src/doc/en/reference/tensor_free_modules/*.py src/doc/en/reference/tensor_free_modules/*.rst  src/sage/geometry/manifolds/*.py src/sage/tensor/modules/*.py
+gzip manifolds-0.5.tar
+exit 0
