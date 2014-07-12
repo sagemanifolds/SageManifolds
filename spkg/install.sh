@@ -4,7 +4,7 @@
 
 echo -e "\n$(tput setaf 4)Downloading the package SageManifolds v0.5...$(tput sgr 0)"
 # downloading with either wget or curl 
-wget -N http://users.camk.edu.pl/bejger/manifolds-0.5.tar.gz || curl -O http://users.camk.edu.pl/bejger/manifolds-0.5.tar.gz  
+wget -N http://sagemanifolds.obspm.fr/spkg/manifolds-0.5.tar.gz || curl -O http://sagemanifolds.obspm.fr/spkg/manifolds-0.5.tar.gz
 
 if [ ! -f "manifolds-0.5.tar.gz" ]; then
 	echo  -e "\n$(tput setaf 1)Download the package manually and run again$(tput sgr 0)"
