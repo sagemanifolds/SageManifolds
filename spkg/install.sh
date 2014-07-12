@@ -3,7 +3,13 @@
 #cd $SAGE_ROOT
 
 echo -e "\n$(tput setaf 4)Downloading the package SageManifolds v0.5...$(tput sgr 0)"
-curl http://sagemanifolds.obspm.fr/spkg/manifolds-0.5.tar.gz > manifolds-0.5.tar.gz
+# downloading with either wget of curl 
+wget -N http://users.camk.edu.pl/bejger/manifolds-0.5.tar.gz || curl -O http://users.camk.edu.pl/bejger/manifolds-0.5.tar.gz  
+
+if [ ! -f "manifolds-0.5.tar.gz" ]; then
+	echo  -e "\n$(tput setaf 1)Download the package manually and run again$(tput sgr 0)"
+	exit 0 
+fi 
 
 # untaring the SM tree (tensor/modules, geometry/manifolds 
 # and the documentation files)
