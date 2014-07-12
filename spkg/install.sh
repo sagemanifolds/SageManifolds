@@ -54,7 +54,7 @@ echo -e "\n$(tput bold)$(tput setaf 4)Building the html documentation (may take 
 ./sage -docbuild tensors_free_module html
 ./sage -docbuild sagemanifolds html
 
-echo echo -e "\n$(tput bold)$(tput setaf 4)Done!$(tput sgr 0)"
+echo -e "\n$(tput bold)$(tput setaf 4)Installation of SageManifolds completed!$(tput sgr 0)"
 
 exit 0
 
