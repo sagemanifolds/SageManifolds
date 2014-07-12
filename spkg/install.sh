@@ -3,7 +3,7 @@
 #cd $SAGE_ROOT
 
 echo -e "\n$(tput setaf 4)Downloading the package SageManifolds v0.5...$(tput sgr 0)"
-# downloading with either wget of curl 
+# downloading with either wget or curl 
 wget -N http://users.camk.edu.pl/bejger/manifolds-0.5.tar.gz || curl -O http://users.camk.edu.pl/bejger/manifolds-0.5.tar.gz  
 
 if [ ! -f "manifolds-0.5.tar.gz" ]; then
@@ -48,11 +48,13 @@ fi
 echo -e "\n$(tput bold)$(tput setaf 4)Running ./sage -b to re-build sage.$(tput sgr 0)"
 ./sage -b 
 
-echo -e "\n$(tput bold)$(tput setaf 4)Building the html documentation.$(tput sgr 0)"
+echo -e "\n$(tput bold)$(tput setaf 4)Building the html documentation (may take some time).$(tput sgr 0)"
 ./sage -docbuild reference inventory
 ./sage -docbuild reference html
 ./sage -docbuild tensors_free_module html
 ./sage -docbuild sagemanifolds html
+
+echo echo -e "\n$(tput bold)$(tput setaf 4)Done!$(tput sgr 0)"
 
 exit 0
 
