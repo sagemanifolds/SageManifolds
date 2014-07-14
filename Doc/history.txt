@@ -4,7 +4,10 @@
 12 September 2013: version 0.2 released (svn revision 395)
 18 October 2013: migration svn (revision 429) --> git (on gitroc.obspm.fr)
 24 November 2013: version 0.3 released; 19938 lines of Python code (including comments and doctests)
-30 December 2013: migration to github, as a git branch of Sage 6.0
+30 December 2013: migration to github, as a fork of Sage 6.0 git repository
 10 February 2014: version 0.4 released (git commit = 2dff92f153819994e0476244a85762d0e089de37); 
     19746 lines of Python code (including comments and doctests)
-
+12 July 2014: version 0.5 released (git commit = 171a05e17542f7f9a4c7f6837d01cedb38ddb9fd);
+    23638 lines of Python code in src/sage/geometry/manifolds (including comments and doctests)
+     9634 lines of Python code in src/sage/tensor/modules (including comments and doctests)
+    total = 33272 lines
