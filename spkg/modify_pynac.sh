@@ -5,7 +5,7 @@ echo -e "\n$(tput setaf 4)Downloading modified pynac functions...$(tput sgr 0)"
 wget -N http://sagemanifolds.obspm.fr/spkg/pynac_mod.pxi || curl -O http://sagemanifolds.obspm.fr/spkg/pyna_mod.pxi
 
 if [ ! -f "pynac_mod.pxi" ]; then
-	echo  -e "\n$(tput setaf 1)Download the package manually and run again$(tput sgr 0)"
+	echo  -e "\n$(tput setaf 1)Download the file manually and run again$(tput sgr 0)"
 	exit 0 
 else 
 	mv pynac_mod.pxi src/sage/symbolic/
