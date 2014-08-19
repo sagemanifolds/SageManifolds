@@ -50,7 +50,7 @@ fi
 #
 echo -e "\n$(tput setaf 4)Downloading modified pynac functions (pynac_mod.pxi)...$(tput sgr 0)"
 # downloading with either wget or curl 
-wget -N http://sagemanifolds.obspm.fr/spkg/pynac_mod.pxi || curl -O http://sagemanifolds.obspm.fr/spkg/pyna_mod.pxi
+wget -N http://sagemanifolds.obspm.fr/spkg/pynac_mod.pxi || curl -O http://sagemanifolds.obspm.fr/spkg/pynac_mod.pxi
 
 if [ ! -f "pynac_mod.pxi" ]; then
 	echo  -e "\n$(tput setaf 1)Download the pynac_mod.pxi manually and run again$(tput sgr 0)"
