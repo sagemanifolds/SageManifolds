@@ -10,6 +10,8 @@ Contents:
 ./Doc: documentation about SageManifolds (except for the reference manual, which
 is generated from the Sphinx source files)
 
+./Gallery: some graphics produced with SageManifolds
+
 ./spkg: SageManifolds packages released on http://sagemanifolds.obspm.fr/
 
 ./Worksheets: Sage worksheets illustrating the use of SageManifolds, most of 

@@ -1,23 +1,11 @@
-- Chart: introduce a factory method function() or function_chart() to construct 
-  a FunctionChart on self. 
-
 - d'Alembert operator
 
 - restore the (anti)symmetries after a up(g) or down(g) (raising/lowering on all the indices)
-
-- tensor contractions: 
-    - for tensor of rank 1 (i.e. vectors and 1-forms), get rid of the 0 in the position prescription, i.e. write "t.contract(2, v)" instead of "t.contract(2,v,0)", or (a being a 1-form),
-    "a.contract(v)" instead of "a.contract(0, v, 0)". 
-    - rename "TensorField.self_contract()" to "TensorField.trace()" ?
-    - LaTeX input for specifying the contractions
 
 - tensor product in Components: treat the symmetry of the output in the case of 
   tensor product with self in the case nid>1, e.g. A_{ij} A_{kl} (for the time
   being, only the case A_i A_j is treated)
   
-- suppress explicit dependence on the coordinates in the LaTeX output of unspecified functions
-  (i.e. write "u" instead of "u(x,y,z)"). 
-
 - define "cuts" as submanifolds with some coordinate(s) set to constant
 
 - define operators == and != in Manifold ?
@@ -32,4 +20,6 @@
 
 - save to file
 
-- parallelisation ?
+- parallelisation
+
+
