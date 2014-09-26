@@ -2,11 +2,11 @@
 
 #cd $SAGE_ROOT
 
-echo -e "\n$(tput setaf 4)Downloading the package SageManifolds v0.5...$(tput sgr 0)"
+echo -e "\n$(tput setaf 4)Downloading the package SageManifolds 0.6...$(tput sgr 0)"
 # downloading with either wget or curl 
-wget -N http://sagemanifolds.obspm.fr/spkg/manifolds-0.5.tar.gz || curl -O http://sagemanifolds.obspm.fr/spkg/manifolds-0.5.tar.gz
+wget -N http://sagemanifolds.obspm.fr/spkg/manifolds-0.6.tar.gz || curl -O http://sagemanifolds.obspm.fr/spkg/manifolds-0.6.tar.gz
 
-if [ ! -f "manifolds-0.5.tar.gz" ]; then
+if [ ! -f "manifolds-0.6.tar.gz" ]; then
 	echo  -e "\n$(tput setaf 1)Download the package manually and run again$(tput sgr 0)"
 	exit 0 
 fi 
@@ -15,7 +15,7 @@ fi
 # and the documentation files)
 
 echo "$(tput setaf 4)Unpacking...$(tput sgr 0)"
-tar -zxvf manifolds-0.5.tar.gz
+tar -zxvf manifolds-0.6.tar.gz
 
 # altering the src/sage/all.py for import 
 if [[ -z $(grep "tensor.modules.all" src/sage/all.py) ]]; then
@@ -94,7 +94,7 @@ echo -e "\n$(tput bold)$(tput setaf 4)Building the html documentation (may take 
 ./sage -docbuild tensors_free_module html
 ./sage -docbuild sagemanifolds html
 
-echo -e "\n$(tput bold)$(tput setaf 4)Installation of SageManifolds completed!$(tput sgr 0)"
+echo -e "\n$(tput bold)$(tput setaf 4)Installation of SageManifolds 0.6 completed!$(tput sgr 0)"
 
 exit 0
 
