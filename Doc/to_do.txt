@@ -1,3 +1,26 @@
+DEFECTS:
+
+- Object constructed by means of methods
+   linear_form(), alt_form()
+   endomorphim(), automorphism(), identity_map()
+  of FiniteRankFreeModule do not inherit from Modules(R).element_class,
+  where R is the ring over which the module is defined.
+
+
+IMPROVED EFFICIENCY:
+
+- compute the action of a tensor on vectors and linear forms by taking into
+  account the tensor symmetries/antisymmetries
+
+- parallelisation of tensor arithmetics
+
+- define operators == and != in Manifold ?
+
+- include simplify_chain in chart.py ? 
+
+
+NEW FUNCTIONALITIES:
+
 - d'Alembert operator
 
 - restore the (anti)symmetries after a up(g) or down(g) (raising/lowering on all the indices)
@@ -8,8 +31,6 @@
   
 - define "cuts" as submanifolds with some coordinate(s) set to constant
 
-- define operators == and != in Manifold ?
-
 - extrinsic geometry of pseudo-riemannian submanifolds
 
 - plots of tensor fields
@@ -18,8 +39,11 @@
 
 - compute integrals
 
-- save to file
+- save to file (cf. sage: save?  and   sage: load?)
 
-- parallelisation
+- permute the arguments of a tensor, e.g. from the (0,3)-tensor A, define a
+  (0,3)-tensor B such that B(u,v,w) = A(w,v,u)
+  
+- catalog of pre-defined manifolds
 
 
