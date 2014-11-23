@@ -1,0 +1,102 @@
+\documentclass[a4paper]{jpconf}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\newcommand{\soft}[1]{\texttt{#1}}
+
+\begin{document}
+\title{Tensor calculus with free software: \\
+the SageManifolds project}
+
+\author{Eric Gourgoulhon$^1$, Micha\l{} Bejger$^2$, Marco Mancini$^1$}
+
+\address{$^1$ Laboratoire Univers et Th\'eories, UMR 8102 du 
+CNRS, Observatoire de Paris, Universit\'e Paris Diderot,
+92190 Meudon, France}
+
+\address{$^2$ Centrum Astronomiczne im. M. Kopernika, ul. Bartycka 18,
+00-716 Warsaw, Poland}
+
+\ead{eric.gourgoulhon@obspm.fr}
+
+\begin{abstract}
+Abstract
+\end{abstract}
+
+\section{Introduction}
+
+Computer algebra for general relativity (GR) has a long history, which started
+almost as soon as computer algebra itself in the 1960s. 
+The first GR software was \soft{ALAM} (for \emph{Atlas Lisp Algebraic Manipulator})
+witten by R.A. d'Inverno in 1969, who used it to compute
+the Riemann and Ricci tensors of the Bondi metric. The original calculations took Bondi and his collaborators 6 months to go. The computation with \soft{ALAM} took 4 minutes and yield to the discovery of 6 errors in the original paper \cite{Skea94}. 
+Since then, many packages have been developed and the reader is refered to \cite{MacCa02}
+for a review of computer algebra
+systems for GR prior to 2002 and to \cite{KorolKS13} for a more recent review,
+focussing on tensor calculus, as well as to the semi-exhaustive list of
+tensor calculus packages at \cite{xact_links}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Software for differential geometry}
+
+Software packages for differential geometry and tensor calculus can be 
+classified in two categories: 
+\begin{enumerate}
+\item Applications atop general purpose computer algebra systems; 
+notable examples are 
+\soft{xAct} \cite{Marti08,xAct}, \soft{Ricci} \cite{Ricci}, both
+running atop \soft{Mathematica},
+\soft{DifferentialGeometry} \cite{AnderT12,DiffGeom} integrated into \soft{Maple}, and \soft{Atlas 2}
+\cite{Atlas2} for both \soft{Mathematica} and \soft{Maple}.
+\item Standalone applications; recent examples are \soft{Cadabra} \cite{Peete07,Cadabra} (field theory),
+\soft{SnapPy} \cite{SnapPy} (topology and geometry of 3-manifolds) and
+\soft{Redberry} (tensors) \cite{BolotP13,Redberry}.
+\end{enumerate}
+All applications listed in the second category are free (open-source) software. In
+the first category, \soft{xAct} and \soft{Ricci} are also free software, but
+they run atop a proprietary product (\soft{Mathematica}). 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{References}
+\begin{thebibliography}{10}
+\bibitem{Skea94}
+Skea J E F 1994 Applications of SHEEP {\it Lecture notes available at}
+\url{
+http://www.computeralgebra.nl/systemsoverview/special/tensoranalysis/sheep/}
+\bibitem{MacCa02}
+MacCallum M A H 2002 {\it Int. J. Mod. Phys. A} {\bf 17}, 2707 
+\bibitem{KorolKS13}
+Korol'kova A V, Kulyabov D S and Sevast'yanov L A 2013 {\it Prog. Comput. Soft.} 
+{\bf 39}, 135
+\bibitem{xact_links} 
+\url{http://www.xact.es/links.html}
+\bibitem{Marti08}
+Martin-Garcia J M 2008 {\it Comput. Phys. Commun.} {\bf 179}, 597
+\bibitem{xAct}
+\url{http://www.xact.es}
+\bibitem{Ricci}
+\url{http://www.math.washington.edu/~lee/Ricci/}
+\bibitem{AnderT12}
+Anderson I M and Torre C G 2012 {\it J. Math. Phys.} {\bf 53}, 013511
+\bibitem{DiffGeom}
+\url{http://digitalcommons.usu.edu/dg/}
+\bibitem{Atlas2}
+\url{http://digi-area.com/Maple/atlas/}
+\bibitem{Peete07}
+Peeters K 2007 {\it Comput. Phys. Commun.} {\bf 15}, 550
+\bibitem{Cadabra}
+\url{http://cadabra.phi-sci.com/}
+\bibitem{SnapPy}
+Culler M, Dunfield N M and Weeks J R, SnapPy, a computer program for studying the geometry and topology of 3-manifolds, \url{http://snappy.computop.org}
+\bibitem{BolotP13}
+Bolotin D A and Poslavsky S V 2013 Introduction to Redberry: the computer algebra system designed for tensor manipulation {\it Preprint} arXiv:1302.1219
+\bibitem{Redberry}
+\url{http://redberry.cc/}
+
+\end{thebibliography}
+
+\end{document}
