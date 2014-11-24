@@ -45,7 +45,7 @@ classified in two categories:
 \begin{enumerate}
 \item Applications atop general purpose computer algebra systems; 
 notable examples are 
-\soft{xAct} \cite{Marti08,xAct}, \soft{Ricci} \cite{Ricci}, both
+the \soft{xAct} suite \cite{Marti08,xAct} and \soft{Ricci} \cite{Ricci}, both
 running atop \soft{Mathematica},
 \soft{DifferentialGeometry} \cite{AnderT12,DiffGeom} integrated into \soft{Maple}, and \soft{Atlas 2}
 \cite{Atlas2} for both \soft{Mathematica} and \soft{Maple}.
@@ -55,11 +55,36 @@ running atop \soft{Mathematica},
 \end{enumerate}
 All applications listed in the second category are free (open-source) software. In
 the first category, \soft{xAct} and \soft{Ricci} are also free software, but
-they run atop a proprietary product (\soft{Mathematica}). 
+they run atop a proprietary product, the sources of which are closed (\soft{Mathematica}). 
 
+As far as tensor calculus is concerned, the above packages can be distinguished by 
+the type of computation that they perform: abstract index manipulations 
+(\soft{xAct/xTensor}, \soft{Ricci}, \soft{Cadabra}, \soft{Redberry})
+or component calculus (\soft{xAct/xCoba}, \soft{DifferentialGeometry}, \soft{Atlas 2})
+In the first category, tensor operations such as contraction or covariant differentiation 
+are performed by manipulating the indices themselves rather than the components 
+to which they correspond. In the second category, vector bases are explicitely 
+introduced on manifolds and tensor operations are carried out on the components 
+in a given basis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{An overview of Sage}
+
+\soft{Sage} \cite{sage} is a free open-source mathematics software system, which is
+based on the Python programming language. It makes use of dozens of pre-existing open-sources packages, 
+among which \soft{Maxima} and \soft{Pynac} (symbolic calculations),
+\soft{GAP} (group theory), 
+\soft{PARI/GP} (number theory), \soft{Singular} (polynomial computations), 
+and \soft{matplotlib} (high quality 2D figures). 
+Sage provides a uniform Python interface to all these packages; however, 
+Sage is not simply an interface: it contains a large and increasing part of 
+original code (more than 750,000 lines, involving 5344 Python classes). 
+
+ 
+
+
 
 \section*{References}
 \begin{thebibliography}{10}
@@ -96,6 +121,8 @@ Culler M, Dunfield N M and Weeks J R, SnapPy, a computer program for studying th
 Bolotin D A and Poslavsky S V 2013 Introduction to Redberry: the computer algebra system designed for tensor manipulation {\it Preprint} arXiv:1302.1219
 \bibitem{Redberry}
 \url{http://redberry.cc/}
+\bibitem{sage}
+\url{http://sagemath.org/}
 
 \end{thebibliography}
 
