@@ -3,6 +3,7 @@
 \usepackage{hyperref}
 
 \newcommand{\soft}[1]{\texttt{#1}}
+\newcommand{\Sage}{\soft{Sage}{ }}
 
 \begin{document}
 \title{Tensor calculus with free software: \\
@@ -72,19 +73,30 @@ in a given basis.
 
 \section{An overview of Sage}
 
-\soft{Sage} \cite{sage} is a free open-source mathematics software system, which is
-based on the Python programming language. It makes use of dozens of pre-existing open-sources packages, 
+\Sage \cite{sage} is a free open-source mathematics software system, which is
+based on the Python programming language. It makes use of 90 open-sources packages, 
 among which \soft{Maxima} and \soft{Pynac} (symbolic calculations),
 \soft{GAP} (group theory), 
 \soft{PARI/GP} (number theory), \soft{Singular} (polynomial computations), 
 and \soft{matplotlib} (high quality 2D figures). 
-Sage provides a uniform Python interface to all these packages; however, 
-Sage is not simply an interface: it contains a large and increasing part of 
-original code (more than 750,000 lines, involving 5344 Python classes). 
-
+\Sage provides a uniform Python interface to all these packages; however, 
+\Sage is much more than a mere interface: it contains a large and increasing part of 
+original code (more than 750,000 lines of Python and Cython, involving 5344 classes). 
+\Sage has been created in 2005 by W. Stein \cite{SteinJ05} and since
+then its development has been sustained by more than a hundred researchers
+(mostly mathematicians). Good introductory textbooks about \Sage are
+\cite{JoyneS14,Zimme13,Bard15}. 
+ 
+ 
+\ack
+This work has benifited from enlightening discussions with Volker Braun,
+Vincent Delecroix, Simon King,  Jos\'e M. Mart\'\i n-Garc\'\i a, 
+S\'ebastien Labb\'e,
+Marc Mezzarobba, Thierry Monteil, Travis Scrimshaw and Nicolas Thi\'ery. 
+We also thank St\'ephane M\'en\'e for his technical help. 
  
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{References}
 \begin{thebibliography}{10}
@@ -123,7 +135,16 @@ Bolotin D A and Poslavsky S V 2013 Introduction to Redberry: the computer algebr
 \url{http://redberry.cc/}
 \bibitem{sage}
 \url{http://sagemath.org/}
-
+\bibitem{SteinJ05}
+Stein W and Joyner D 2005 {\it Commun. Comput. Algebra} {\bf 39}, 61
+\bibitem{JoyneS14}
+Joyner D and Stein W 2014 {\it Sage Tutorial} (CreateSpace)
+\bibitem{Zimme13}
+Zimmermann P et al. 2013 {\it Calcul math\'ematique avec Sage} (CreateSpace); 
+freely downloadable from \url{http://sagebook.gforge.inria.fr/}
+\bibitem{Bard15}
+Bard G V 2015 {\it Sage for Undergraduates} (Americ. Math. Soc.) in press;
+preprint freely downloadable from \url{http://www.gregorybard.com/})
 \end{thebibliography}
 
 \end{document}
