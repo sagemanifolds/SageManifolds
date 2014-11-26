@@ -1,9 +1,15 @@
 \documentclass[a4paper]{jpconf}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{amssymb,amsfonts} % AMS Symbols
+
 
 \newcommand{\soft}[1]{\texttt{#1}}
-\newcommand{\Sage}{\soft{Sage}{ }}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\Sage}{\soft{Sage}}
+\newcommand{\SM}{\soft{SageManifolds}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
 
 \begin{document}
 \title{Tensor calculus with free software: \\
@@ -73,21 +79,121 @@ in a given basis.
 
 \section{An overview of Sage}
 
-\Sage \cite{sage} is a free open-source mathematics software system, which is
+\Sage{} \cite{sage} is a free open-source mathematics software system, which is
 based on the Python programming language. It makes use of 90 open-sources packages, 
 among which \soft{Maxima} and \soft{Pynac} (symbolic calculations),
 \soft{GAP} (group theory), 
 \soft{PARI/GP} (number theory), \soft{Singular} (polynomial computations), 
 and \soft{matplotlib} (high quality 2D figures). 
-\Sage provides a uniform Python interface to all these packages; however, 
-\Sage is much more than a mere interface: it contains a large and increasing part of 
+\Sage{} provides a uniform Python interface to all these packages; however, 
+\Sage{} is much more than a mere interface: it contains a large and increasing part of 
 original code (more than 750,000 lines of Python and Cython, involving 5344 classes). 
-\Sage has been created in 2005 by W. Stein \cite{SteinJ05} and since
+\Sage{} has been created in 2005 by W. Stein \cite{SteinJ05} and since
 then its development has been sustained by more than a hundred researchers
-(mostly mathematicians). Good introductory textbooks about \Sage are
+(mostly mathematicians). Good introductory textbooks about \Sage{} are
 \cite{JoyneS14,Zimme13,Bard15}. 
  
- 
+Apart from the syntax, based on Python and not on some specific script 
+language, a difference between \Sage{} and \soft{Maple} or \soft{Mathematica}
+is the use of the \emph{Parent/Element} scheme, which makes \Sage{} closer to 
+actual mathematics. For instance, in \soft{Mathematica}, all objects 
+are trees of symbols and the language is essentially a set of 
+sophisticated rules to manipulate the symbols. On the contrary, in \Sage{}
+each object has a given type (i.e. is an instance of a given Python class), 
+and one distinguishes \emph{parent} types, which model mathematical
+sets with some structure (e.g. algebraic structure), from \emph{element} types,
+which model set elements. 
+In particular, calculus rules on elements are determined by the algebraic
+structure of their parents. Automatic conversion rules, called \emph{coercions},
+prior to a binary operation, e.g. $x+y$ with $x$ and $y$ having different 
+parents, are defined at the level of the parents.
+
+\section{The SageManifolds project}
+
+\subsection{Aim and scope}
+
+\Sage{} is well developed in many areas of mathematics but there is
+very little for differential geometry and tensor calculus.
+The aim of \SM{} is to introduce differential manifolds and tensor fields
+in \Sage{}, and to do it in a coordinate-independent manner. 
+More precisely, one should not to stick to a single coordinate patch
+but should be able to introduce various coordinate charts
+on a manifold. Tensor fields must be manipulated as such and not through 
+their components with respect to a specific (possibly coordinate) vector frame. 
+
+Basically the work amounts to creating new Python classes\footnote{Let us
+recall that within an object-oriented programming language (as Python is),
+a \emph{class} is a structure to declare and store the
+properties common to a set of objects; these properties 
+are data (called 
+\emph{attributes} or \emph{state variables}) and functions acting 
+on the data (called \emph{methods}); a specific realization of an object 
+within a given class is called an \emph{instance} of that class.},
+ such as 
+\code{Manifold}, \code{Chart}, \code{ScalarField} or \code{TensorField},
+and to implement them within the Parent/Element scheme. 
+For instance the class \code{Manifold}, devoted to real smooth manifolds,
+is a parent class, which means that it inherits from Sage native class \code{Parent}.
+On the other hand, the class devoted to manifold points, \code{Point}, 
+is an element class and therefore inherits from Sage native class 
+\code{Element}.
+This is illustrated by the inheritance diagram of Fig.~\ref{f:domain_classes}.
+In this diagram, each class at the base of an arrow is a subclass (also
+called \emph{derived class}) of the class at the arrowhead.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{domain_classes.pdf}
+\end{center}
+\caption{\label{f:domain_classes} Python classes for 
+smooth manifolds (\code{Manifold}), generic subsets of them 
+(\code{Domain}), open subsets of them (\code{OpenDomain})
+and points on them (\code{Point}).}
+\end{figure}
+
+\subsection{Implementation of charts}
+
+Given a manifold $\mathcal{M}$ of dimension $n$, a coordinate chart 
+on an open subset $U\subset\mathcal{M}$ is implemented in \SM{} 
+via the class \code{Chart}, whose main data is 
+a $n$-uple of \emph{\Sage{} symbolic variables} \code{x}, \code{y}, ..., each of 
+them representing a coordinate.
+In general, more than one (regular) chart is required to cover the entire manifold.
+For instance, at least 2 charts are necessary to cover the $n$-dimensional sphere 
+$\mathbb{S}^n$ and 3 charts are necessary to cover the real projective plane
+$\mathbb{RP}^2$. 
+Within \SM{}, an arbitrary number of charts can be introduced.
+To fully specify the manifold, one shall also provide the \emph{transition maps} on
+overlapping chart domains (\SM{} class \code{CoordChange}).
+
+\subsection{Implementation of scalar fields}
+
+A \emph{scalar field} on manifold $\mathcal{M}$ is a smooth mapping
+\be
+    \begin{array}{lcll}
+    f: & U\subset \mathcal{M}&\longrightarrow &\mathbb{R} \\
+       & p & \longmapsto  & f(p)
+    \end{array}
+\ee
+where $U$ is an open subset of $\mathcal{M}$.
+Note that a scalar field maps \emph{points}, not \emph{coordinates}, to real numbers. 
+A scalar field $f$ has different coordinate representations $F$, $\hat F$, etc. 
+in different charts $C$, $\hat C$, etc. defined on $U$:
+\be
+    f(p) = 
+F(\underbrace{x^1,\ldots, x^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $C$}}) 
+= {\hat F}(\underbrace{{\hat x}^1,\ldots, {\hat x}^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $\hat C$}})
+= \ldots
+\ee
+These representations are 
+stored in an attribute of the class \code{ScalarField} that is a 
+Python dictionary\footnote{a data structure that is an associative mapping},
+whose keys are the charts:
+\be
+ f.\mbox{\texttt{\_express}} = \left\{ C: F,\ \hat C: \hat F, \ldots \right\} .
+\ee
+
+
 \ack
 This work has benifited from enlightening discussions with Volker Braun,
 Vincent Delecroix, Simon King,  Jos\'e M. Mart\'\i n-Garc\'\i a, 
