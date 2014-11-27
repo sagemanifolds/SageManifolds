@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{amssymb,amsfonts} % AMS Symbols
+\usepackage{bm} % bold math
 
 
 \newcommand{\soft}[1]{\texttt{#1}}
@@ -10,6 +11,7 @@
 \newcommand{\SM}{\soft{SageManifolds}}
 \newcommand{\be}{\begin{equation}}
 \newcommand{\ee}{\end{equation}}
+\newcommand{\w}[1]{\bm{#1}}
 
 \begin{document}
 \title{Tensor calculus with free software: \\
@@ -159,12 +161,13 @@ via the class \code{Chart}, whose main data is
 a $n$-uple of \emph{\Sage{} symbolic variables} \code{x}, \code{y}, ..., each of 
 them representing a coordinate.
 In general, more than one (regular) chart is required to cover the entire manifold.
-For instance, at least 2 charts are necessary to cover the $n$-dimensional sphere 
-$\mathbb{S}^n$ and 3 charts are necessary to cover the real projective plane
-$\mathbb{RP}^2$. 
+For instance, at least 2 charts are necessary for the $n$-dimensional sphere 
+$\mathbb{S}^n$, 3 charts for the real projective plane
+$\mathbb{RP}^2$ and 4 charts for the torus $\mathbb{T}^2$.
 Within \SM{}, an arbitrary number of charts can be introduced.
 To fully specify the manifold, one shall also provide the \emph{transition maps} on
 overlapping chart domains (\SM{} class \code{CoordChange}).
+
 
 \subsection{Implementation of scalar fields}
 
@@ -193,6 +196,130 @@ whose keys are the charts:
  f.\mbox{\texttt{\_express}} = \left\{ C: F,\ \hat C: \hat F, \ldots \right\} .
 \ee
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{scalar_classes.pdf}
+\end{center}
+\caption{\label{f:scalar_classes} Python classes for scalar fields
+on a manifold.}
+\end{figure}
+
+Given an open subset $U\subset\mathcal{M}$, the set $C^\infty(U)$
+of scalar fields defined on $U$ has naturally the structure of a 
+commutative algebra over $\mathbb{R}$: it is clearly a vector
+space over $\mathbb{R}$ and it is endowed with a commutative ring structure
+by pointwise multiplication:
+\be
+\forall f, g \in C^\infty(U),\quad \forall p\in U,\quad
+(f.g)(p) := f(p) g(p) .
+\ee
+The algebra $C^\infty(U)$ is implemented in \SM{} via the parent
+class \code{ScalarFieldAlgebra}, the corresponding element class 
+being \code{ScalarField} (cf. Fig.~\ref{f:scalar_classes}). 
+
+
+\subsection{Implementation of vector fields}
+
+Given an open subset $U\subset\mathcal{M}$, the set $\mathcal{X}(U)$
+of all smooth vector fields defined on $U$ has naturally the structure of a 
+module over the algebra $C^\infty(U)$.
+Let us recall that a \emph{module} is similar to a \emph{vector space}, except that it is based
+on a \emph{ring} (here $C^\infty(U)$)
+instead of a \emph{field} (usually $\mathbb{R}$ or
+$\mathbb{C}$ in physics). Of course, since every field is a ring, every vector space is a module.
+There is an importance difference though: every vector space has a basis (as a 
+consequence of the axiom of choice),
+while a module does not necessarily have any. 
+A module with a basis is called a \emph{free module}. 
+Moreover for a free module over a commutative ring, all bases have the same
+cardinality, which is called the \emph{rank} of the module (or the \emph{dimension}
+if the module is a vector space). 
+
+Whenever $\mathcal{X}(U)$ is a free module, a basis is nothing but a \emph{vector frame}
+$(\w{e}_a)_{1\leq a \leq n}$ on $U$:
+\be
+    \forall \w{v}\in\mathcal{X}(U),\quad \w{v} = v^a \w{e}_a,\quad\mbox{with\ } v^a \in C^\infty(U) .
+\ee
+At any point $p\in U$, the above translates into an identity in 
+the tangent vector space $T_p \mathcal{M}$:
+\be 
+    \w{v}(p) = v^a(p)  \; \w{e}_a(p),\quad\mbox{with\ } v^a(p) \in \mathbb{R} , 
+\ee
+which means that 
+the set $(\w{e}_a(p))_{1\leq a \leq n}$ is a basis of the vector space $T_p \mathcal{M}$.
+This is the very definition of a vector frame on $U$ (often called a \emph{tetrad} in
+the context of 4-dimensional general relativity). Note that if $U$ is covered
+by a chart $(x^a)_{1\leq a \leq n}$, then $(\partial/\partial x^a)_{1\leq a \leq n}$
+is a vector frame on $U$, usually called \emph{coordinate frame}
+or \emph{natural basis}. 
+
+For the implementation of vector fields in \SM{}, a key point is that 
+not every manifold admits a global vector frame. 
+A manifold $\mathcal{M}$, or more generally an open subset $U\subset\mathcal{M}$,
+that admits a global vector frame is called 
+\emph{parallelizable}. Equivalently,
+$\mathcal{M}$ is parallelizable if, and only if, $\mathcal{X}(M)$
+is a free module. Examples of parallelizable manifolds are \cite{Lee13}
+\begin{itemize}
+\item the Cartesian space $\mathbb{R}^n$ for $n=1,2,\ldots$; 
+\item the circle $\mathbb{S}^1$; 
+\item the torus $\mathbb{T}^2 = \mathbb{S}^1\times \mathbb{S}^1$;
+\item the 3-sphere $\mathbb{S}^3 \simeq \mathrm{SU}(2)$, as any Lie group;
+\item the 7-sphere $\mathbb{S}^7$ ; 
+\item any orientable 3-manifold (Steenrod theorem \cite{Steen51}).
+\end{itemize}
+On the other hand, examples of non-parallelizable manifolds are
+\begin{itemize}
+\item the sphere $\mathbb{S}^2$ (hairy ball theorem!) and any $n$-sphere $\mathbb{S}^n$ with $n\not\in\{1,3,7\}$; 
+\item the real projective plane $\mathbb{RP}^2$.
+\end{itemize}
+Actually, ``most'' manifolds are non-parallelizable. 
+As noticed above, if a manifold is covered by a single chart, it is 
+parallelizable (the prototype being $\mathbb{R}^n$). But the reverse is not 
+true: $\mathbb{S}^1$ and $\mathbb{T}^2$ are parallelizable and require
+at least two and four charts respectively to cover them. 
+
+Ultimately, in \SM{}, vector fields are to be described by their 
+components w.r.t. various vector frames. 
+If the manifold $\mathcal{M}$ is not parallelizable, one has to decompose it 
+into parallelizable
+open subsets $U_i$ ($1\leq i \leq N$) 
+and consider the restrictions of vector fields to these domains.
+For each $i$, $\mathcal{X}(U_i)$ is a free module of rank $n=\mathrm{dim}\, \mathcal{M}$ and is implemented in \SM{} as an instance of 
+\code{VectorFieldFreeModule}. 
+The latter is a subclass of
+\code{FiniteRankFreeModule}, which is the class devoted to generic free modules
+of finite rank (cf. Fig.~\ref{f:module_classes}). 
+Each vector field $\w{v}\in  \mathcal{X}(U_i)$ has different set
+of components $(v^a)_{1\leq a\leq n}$ in different vector frames 
+$(\w{e}_a)_{1\leq a \leq n}$ introduced on $U_i$. They are stored
+as a Python dictionary whose keys are the vector frames:
+\be
+\w{v}.\mbox{\texttt{\_components}} = \left\{ (\w{e}): (v^a),
+\ (\w{\hat e}): ({\hat v}^a), \ldots \right\}. 
+\ee
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{module_classes.pdf}
+\end{center}
+\caption{\label{f:module_classes} Various module classes.}
+\end{figure}
+
+\subsection{Implementation of tensor fields}
+
+The implementation of tensor fields in \SM{} follows the strategy 
+adopted for vector fields. Consider for instance a tensor field $\w{T}$ 
+of type-(1,1) on the manifold $\mathcal{M}$. 
+It can be represented by 
+components $T^a_{\ \, b}$ only on a parallelizable open subset $U\subset
+\mathcal{M}$, since the decomposition 
+\be \label{e:T_expand}
+    \left. \w{T} \right| _{U} = T^a_{\ \, b} \, \w{e}_a \otimes \w{e}^b
+\ee
+defining $T^a_{\ \, b}$ is meaningfull only when a vector frame 
+$(\w{e}_a)$ exist\footnote{Using standard notation, in (\ref{e:T_expand})
+$(\w{e}^b)$ stands for the coframe dual to $(\w{e}_a)$}.
 
 \ack
 This work has benifited from enlightening discussions with Volker Braun,
@@ -251,6 +378,10 @@ freely downloadable from \url{http://sagebook.gforge.inria.fr/}
 \bibitem{Bard15}
 Bard G V 2015 {\it Sage for Undergraduates} (Americ. Math. Soc.) in press;
 preprint freely downloadable from \url{http://www.gregorybard.com/})
+\bibitem{Lee13}
+Lee J M 2013 {\it Introduction to Smooth Manifolds} 2nd edition (New York: Springer)
+\bibitem{Steen51}
+Steenrod N 1951 {\it The Topology of Fibre Bundles} (Princeton: Princeton Univ. Press)
 \end{thebibliography}
 
 \end{document}
