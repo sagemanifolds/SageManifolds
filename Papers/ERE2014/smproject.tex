@@ -4,6 +4,9 @@
 \usepackage{amssymb,amsfonts} % AMS Symbols
 \usepackage{bm} % bold math
 
+\hypersetup{pdftitle={SageManifolds},
+  colorlinks=true
+}
 
 \newcommand{\soft}[1]{\texttt{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
@@ -37,13 +40,18 @@ Abstract
 Computer algebra for general relativity (GR) has a long history, which started
 almost as soon as computer algebra itself in the 1960s. 
 The first GR software was \soft{ALAM} (for \emph{Atlas Lisp Algebraic Manipulator})
-witten by R.A. d'Inverno in 1969, who used it to compute
-the Riemann and Ricci tensors of the Bondi metric. The original calculations took Bondi and his collaborators 6 months to go. The computation with \soft{ALAM} took 4 minutes and yield to the discovery of 6 errors in the original paper \cite{Skea94}. 
+witten by R.A. d'Inverno in 1969; he used it to compute
+the Riemann and Ricci tensors of the Bondi metric.
+According to \cite{Skea94}, 
+the original calculations took Bondi and his collaborators 6 months to go,
+while the computation with \soft{ALAM} took 4 minutes and yield to the 
+discovery of 6 errors in the original paper. 
 Since then, many packages have been developed and the reader is refered to \cite{MacCa02}
 for a review of computer algebra
 systems for GR prior to 2002 and to \cite{KorolKS13} for a more recent review,
-focussing on tensor calculus, as well as to the semi-exhaustive list of
-tensor calculus packages at \cite{xact_links}.
+focussing on tensor calculus. 
+It is also worth to point out the quasi-exhaustive list of
+tensor calculus packages maintained by J. M. Martin-Garcia at \cite{xact_links}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -52,14 +60,14 @@ tensor calculus packages at \cite{xact_links}.
 Software packages for differential geometry and tensor calculus can be 
 classified in two categories: 
 \begin{enumerate}
-\item Applications atop general purpose computer algebra systems; 
+\item Applications atop some general purpose computer algebra system; 
 notable examples are 
 the \soft{xAct} suite \cite{Marti08,xAct} and \soft{Ricci} \cite{Ricci}, both
 running atop \soft{Mathematica},
 \soft{DifferentialGeometry} \cite{AnderT12,DiffGeom} integrated into \soft{Maple}, and \soft{Atlas 2}
-\cite{Atlas2} for both \soft{Mathematica} and \soft{Maple}.
-\item Standalone applications; recent examples are \soft{Cadabra} \cite{Peete07,Cadabra} (field theory),
-\soft{SnapPy} \cite{SnapPy} (topology and geometry of 3-manifolds) and
+\cite{Atlas2} for \soft{Mathematica} and \soft{Maple}.
+\item Standalone applications; recent examples are \soft{Cadabra}  (field theory) \cite{Peete07,Cadabra},
+\soft{SnapPy} (topology and geometry of 3-manifolds) \cite{SnapPy} and
 \soft{Redberry} (tensors) \cite{BolotP13,Redberry}.
 \end{enumerate}
 All applications listed in the second category are free (open-source) software. In
@@ -73,7 +81,7 @@ or component calculus (\soft{xAct/xCoba}, \soft{DifferentialGeometry}, \soft{Atl
 In the first category, tensor operations such as contraction or covariant differentiation 
 are performed by manipulating the indices themselves rather than the components 
 to which they correspond. In the second category, vector bases are explicitely 
-introduced on manifolds and tensor operations are carried out on the components 
+introduced on the manifold and tensor operations are carried out on the components 
 in a given basis.
 
 
@@ -110,13 +118,15 @@ structure of their parents. Automatic conversion rules, called \emph{coercions},
 prior to a binary operation, e.g. $x+y$ with $x$ and $y$ having different 
 parents, are defined at the level of the parents.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{The SageManifolds project}
 
 \subsection{Aim and scope}
 
 \Sage{} is well developed in many areas of mathematics but there is
 very little for differential geometry and tensor calculus.
-The aim of \SM{} is to introduce differential manifolds and tensor fields
+The aim of \SM{} \cite{SM} is to introduce differential manifolds and tensor fields
 in \Sage{}, and to do it in a coordinate-independent manner. 
 More precisely, one should not to stick to a single coordinate patch
 but should be able to introduce various coordinate charts
@@ -124,7 +134,7 @@ on a manifold. Tensor fields must be manipulated as such and not through
 their components with respect to a specific (possibly coordinate) vector frame. 
 
 Basically the work amounts to creating new Python classes\footnote{Let us
-recall that within an object-oriented programming language (as Python is),
+recall that within an object-oriented programming language (as Python),
 a \emph{class} is a structure to declare and store the
 properties common to a set of objects; these properties 
 are data (called 
@@ -132,8 +142,9 @@ are data (called
 on the data (called \emph{methods}); a specific realization of an object 
 within a given class is called an \emph{instance} of that class.},
  such as 
-\code{Manifold}, \code{Chart}, \code{ScalarField} or \code{TensorField},
-and to implement them within the Parent/Element scheme. 
+\code{Manifold}, \code{Chart}, \code{TensorField} or \code{Metric},
+to implement them within the Parent/Element scheme and to 
+code the relevant mathematical operations as class methods.
 For instance the class \code{Manifold}, devoted to real smooth manifolds,
 is a parent class, which means that it inherits from Sage native class \code{Parent}.
 On the other hand, the class devoted to manifold points, \code{Point}, 
@@ -158,14 +169,15 @@ and points on them (\code{Point}).}
 Given a manifold $\mathcal{M}$ of dimension $n$, a coordinate chart 
 on an open subset $U\subset\mathcal{M}$ is implemented in \SM{} 
 via the class \code{Chart}, whose main data is 
-a $n$-uple of \emph{\Sage{} symbolic variables} \code{x}, \code{y}, ..., each of 
+a $n$-uple of Sage symbolic variables $(x_1,\ldots,x_n)$, each of 
 them representing a coordinate.
 In general, more than one (regular) chart is required to cover the entire manifold.
 For instance, at least 2 charts are necessary for the $n$-dimensional sphere 
-$\mathbb{S}^n$, 3 charts for the real projective plane
+$\mathbb{S}^n$ ($n\geq 1$), 3 charts for the real projective plane
 $\mathbb{RP}^2$ and 4 charts for the torus $\mathbb{T}^2$.
 Within \SM{}, an arbitrary number of charts can be introduced.
-To fully specify the manifold, one shall also provide the \emph{transition maps} on
+To fully specify the manifold, one shall also provide the transition maps
+(changes of coordinates) on
 overlapping chart domains (\SM{} class \code{CoordChange}).
 
 
@@ -175,7 +187,7 @@ A \emph{scalar field} on manifold $\mathcal{M}$ is a smooth mapping
 \be
     \begin{array}{lcll}
     f: & U\subset \mathcal{M}&\longrightarrow &\mathbb{R} \\
-       & p & \longmapsto  & f(p)
+       & p & \longmapsto  & f(p) ,
     \end{array}
 \ee
 where $U$ is an open subset of $\mathcal{M}$.
@@ -190,9 +202,11 @@ F(\underbrace{x^1,\ldots, x^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $C$}})
 \ee
 These representations are 
 stored in an attribute of the class \code{ScalarField} that is a 
-Python dictionary\footnote{a data structure that is an associative mapping},
+Python dictionary\footnote{A \emph{dictionary}, also known as \emph{associative array}, is a 
+data structure that generalizes the concept of array in the sense that the
+key to access to some element is not restricted to an integer or a tuple of integers.},
 whose keys are the charts:
-\be
+\be \label{e:f_express}
  f.\mbox{\texttt{\_express}} = \left\{ C: F,\ \hat C: \hat F, \ldots \right\} .
 \ee
 
@@ -217,8 +231,7 @@ The algebra $C^\infty(U)$ is implemented in \SM{} via the parent
 class \code{ScalarFieldAlgebra}, the corresponding element class 
 being \code{ScalarField} (cf. Fig.~\ref{f:scalar_classes}). 
 
-
-\subsection{Implementation of vector fields}
+\subsection{Modules and free modules} \label{s:modules}
 
 Given an open subset $U\subset\mathcal{M}$, the set $\mathcal{X}(U)$
 of all smooth vector fields defined on $U$ has naturally the structure of a 
@@ -230,14 +243,15 @@ $\mathbb{C}$ in physics). Of course, since every field is a ring, every vector s
 There is an importance difference though: every vector space has a basis (as a 
 consequence of the axiom of choice),
 while a module does not necessarily have any. 
-A module with a basis is called a \emph{free module}. 
-Moreover for a free module over a commutative ring, all bases have the same
-cardinality, which is called the \emph{rank} of the module (or the \emph{dimension}
-if the module is a vector space). 
+When it possesses one, it is called a \emph{free module}. 
+Moreover if the module's base ring is commutative, all bases have the same
+cardinality, which is called the \emph{rank} of the module 
+(for vector spaces, which are free modules, the word \emph{dimension}
+is used instead of \emph{rank}). 
 
-Whenever $\mathcal{X}(U)$ is a free module, a basis is nothing but a \emph{vector frame}
+If $\mathcal{X}(U)$ is a free module, a basis of it is nothing but a \emph{vector frame}
 $(\w{e}_a)_{1\leq a \leq n}$ on $U$:
-\be
+\be \label{e:v_expand}
     \forall \w{v}\in\mathcal{X}(U),\quad \w{v} = v^a \w{e}_a,\quad\mbox{with\ } v^a \in C^\infty(U) .
 \ee
 At any point $p\in U$, the above translates into an identity in 
@@ -253,13 +267,54 @@ by a chart $(x^a)_{1\leq a \leq n}$, then $(\partial/\partial x^a)_{1\leq a \leq
 is a vector frame on $U$, usually called \emph{coordinate frame}
 or \emph{natural basis}. 
 
-For the implementation of vector fields in \SM{}, a key point is that 
+Another type of free modules which occur naturally in the current context
+is that of the tangent spaces to the manifold $\mathcal{M}$: 
+for each $p\in \mathcal{M}$, $T_p\mathcal{M}$ is a free module over 
+$\mathbb{R}$, since it is a vector space over $\mathbb{R}$. 
+
+It turns out that only free modules with a distinguished basis were 
+implemented in \Sage{}. This means that, given a free module $M$ of rank $n$, 
+all calculations refer a single basis of $M$. This amounts to identifying
+$M$ with $R^n$, where $R$ is the ring over which $M$ is based. 
+For dealing with generic manifolds in a coordinate-independent way, 
+this is not appropriate. For instance, there is no canonical 
+isomorphism between $T_p\mathcal{M}$ and $\mathbb{R}^n$ when no coordinate
+system is privileged in the neightbourhood of $p$.
+Therefore we have started a pure algebraic branch \SM{} to implement
+generic free modules, with an arbitrary number of bases in them, 
+none of them being distinguished. This resulted in the parent class 
+\code{FiniteRankFreeModule} and in the element class 
+\code{FiniteRankFreeModuleElement}. Then both the classes
+\code{VectorFieldFreeModule} (for $\mathcal{X}(U)$ when it is 
+a free module) and \code{TangentSpace} (for $T_p\mathcal{M}$)
+inherit from \code{FiniteRankFreeModule} (see Fig.~\ref{f:module_classes}). 
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{module_classes.pdf}
+\end{center}
+\caption{\label{f:module_classes} Various module classes.}
+\end{figure}
+
+
+
+\subsection{Implementation of vector fields}
+
+Ultimately, in \SM{}, vector fields are to be described by their 
+components with respect to various vector frames, according to 
+Eq.~(\ref{e:v_expand}), but without any vector frame being privileged, 
+leaving the possibility to the user to change frames, as to change 
+coordinates. A key point is that 
 not every manifold admits a global vector frame. 
 A manifold $\mathcal{M}$, or more generally an open subset $U\subset\mathcal{M}$,
 that admits a global vector frame is called 
 \emph{parallelizable}. Equivalently,
-$\mathcal{M}$ is parallelizable if, and only if, $\mathcal{X}(M)$
-is a free module. Examples of parallelizable manifolds are \cite{Lee13}
+$\mathcal{M}$ is parallelizable if, and only if, $\mathcal{X}(\mathcal{M})$
+is a free module. In terms of the tangent bundle, 
+parallelizable manifolds are those for which the tangent bundle is trivial:
+$T\mathcal{M} \simeq \mathcal{M}\times \mathbb{R}^n$.
+Examples of parallelizable manifolds are \cite{Lee13}
 \begin{itemize}
 \item the Cartesian space $\mathbb{R}^n$ for $n=1,2,\ldots$; 
 \item the circle $\mathbb{S}^1$; 
@@ -277,22 +332,18 @@ Actually, ``most'' manifolds are non-parallelizable.
 As noticed above, if a manifold is covered by a single chart, it is 
 parallelizable (the prototype being $\mathbb{R}^n$). But the reverse is not 
 true: $\mathbb{S}^1$ and $\mathbb{T}^2$ are parallelizable and require
-at least two and four charts respectively to cover them. 
+respectively at least two and four charts to cover them. 
 
-Ultimately, in \SM{}, vector fields are to be described by their 
-components w.r.t. various vector frames. 
 If the manifold $\mathcal{M}$ is not parallelizable, one has to decompose it 
 into parallelizable
 open subsets $U_i$ ($1\leq i \leq N$) 
 and consider the restrictions of vector fields to these domains.
 For each $i$, $\mathcal{X}(U_i)$ is a free module of rank $n=\mathrm{dim}\, \mathcal{M}$ and is implemented in \SM{} as an instance of 
-\code{VectorFieldFreeModule}. 
-The latter is a subclass of
-\code{FiniteRankFreeModule}, which is the class devoted to generic free modules
-of finite rank (cf. Fig.~\ref{f:module_classes}). 
+\code{VectorFieldFreeModule} (cf. Sec.~\ref{s:modules} and Figs.~\ref{f:module_classes}
+and \ref{f:tensor_classes}). 
 Each vector field $\w{v}\in  \mathcal{X}(U_i)$ has different set
 of components $(v^a)_{1\leq a\leq n}$ in different vector frames 
-$(\w{e}_a)_{1\leq a \leq n}$ introduced on $U_i$. They are stored
+$(\w{e}_a)_{1\leq a \leq n}$ introduced on $U_i$ [cf. Eq.~(\ref{e:v_expand})]. They are stored
 as a Python dictionary whose keys are the vector frames:
 \be
 \w{v}.\mbox{\texttt{\_components}} = \left\{ (\w{e}): (v^a),
@@ -301,10 +352,11 @@ as a Python dictionary whose keys are the vector frames:
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{module_classes.pdf}
+\includegraphics[width=0.7\textwidth]{tensorfield_classes.pdf}
 \end{center}
-\caption{\label{f:module_classes} Various module classes.}
+\caption{\label{f:tensor_classes} Tensor and tensor field classes.}
 \end{figure}
+
 
 \subsection{Implementation of tensor fields}
 
@@ -318,8 +370,66 @@ components $T^a_{\ \, b}$ only on a parallelizable open subset $U\subset
     \left. \w{T} \right| _{U} = T^a_{\ \, b} \, \w{e}_a \otimes \w{e}^b
 \ee
 defining $T^a_{\ \, b}$ is meaningfull only when a vector frame 
-$(\w{e}_a)$ exist\footnote{Using standard notation, in (\ref{e:T_expand})
+$(\w{e}_a)$ exist\footnote{Using standard notation, in Eq.~(\ref{e:T_expand})
 $(\w{e}^b)$ stands for the coframe dual to $(\w{e}_a)$}.
+Therefore, one first decompose the tensor field $\w{T}$  into 
+its restrictions $\left. \w{T} \right| _{U_i}$ on parallelizable open subsets
+of $\mathcal{M}$, $U_i$ ($1\leq i\leq N$) and then consider 
+the components on various vector frames on each of the $U_i$'s. 
+This is illustrated in Fig.~\ref{f:tensorfield_structure}, which details the
+internal storage of tensor fields in \SM{}. Note that each component
+$T^a_{\ \, b}$ is a scalar field on $U_i$, according to the formula
+\be
+    T^a_{\ \, b} = \w{T}(\w{e}^a, \w{e}_b) . 
+\ee
+Accordingly, at the last but one level of Fig.~\ref{f:tensorfield_structure}, 
+there appears the scalar field storage, as decribed by (\ref{e:f_express}).
+The last level is constitued by \Sage{}'s symbolic expressions. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{tensorfield_structure.pdf}
+\end{center}
+\caption{\label{f:tensorfield_structure} Storage of tensor fields.}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Current status of SageManifolds}
+
+\subsection{Functionalities}
+
+At present, the functionalities included in \SM{} are 
+\begin{itemize}
+\item maps between manifolds, pullback operator
+\item submanifolds, pushforward operator
+\item standard tensor calculus (tensor product, 
+contraction, symmetrization, etc.), even on non-parallelizable manifolds
+\item all monoterm tensor symmetries 
+\item exterior calculus, Hodge duality
+\item Lie derivatives
+\item affine connections, curvature, torsion
+\item pseudo-Riemannian metrics, Weyl tensor
+\end{itemize}
+
+
+\subsection{Parallelization}
+
+- Marco
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{SageManifolds at work: the spacetime Simon tensor example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion and future propects}
+
+- replacing SR (computation on a numerical spacetime)
 
 \ack
 This work has benifited from enlightening discussions with Volker Braun,
@@ -329,7 +439,6 @@ Marc Mezzarobba, Thierry Monteil, Travis Scrimshaw and Nicolas Thi\'ery.
 We also thank St\'ephane M\'en\'e for his technical help. 
  
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{References}
 \begin{thebibliography}{10}
@@ -378,6 +487,8 @@ freely downloadable from \url{http://sagebook.gforge.inria.fr/}
 \bibitem{Bard15}
 Bard G V 2015 {\it Sage for Undergraduates} (Americ. Math. Soc.) in press;
 preprint freely downloadable from \url{http://www.gregorybard.com/})
+\bibitem{SM}
+\url{http://sagemanifolds.obspm.fr/}
 \bibitem{Lee13}
 Lee J M 2013 {\it Introduction to Smooth Manifolds} 2nd edition (New York: Springer)
 \bibitem{Steen51}
