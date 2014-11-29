@@ -15,6 +15,8 @@
 \newcommand{\be}{\begin{equation}}
 \newcommand{\ee}{\end{equation}}
 \newcommand{\w}[1]{\bm{#1}}
+\newcommand{\soutput}[1]{\textcolor{blue}{#1}\\[-0.8ex]\rule{\textwidth}{0.4pt}}
+
 
 \begin{document}
 \title{Tensor calculus with free software: \\
@@ -146,7 +148,7 @@ within a given class is called an \emph{instance} of that class.},
 to implement them within the Parent/Element scheme and to 
 code the relevant mathematical operations as class methods.
 For instance the class \code{Manifold}, devoted to real smooth manifolds,
-is a parent class, which means that it inherits from Sage native class \code{Parent}.
+is a parent class, i.e. it inherits from Sage native class \code{Parent}.
 On the other hand, the class devoted to manifold points, \code{Point}, 
 is an element class and therefore inherits from Sage native class 
 \code{Element}.
@@ -169,7 +171,7 @@ and points on them (\code{Point}).}
 Given a manifold $\mathcal{M}$ of dimension $n$, a coordinate chart 
 on an open subset $U\subset\mathcal{M}$ is implemented in \SM{} 
 via the class \code{Chart}, whose main data is 
-a $n$-uple of Sage symbolic variables $(x_1,\ldots,x_n)$, each of 
+a $n$-uple of \Sage{} symbolic variables $(x_1,\ldots,x_n)$, each of 
 them representing a coordinate.
 In general, more than one (regular) chart is required to cover the entire manifold.
 For instance, at least 2 charts are necessary for the $n$-dimensional sphere 
@@ -209,6 +211,9 @@ whose keys are the charts:
 \be \label{e:f_express}
  f.\mbox{\texttt{\_express}} = \left\{ C: F,\ \hat C: \hat F, \ldots \right\} .
 \ee
+Each representation $F$ is an instance of the class \code{FunctionChart}, 
+which ressembles \Sage{} native symbolic functions but involves 
+automatic simplifications in all arithmetic operations. 
 
 \begin{figure}
 \begin{center}
@@ -254,7 +259,15 @@ $(\w{e}_a)_{1\leq a \leq n}$ on $U$:
 \be \label{e:v_expand}
     \forall \w{v}\in\mathcal{X}(U),\quad \w{v} = v^a \w{e}_a,\quad\mbox{with\ } v^a \in C^\infty(U) .
 \ee
-At any point $p\in U$, the above translates into an identity in 
+The rank of $\mathcal{X}(U)$ is thus $n$, i.e. the manifold's 
+dimension\footnote{Note that the dimensionality of $\mathcal{X}(U)$ depends
+of the structure adopted for it: as a vector space over $\mathbb{R}$, the
+dimension of $\mathcal{X}(U)$ is infinite, while as a free module over
+$C^\infty(U)$, $\mathcal{X}(U)$ has a finite rank. Note also that if $\mathcal{X}(U)$
+is not free (no global vector frame exists on $U$), the notion of rank 
+is meaningless.}.
+
+At any point $p\in U$, Eq.~(\ref{e:v_expand}) translates into an identity in 
 the tangent vector space $T_p \mathcal{M}$:
 \be 
     \w{v}(p) = v^a(p)  \; \w{e}_a(p),\quad\mbox{with\ } v^a(p) \in \mathbb{R} , 
@@ -267,8 +280,9 @@ by a chart $(x^a)_{1\leq a \leq n}$, then $(\partial/\partial x^a)_{1\leq a \leq
 is a vector frame on $U$, usually called \emph{coordinate frame}
 or \emph{natural basis}. 
 
-Another type of free modules which occur naturally in the current context
-is that of the tangent spaces to the manifold $\mathcal{M}$: 
+
+Another kind of free modules which occur naturally in the current context
+is that of the tangent spaces to manifold $\mathcal{M}$: 
 for each $p\in \mathcal{M}$, $T_p\mathcal{M}$ is a free module over 
 $\mathbb{R}$, since it is a vector space over $\mathbb{R}$. 
 
@@ -350,6 +364,7 @@ as a Python dictionary whose keys are the vector frames:
 \ (\w{\hat e}): ({\hat v}^a), \ldots \right\}. 
 \ee
 
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.7\textwidth]{tensorfield_classes.pdf}
@@ -423,6 +438,205 @@ contraction, symmetrization, etc.), even on non-parallelizable manifolds
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{SageManifolds at work: the spacetime Simon tensor example}
+
+We start by declaring the Kerr spacetime (or more precisely the part of the Kerr spacetime covered by Boyer-Lindquist coordinates) as a 4-dimensional manifold:
+\begin{verbatim}
+M = Manifold(4, 'M', latex_name=r'\mathcal{M}')
+print M
+\end{verbatim}
+\soutput{4-dimensional manifold 'M'}
+We introduce the standard Boyer-Lindquist coordinates as follows:
+\begin{verbatim}
+X.<t,r,th,ph> = M.chart(r't r:(0,+oo) th:(0,pi):\theta ph:(0,2*pi):\phi') 
+print X ; X
+\end{verbatim}
+\soutput{4-dimensional manifold 'M'\\
+$(\mathcal{M},(t, r, \theta, \phi))$}
+The 2 parameters $m$ and $a$ of the Kerr spacetime are declared as symbolic variables:
+\begin{verbatim}
+var('m, a')
+\end{verbatim}
+\soutput{$(m,a)$}
+Let us introduce the spacetime metric $g$ and set its components in the 
+coordinate frame associated with Boyer-Lindquist coordinates, 
+which is the current manifold's default frame:
+\begin{verbatim}
+g = M.lorentz_metric('g')
+rho2 = r^2 + (a*cos(th))^2
+Delta = r^2 -2*m*r + a^2
+g[0,0] = -(1-2*m*r/rho2)
+g[0,3] = -2*a*m*r*sin(th)^2/rho2
+g[1,1], g[2,2] = rho2/Delta, rho2
+g[3,3] = (r^2+a^2+2*m*r*(a*sin(th))^2/rho2)*sin(th)^2
+g.view()
+\end{verbatim}
+\soutput{$\displaystyle g = \left( -\frac{a^{2} \cos\left(\theta\right)^{2} - 2 \, m r +
+r^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}} \right) \mathrm{d}
+t\otimes \mathrm{d} t + \left( -\frac{2 \, a m r
+\sin\left(\theta\right)^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}}
+\right) \mathrm{d} t\otimes \mathrm{d} \phi \ + $\\
+$\displaystyle \left( \frac{a^{2}
+\cos\left(\theta\right)^{2} + r^{2}}{a^{2} - 2 \, m r + r^{2}} \right)
+\mathrm{d} r\otimes \mathrm{d} r + \left( a^{2}
+\cos\left(\theta\right)^{2} + r^{2} \right) \mathrm{d} \theta\otimes
+\mathrm{d} \theta + \left( -\frac{2 \, a m r
+\sin\left(\theta\right)^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}}
+\right) \mathrm{d} \phi\otimes \mathrm{d} t + \left( \frac{2 \, a^{2} m
+r \sin\left(\theta\right)^{4} + {\left(a^{2} r^{2} + r^{4} +
+{\left(a^{4} + a^{2} r^{2}\right)} \cos\left(\theta\right)^{2}\right)}
+\sin\left(\theta\right)^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}}
+\right) \mathrm{d} \phi\otimes \mathrm{d} \phi $}
+The Levi-Civita connection $\nabla$ associated with g:
+\begin{verbatim}
+nab = g.connection() ; print nab
+\end{verbatim}
+\soutput{Levi-Civita connection 'nabla\_g' associated with the Lorentzian metric
+'g' on the 4-dimensional manifold 'M'}
+As a check, we verify that the covariant derivative of $g$ with respect to
+$\nabla$ vanishes identically:
+\begin{verbatim}
+nab(g).view()
+\end{verbatim}
+\soutput{$ \nabla_{g} g = 0$}
+The default vector frame on the spacetime manifold is the coordinate basis associated with Boyer-Lindquist coordinates:
+\begin{verbatim}
+M.default_frame() is X.frame()
+\end{verbatim}
+\soutput{True}
+\begin{verbatim}
+X.frame()
+\end{verbatim}
+\soutput{$\left(\mathcal{M} ,\left(\frac{\partial}{\partial t
+},\frac{\partial}{\partial r },\frac{\partial}{\partial \theta
+},\frac{\partial}{\partial \phi }\right)\right)$}
+Let us consider the first vector field of this frame:
+\begin{verbatim}
+xi = X.frame()[0] ; xi
+\end{verbatim}
+\soutput{$\frac{\partial}{\partial t}$}
+\begin{verbatim}
+print xi 
+\end{verbatim}
+\soutput{vector field 'd/dt' on the 4-dimensional manifold 'M'}
+The 1-form associated to it by metric duality is
+\begin{verbatim}
+xi_form = xi.down(g)
+xi_form.set_name('xi_form', r'\underline{\xi}')
+print xi_form ; xi_form.view()
+\end{verbatim}
+\soutput{1-form 'xi\_form' on the 4-dimensional manifold 'M'\\[1ex]
+$\underline{\xi} = \left( -\frac{a^{2} \cos\left(\theta\right)^{2} - 2 \,
+m r + r^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}} \right)
+\mathrm{d} t + \left( -\frac{2 \, a m r
+\sin\left(\theta\right)^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}}
+\right) \mathrm{d} \phi$}
+Its covariant derivative is
+\begin{verbatim}
+nab_xi = nab(xi_form)
+print nab_xi ; nab_xi.view()
+\end{verbatim}
+\soutput{tensor field 'nabla\_g xi\_form' of type (0,2) on the 4-dimensional
+manifold 'M'\\[1ex]
+$\nabla_{g} \underline{\xi} = \left( \frac{a^{2} m
+\cos\left(\theta\right)^{2} - m r^{2}}{a^{4} \cos\left(\theta\right)^{4}
++ 2 \, a^{2} r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right)
+\mathrm{d} t\otimes \mathrm{d} r + \left( \frac{2 \, a^{2} m r
+\cos\left(\theta\right) \sin\left(\theta\right)}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} t\otimes
+\mathrm{d} \theta + $\\
+$\left( -\frac{a^{2} m \cos\left(\theta\right)^{2} -
+m r^{2}}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} r\otimes
+\mathrm{d} t + \left( \frac{{\left(a^{3} m \cos\left(\theta\right)^{2} -
+a m r^{2}\right)} \sin\left(\theta\right)^{2}}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} r\otimes
+\mathrm{d} \phi + $\\
+$\left( -\frac{2 \, a^{2} m r \cos\left(\theta\right)
+\sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
+r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d}
+\theta\otimes \mathrm{d} t + \left( \frac{2 \, {\left(a^{3} m r + a m
+r^{3}\right)} \cos\left(\theta\right) \sin\left(\theta\right)}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} \theta\otimes
+\mathrm{d} \phi + $ \\
+$\left( -\frac{{\left(a^{3} m
+\cos\left(\theta\right)^{2} - a m r^{2}\right)}
+\sin\left(\theta\right)^{2}}{a^{4} \cos\left(\theta\right)^{4} + 2 \,
+a^{2} r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d}
+\phi\otimes \mathrm{d} r + \left( -\frac{2 \, {\left(a^{3} m r + a m
+r^{3}\right)} \cos\left(\theta\right) \sin\left(\theta\right)}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} \phi\otimes
+\mathrm{d} \theta$}
+Let us check that the Killing equation is satisfied:
+\begin{verbatim}
+nab_xi.symmetrize().view()
+\end{verbatim}
+\soutput{$0$}
+Equivalently, we check that the Lie derivative of the metric along $\xi$
+vanishes:
+\begin{verbatim}
+g.lie_der(xi).view()
+\end{verbatim}
+\soutput{$0$}
+Thanks to Killing equation, $\nabla_g \underline{\xi}$ is antisymmetric. We may therefore define a 2-form by $F:= - \nabla_g \underline{\xi}$. Here we enforce the antisymmetry by calling the function antisymmetrize() on nab\_xi:
+\begin{verbatim}
+F = - nab_xi.antisymmetrize()
+F.set_name('F')
+print F
+F.view()
+\end{verbatim}
+\soutput{2-form 'F' on the 4-dimensional manifold 'M'\\[1ex]
+$F = \left( -\frac{a^{2} m \cos\left(\theta\right)^{2} - m r^{2}}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} t\wedge
+\mathrm{d} r + \left( -\frac{2 \, a^{2} m r \cos\left(\theta\right)
+\sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
+r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} t\wedge
+\mathrm{d} \theta + $\\
+$\left( -\frac{{\left(a^{3} m
+\cos\left(\theta\right)^{2} - a m r^{2}\right)}
+\sin\left(\theta\right)^{2}}{a^{4} \cos\left(\theta\right)^{4} + 2 \,
+a^{2} r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d}
+r\wedge \mathrm{d} \phi + \left( -\frac{2 \, {\left(a^{3} m r + a m
+r^{3}\right)} \cos\left(\theta\right) \sin\left(\theta\right)}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} \theta\wedge
+\mathrm{d} \phi$}
+The squared norm of the Killing vector is:
+\begin{verbatim}
+lamb = - g(xi,xi)
+lamb.set_name('lambda', r'\lambda')
+print lamb
+lamb.view()
+\end{verbatim}
+\soutput{scalar field 'lambda' on the 4-dimensional manifold 'M'\\[1ex]
+$\begin{array}{llcl} \lambda:& \mathcal{M} & \longrightarrow
+& \mathbb{R} \\ & \left(t, r, \theta, \phi\right) & \longmapsto
+& \frac{a^{2} \cos\left(\theta\right)^{2} - 2 \, m r + r^{2}}{a^{2}
+\cos\left(\theta\right)^{2} + r^{2}} \end{array}$}
+Instead of invoking $g(\xi,\xi)$, we could have evaluated $\lambda$ 
+by means of the 1-form $\underline{\xi}$ acting on the vector field $\xi$:
+\begin{verbatim}
+lamb == - xi_form(xi)
+\end{verbatim}
+\soutput{True}
+or, in index notation,
+\begin{verbatim}
+lamb == - ( xi_form['_a']*xi['^a'] )
+\end{verbatim}
+\soutput{True}
+\begin{verbatim}
+\end{verbatim}
+\begin{verbatim}
+\end{verbatim}
+\begin{verbatim}
+\end{verbatim}
+\begin{verbatim}
+\end{verbatim}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
