@@ -31,10 +31,14 @@ CNRS, Observatoire de Paris, Universit\'e Paris Diderot,
 \address{$^2$ Centrum Astronomiczne im. M. Kopernika, ul. Bartycka 18,
 00-716 Warsaw, Poland}
 
-\ead{eric.gourgoulhon@obspm.fr}
+\ead{eric.gourgoulhon@obspm.fr, bejger@camk.edu.pl, marco.mancini@obspm.fr}
 
 \begin{abstract}
-Abstract
+SageManifolds aims at extending the mathematics software system Sage towards
+differential geometry and tensor calculus. As Sage, it is a free open-source
+software project and is based on the Python programming language.
+We discuss here some details of the implementation, which relies 
+on Sage's category pattern, and present a concrete example of use.
 \end{abstract}
 
 \section{Introduction}
@@ -42,13 +46,13 @@ Abstract
 Computer algebra for general relativity (GR) has a long history, which started
 almost as soon as computer algebra itself in the 1960s. 
 The first GR software was \soft{ALAM} (for \emph{Atlas Lisp Algebraic Manipulator})
-witten by R.A. d'Inverno in 1969; he used it to compute
+written by R.A. d'Inverno in 1969; he used it to compute
 the Riemann and Ricci tensors of the Bondi metric.
 According to \cite{Skea94}, 
 the original calculations took Bondi and his collaborators 6 months to go,
 while the computation with \soft{ALAM} took 4 minutes and yield to the 
 discovery of 6 errors in the original paper. 
-Since then, many packages have been developed and the reader is refered to \cite{MacCa02}
+Since then, many packages have been developed and the reader is referred to \cite{MacCa02}
 for a review of computer algebra
 systems for GR prior to 2002 and to \cite{KorolKS13} for a more recent review,
 focussing on tensor calculus. 
@@ -82,7 +86,7 @@ the type of computation that they perform: abstract index manipulations
 or component calculus (\soft{xAct/xCoba}, \soft{DifferentialGeometry}, \soft{Atlas 2})
 In the first category, tensor operations such as contraction or covariant differentiation 
 are performed by manipulating the indices themselves rather than the components 
-to which they correspond. In the second category, vector bases are explicitely 
+to which they correspond. In the second category, vector bases are explicitly 
 introduced on the manifold and tensor operations are carried out on the components 
 in a given basis.
 
@@ -107,16 +111,18 @@ then its development has been sustained by more than a hundred researchers
  
 Apart from the syntax, based on Python and not on some specific script 
 language, a difference between \Sage{} and \soft{Maple} or \soft{Mathematica}
-is the use of the \emph{Parent/Element} scheme, which makes \Sage{} closer to 
+is the use of some \emph{parent/element pattern}, which makes \Sage{} closer to 
 actual mathematics. For instance, in \soft{Mathematica}, all objects 
 are trees of symbols and the language is essentially a set of 
 sophisticated rules to manipulate the symbols. On the contrary, in \Sage{}
 each object has a given type (i.e. is an instance of a given Python class), 
 and one distinguishes \emph{parent} types, which model mathematical
 sets with some structure (e.g. algebraic structure), from \emph{element} types,
-which model set elements. 
-In particular, calculus rules on elements are determined by the algebraic
-structure of their parents. Automatic conversion rules, called \emph{coercions},
+which model set elements. Moreover, each parent belong to some 
+dynamically generated class that encodes the information 
+about its \emph{category}, in the mathematical sense of the word.
+Calculus rules on elements are determined not by the elements themselves
+but by the category to which their parents belong. Automatic conversion rules, called \emph{coercions},
 prior to a binary operation, e.g. $x+y$ with $x$ and $y$ having different 
 parents, are defined at the level of the parents.
 
@@ -145,7 +151,7 @@ on the data (called \emph{methods}); a specific realization of an object
 within a given class is called an \emph{instance} of that class.},
  such as 
 \code{Manifold}, \code{Chart}, \code{TensorField} or \code{Metric},
-to implement them within the Parent/Element scheme and to 
+to implement them within the Parent/Element pattern and to 
 code the relevant mathematical operations as class methods.
 For instance the class \code{Manifold}, devoted to real smooth manifolds,
 is a parent class, i.e. it inherits from Sage native class \code{Parent}.
@@ -155,6 +161,13 @@ is an element class and therefore inherits from Sage native class
 This is illustrated by the inheritance diagram of Fig.~\ref{f:domain_classes}.
 In this diagram, each class at the base of an arrow is a subclass (also
 called \emph{derived class}) of the class at the arrowhead.
+Note however that the actual type of a parent is a dynamically generated
+class taking into account the mathematical category to which it belongs. 
+For instance, the actual type of a smooth manifold is not \code{Manifold}, but a
+subclass of it named \code{Manifold\_with\_category}, 
+reflecting the fact that \code{Manifold} is
+declared in the category of sets\footnote{A tighter category should be
+topological spaces, but such a category has been not implemented in \Sage{} yet.}.
 
 \begin{figure}
 \begin{center}
@@ -195,11 +208,11 @@ A \emph{scalar field} on manifold $\mathcal{M}$ is a smooth mapping
 where $U$ is an open subset of $\mathcal{M}$.
 Note that a scalar field maps \emph{points}, not \emph{coordinates}, to real numbers. 
 A scalar field $f$ has different coordinate representations $F$, $\hat F$, etc. 
-in different charts $C$, $\hat C$, etc. defined on $U$:
+in different charts $X$, $\hat X$, etc. defined on $U$:
 \be
     f(p) = 
-F(\underbrace{x^1,\ldots, x^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $C$}}) 
-= {\hat F}(\underbrace{{\hat x}^1,\ldots, {\hat x}^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $\hat C$}})
+F(\underbrace{x^1,\ldots, x^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $X$}}) 
+= {\hat F}(\underbrace{{\hat x}^1,\ldots, {\hat x}^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $\hat X$}})
 = \ldots
 \ee
 These representations are 
@@ -209,10 +222,10 @@ data structure that generalizes the concept of array in the sense that the
 key to access to some element is not restricted to an integer or a tuple of integers.},
 whose keys are the charts:
 \be \label{e:f_express}
- f.\mbox{\texttt{\_express}} = \left\{ C: F,\ \hat C: \hat F, \ldots \right\} .
+ f.\mbox{\texttt{\_express}} = \left\{ X: F,\ \hat X: \hat F, \ldots \right\} .
 \ee
 Each representation $F$ is an instance of the class \code{FunctionChart}, 
-which ressembles \Sage{} native symbolic functions but involves 
+which resembles \Sage{} native symbolic functions but involves 
 automatic simplifications in all arithmetic operations. 
 
 \begin{figure}
@@ -233,8 +246,9 @@ by pointwise multiplication:
 (f.g)(p) := f(p) g(p) .
 \ee
 The algebra $C^\infty(U)$ is implemented in \SM{} via the parent
-class \code{ScalarFieldAlgebra}, the corresponding element class 
-being \code{ScalarField} (cf. Fig.~\ref{f:scalar_classes}). 
+class \code{ScalarFieldAlgebra}, in the category
+\code{CommutativeAlgebras}. The corresponding element class 
+is \code{ScalarField} (cf. Fig.~\ref{f:scalar_classes}). 
 
 \subsection{Modules and free modules} \label{s:modules}
 
@@ -297,7 +311,7 @@ system is privileged in the neightbourhood of $p$.
 Therefore we have started a pure algebraic branch \SM{} to implement
 generic free modules, with an arbitrary number of bases in them, 
 none of them being distinguished. This resulted in the parent class 
-\code{FiniteRankFreeModule} and in the element class 
+\code{FiniteRankFreeModule}, in the category \code{Modules}, and in the element class 
 \code{FiniteRankFreeModuleElement}. Then both the classes
 \code{VectorFieldFreeModule} (for $\mathcal{X}(U)$ when it is 
 a free module) and \code{TangentSpace} (for $T_p\mathcal{M}$)
@@ -348,6 +362,13 @@ parallelizable (the prototype being $\mathbb{R}^n$). But the reverse is not
 true: $\mathbb{S}^1$ and $\mathbb{T}^2$ are parallelizable and require
 respectively at least two and four charts to cover them. 
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{tensorfield_classes.pdf}
+\end{center}
+\caption{\label{f:tensor_classes} Tensor and tensor field classes.}
+\end{figure}
+
 If the manifold $\mathcal{M}$ is not parallelizable, one has to decompose it 
 into parallelizable
 open subsets $U_i$ ($1\leq i \leq N$) 
@@ -363,14 +384,6 @@ as a Python dictionary whose keys are the vector frames:
 \w{v}.\mbox{\texttt{\_components}} = \left\{ (\w{e}): (v^a),
 \ (\w{\hat e}): ({\hat v}^a), \ldots \right\}. 
 \ee
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{tensorfield_classes.pdf}
-\end{center}
-\caption{\label{f:tensor_classes} Tensor and tensor field classes.}
-\end{figure}
 
 
 \subsection{Implementation of tensor fields}
@@ -398,8 +411,8 @@ $T^a_{\ \, b}$ is a scalar field on $U_i$, according to the formula
     T^a_{\ \, b} = \w{T}(\w{e}^a, \w{e}_b) . 
 \ee
 Accordingly, at the last but one level of Fig.~\ref{f:tensorfield_structure}, 
-there appears the scalar field storage, as decribed by (\ref{e:f_express}).
-The last level is constitued by \Sage{}'s symbolic expressions. 
+there appears the scalar field storage, as described by (\ref{e:f_express}).
+The last level is constituted by \Sage{}'s symbolic expressions. 
 
 \begin{figure}
 \begin{center}
@@ -414,54 +427,119 @@ The last level is constitued by \Sage{}'s symbolic expressions.
 
 \section{Current status of SageManifolds}
 
-\subsection{Functionalities}
-
-At present, the functionalities included in \SM{} are 
+\subsection{Functionalities} \label{s:functionalities}
+At present (version 0.6), the functionalities included in \SM{} are 
 \begin{itemize}
 \item maps between manifolds, pullback operator
 \item submanifolds, pushforward operator
 \item standard tensor calculus (tensor product, 
 contraction, symmetrization, etc.), even on non-parallelizable manifolds
-\item all monoterm tensor symmetries 
-\item exterior calculus, Hodge duality
+\item taking in charge all monoterm tensor symmetries 
+\item exterior calculus (wedge product and exterior derivative of differential forms,
+Hodge duality)
 \item Lie derivatives
-\item affine connections, curvature, torsion
-\item pseudo-Riemannian metrics, Weyl tensor
+\item affine connections (curvature, torsion)
+\item pseudo-Riemannian metrics (Levi-Civita connection, Weyl tensor)
+\item graphical display of charts
 \end{itemize}
-
 
 \subsection{Parallelization}
 
-- Marco
+Computationally demanding operations have been recently parallelized, 
+by means of the Python package \code{multiprocessing}, which is
+implemented in \Sage{} via the decorator \code{@parallel}. 
+The parallelization regards the arithmetic and contractions 
+of tensors, the computation of connection coefficients and the computation
+of the Riemann tensor. 
+This feature shall be available in version 0.7. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{SageManifolds at work: the spacetime Simon tensor example}
+\section{SageManifolds at work: Kerr spacetime and Simon-Mars tensor}
 
-We start by declaring the Kerr spacetime (or more precisely the part of the Kerr spacetime covered by Boyer-Lindquist coordinates) as a 4-dimensional manifold:
+We give hereafter a short illustration of \SM{} focussed on tensor 
+calculus. Another example, based on the sphere $\mathbb{S}^2$, 
+focusses more on the use of multiple charts and the treatment of non-parallelizable 
+manifolds. This example and many others are available at
+\cite{SM_examples}.
+
+Let us consider a 4-dimensional spacetime, i.e. a 4-dimensional smooth 
+manifold $\mathcal{M}$ endowed with a Lorentzian metric $\w{g}$. 
+We assume that the spacetime is stationary and denote by $\w{\xi}$ 
+the corresponding Killing vector field. 
+The \emph{Simon-Mars tensor w.r.t. $\w{\xi}$} is then
+the type-(0,3) tensor field $\w{S}$ defined by 
+\be \label{e:def_Simon-Mars}
+S_{\alpha\beta\gamma} := 4 \mathcal{C}_{\mu\alpha\nu[\beta} \, \xi^\mu \xi^\nu \, \sigma_{\gamma]}
+ + \gamma_{\alpha[\beta} \, \mathcal{C}_{\gamma]\rho\mu\nu} \, \xi^\rho \, \mathcal{F}^{\mu\nu} ,
+\ee
+where
+\begin{itemize}
+\item $\gamma_{\alpha\beta} := \lambda \, g_{\alpha\beta} + \xi_\alpha \xi_\beta$, 
+with $\lambda := - \xi_\mu \xi^\mu$
+\item $\mathcal{C}_{\alpha\beta\mu\nu} := C_{\alpha\beta\mu\nu}
+    + \frac{i}{2} \epsilon^{\rho\sigma}_{\ \ \, \mu\nu}\,  C_{\alpha\beta\rho\sigma} $,
+with $C^\alpha_{\ \, \beta\mu\nu}$ being the Weyl tensor and 
+$\epsilon_{\alpha\beta\mu\nu}$ the Levi-Civita volume form
+\item $\mathcal{F}_{\alpha\beta} := F_{\alpha\beta} + i\,  {}^*\!F_{\alpha\beta}$, 
+with $F_{\alpha\beta} := \nabla_\alpha\xi_\beta$ (Killing 2-form) and 
+${}^*\!F_{\alpha\beta} := \frac{1}{2} \epsilon^{\mu\nu}_{\ \ \, \alpha\beta} F_{\mu\nu}$
+(Hodge dual of $F_{\alpha\beta}$)
+\item $\sigma_\alpha := 2 \mathcal{F}_{\mu\alpha} \xi^\mu$ (Ernst 1-form)
+\end{itemize}
+As shown by Mars \cite{Mars99}, the 
+Simon-Mars tensor provides a nice characterization of Kerr spacetime:
+if $\w{g}$ satisfies the vacuum Einstein equation and $(\mathcal{M},\w{g})$
+contains a stationary asymptotically flat end $\mathcal{M}^\infty$ such
+that $\w{\xi}$ tends to a time translation at infinity in $\mathcal{M}^\infty$
+and the Komar mass of $\w{\xi}$ in $\mathcal{M}^\infty$ is non-zero, then 
+$\w{S} = 0$ if, and only if, $(\mathcal{M},\w{g})$ is locally isometric 
+to a Kerr spacetime.
+
+In what follows, we use \SM{} to compute the Simon-Mars tensor 
+according to formula (\ref{e:def_Simon-Mars}) for the Kerr metric and check 
+that we get zero, which is not trivial. 
+The corresponding worksheet can be downloaded from \\
+\url{http://sagemanifolds.obspm.fr/examples/html/SM_Mars-Simon.html}.\\
+To fully understand what follows, the reader must be aware that, 
+as an object-oriented language, Python (and hence \Sage{}) makes use of 
+the following postfix notation:
+\begin{center}
+\textcolor{blue}{\texttt{result}} = \textcolor{red}{\texttt{object}}\texttt{.}\texttt{function(}\textcolor{green}{\texttt{arguments}}\texttt{)}
+\end{center}
+In a functional language, this would be written instead as
+ \begin{center}
+\textcolor{blue}{\texttt{result}} = \texttt{function(}\textcolor{red}{\texttt{object}}\texttt{,}\textcolor{green}{\texttt{arguments}}\texttt{)}
+\end{center}
+For instance, the Riemann tensor of a metric $g$ is obtained as 
+\begin{verbatim}
+riem = g.riemann()
+\end{verbatim}
+In this case, there is no extra argument, hence the empty parentheses. 
+With this is mind, let us proceed with the computation by means of 
+\SM{}. 
+
+The first step is to declare the Kerr spacetime (or more precisely the part of the Kerr spacetime covered by Boyer-Lindquist coordinates) as a 4-dimensional manifold:
 \begin{verbatim}
 M = Manifold(4, 'M', latex_name=r'\mathcal{M}')
 print M
 \end{verbatim}
 \soutput{4-dimensional manifold 'M'}
-We introduce the standard Boyer-Lindquist coordinates as follows:
+We introduce the standard Boyer-Lindquist coordinates $(t,r,\theta,\phi)$
+by declaring a chart $X$ on $\mathcal{M}$:
 \begin{verbatim}
 X.<t,r,th,ph> = M.chart(r't r:(0,+oo) th:(0,pi):\theta ph:(0,2*pi):\phi') 
 print X ; X
 \end{verbatim}
-\soutput{4-dimensional manifold 'M'\\
+\soutput{chart (M, (t, r, th, ph))\\
 $(\mathcal{M},(t, r, \theta, \phi))$}
-The 2 parameters $m$ and $a$ of the Kerr spacetime are declared as symbolic variables:
-\begin{verbatim}
-var('m, a')
-\end{verbatim}
-\soutput{$(m,a)$}
-Let us introduce the spacetime metric $g$ and set its components in the 
+We define next the Kerr metric $g$ by setting its components in the 
 coordinate frame associated with Boyer-Lindquist coordinates, 
 which is the current manifold's default frame:
 \begin{verbatim}
 g = M.lorentz_metric('g')
+m = var('m') ; a = var('a')
 rho2 = r^2 + (a*cos(th))^2
 Delta = r^2 -2*m*r + a^2
 g[0,0] = -(1-2*m*r/rho2)
@@ -486,7 +564,8 @@ r \sin\left(\theta\right)^{4} + {\left(a^{2} r^{2} + r^{4} +
 {\left(a^{4} + a^{2} r^{2}\right)} \cos\left(\theta\right)^{2}\right)}
 \sin\left(\theta\right)^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}}
 \right) \mathrm{d} \phi\otimes \mathrm{d} \phi $}
-The Levi-Civita connection $\nabla$ associated with g:
+The Levi-Civita connection $\nabla$ associated with g is obtained
+by the method \code{connection()}:
 \begin{verbatim}
 nab = g.connection() ; print nab
 \end{verbatim}
@@ -581,12 +660,11 @@ vanishes:
 g.lie_der(xi).view()
 \end{verbatim}
 \soutput{$0$}
-Thanks to Killing equation, $\nabla_g \underline{\xi}$ is antisymmetric. We may therefore define a 2-form by $F:= - \nabla_g \underline{\xi}$. Here we enforce the antisymmetry by calling the function antisymmetrize() on nab\_xi:
+Thanks to Killing equation, $\nabla_g \underline{\xi}$ is antisymmetric. We may therefore define a 2-form by $F:= - \nabla_g \underline{\xi}$. Here we enforce the antisymmetry by calling the method \code{antisymmetrize()} on \code{nab\_xi}:
 \begin{verbatim}
 F = - nab_xi.antisymmetrize()
 F.set_name('F')
-print F
-F.view()
+print F ; F.view()
 \end{verbatim}
 \soutput{2-form 'F' on the 4-dimensional manifold 'M'\\[1ex]
 $F = \left( -\frac{a^{2} m \cos\left(\theta\right)^{2} - m r^{2}}{a^{4}
@@ -609,29 +687,237 @@ The squared norm of the Killing vector is:
 \begin{verbatim}
 lamb = - g(xi,xi)
 lamb.set_name('lambda', r'\lambda')
-print lamb
-lamb.view()
+print lamb ; lamb.view()
 \end{verbatim}
 \soutput{scalar field 'lambda' on the 4-dimensional manifold 'M'\\[1ex]
 $\begin{array}{llcl} \lambda:& \mathcal{M} & \longrightarrow
 & \mathbb{R} \\ & \left(t, r, \theta, \phi\right) & \longmapsto
 & \frac{a^{2} \cos\left(\theta\right)^{2} - 2 \, m r + r^{2}}{a^{2}
-\cos\left(\theta\right)^{2} + r^{2}} \end{array}$}
+\cos\left(\theta\right)^{2} + r^{2}} \end{array}$\\[-1ex]}
 Instead of invoking $g(\xi,\xi)$, we could have evaluated $\lambda$ 
 by means of the 1-form $\underline{\xi}$ acting on the vector field $\xi$:
 \begin{verbatim}
 lamb == - xi_form(xi)
 \end{verbatim}
 \soutput{True}
-or, in index notation,
+or, using index notation,
 \begin{verbatim}
 lamb == - ( xi_form['_a']*xi['^a'] )
 \end{verbatim}
 \soutput{True}
+The Riemann curvature tensor associated with $g$ is:
 \begin{verbatim}
+Riem = g.riemann()
+print Riem
 \end{verbatim}
+\soutput{tensor field 'Riem(g)' of type (1,3) on the 4-dimensional manifold 'M'}
+The component $R^0_{\ \, 123} = R^t_{\ \, r\theta\phi}$ is 
 \begin{verbatim}
+Riem[0,1,2,3]
 \end{verbatim}
+\soutput{\tiny $-\frac{{\left(a^{7} m - 2 \, a^{5} m^{2} r + a^{5} m r^{2}\right)}
+\cos\left(\theta\right) \sin\left(\theta\right)^{5} + {\left(a^{7} m + 2
+\, a^{5} m^{2} r + 6 \, a^{5} m r^{2} - 6 \, a^{3} m^{2} r^{3} + 5 \,
+a^{3} m r^{4}\right)} \cos\left(\theta\right)
+\sin\left(\theta\right)^{3} - 2 \, {\left(a^{7} m - a^{5} m r^{2} - 5 \,
+a^{3} m r^{4} - 3 \, a m r^{6}\right)} \cos\left(\theta\right)
+\sin\left(\theta\right)}{a^{2} r^{6} - 2 \, m r^{7} + r^{8} +
+{\left(a^{8} - 2 \, a^{6} m r + a^{6} r^{2}\right)}
+\cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2 \, a^{4} m
+r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3 \,
+{\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
+\cos\left(\theta\right)^{2}}$}
+The Ricci tensor vanishes identically, i.e. we check that the Kerr metric is 
+a vacuum solution of Einstein equation:
+\begin{verbatim}
+g.ricci().view()
+\end{verbatim}
+\soutput{$\mathrm{Ric}(g) = 0$}
+The Weyl conformal curvature tensor is
+\begin{verbatim}
+C = g.weyl() ; print C
+\end{verbatim}
+\soutput{tensor field 'C(g)' of type (1,3) on the 4-dimensional manifold 'M'}
+Let us exhibit the component $C^0_{\ \, 101}=C^t_{\ \, rtr}$:
+\begin{verbatim}
+C[0,1,0,1]
+\end{verbatim}
+\soutput{$\frac{3 \, a^{4} m r \cos\left(\theta\right)^{4} + 3 \, a^{2} m r^{3} +
+2 \, m r^{5} - {\left(9 \, a^{4} m r + 7 \, a^{2} m r^{3}\right)}
+\cos\left(\theta\right)^{2}}{a^{2} r^{6} - 2 \, m r^{7} + r^{8} +
+{\left(a^{8} - 2 \, a^{6} m r + a^{6} r^{2}\right)}
+\cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2 \, a^{4} m
+r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3 \,
+{\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
+\cos\left(\theta\right)^{2}}$}
+To form the Simon-Mars tensor, we need the fully covariant (type-(0,4) tensor) form of the Weyl tensor (i.e. $C_{\alpha\beta\mu\nu} = g_{\alpha\sigma} C^\sigma_{\ \, \beta\mu\nu}$); we get it by lowering the first index with the metric:
+\begin{verbatim}
+Cd = C.down(g) ; print Cd
+\end{verbatim}
+\soutput{tensor field of type (0,4) on the 4-dimensional manifold 'M'}
+The (monoterm) symmetries of this tensor are those inherited from the Weyl tensor, i.e. the antisymmetry on the last two indices (position 2 and 3, the first index being at position 0):
+\begin{verbatim}
+Cd.symmetries()
+\end{verbatim}
+\soutput{no symmetry;  antisymmetry: (2, 3)}
+Actually, Cd is also antisymmetric with respect to the first two indices (positions 0 and 1), as we can check:
+\begin{verbatim}
+Cd == Cd.antisymmetrize(0,1)
+\end{verbatim}
+\soutput{True}
+To take this symmetry into account explicitly, we set
+\begin{verbatim}
+Cd = Cd.antisymmetrize(0,1)
+Cd.symmetries()
+\end{verbatim}
+\soutput{no symmetry;  antisymmetries: [(0, 1), (2, 3)]}
+The starting point in the evaluation of Simon-Mars tensor is the self-dual complex 2-form associated with the Killing 2-form $F$, i.e. the object $\mathcal{F} := F + i \, {}^* F$, where ${}^*F$ is the Hodge dual of $F$:
+\begin{verbatim}
+FF = F + I * F.hodge_star(g)
+FF.set_name('FF', r'\mathcal{F}')
+print FF ; FF.view()
+\end{verbatim}
+\soutput{2-form 'FF' on the 4-dimensional manifold 'M'\\
+$\mathcal{F} = \left( -\frac{a^{2} m \cos\left(\theta\right)^{2} + 2 i \,
+a m r \cos\left(\theta\right) - m r^{2}}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} t\wedge
+\mathrm{d} r + \left( \frac{{\left(i \, a^{3} m
+\cos\left(\theta\right)^{2} - 2 \, a^{2} m r \cos\left(\theta\right) - i
+\, a m r^{2}\right)} \sin\left(\theta\right)}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} t\wedge
+\mathrm{d} \theta + \left( \frac{-4 i \, a^{4} m^{2} r^{2}
+\cos\left(\theta\right) \sin\left(\theta\right)^{4} + {\left(a^{3} m
+r^{4} - 2 \, a m^{2} r^{5} + a m r^{6} - {\left(a^{7} m - 2 \, a^{5}
+m^{2} r + a^{5} m r^{2}\right)} \cos\left(\theta\right)^{4} - {\left(2 i
+\, a^{6} m r + 2 i \, a^{4} m r^{3}\right)} \cos\left(\theta\right)^{3}
+- {\left(-4 i \, a^{4} m^{2} r^{2} + 2 i \, a^{4} m r^{3} - 4 i \, a^{2}
+m^{2} r^{4} + 2 i \, a^{2} m r^{5}\right)}
+\cos\left(\theta\right)\right)} \sin\left(\theta\right)^{2}}{a^{2} r^{6}
+- 2 \, m r^{7} + r^{8} + {\left(a^{8} - 2 \, a^{6} m r + a^{6}
+r^{2}\right)} \cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2
+\, a^{4} m r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3
+\, {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
+\cos\left(\theta\right)^{2}} \right) \mathrm{d} r\wedge \mathrm{d} \phi
++ \left( -\frac{{\left(i \, a^{4} m + i \, a^{2} m r^{2}\right)}
+\sin\left(\theta\right)^{3} + {\left(-i \, a^{4} m + i \, m r^{4} + 2 \,
+{\left(a^{3} m r + a m r^{3}\right)} \cos\left(\theta\right)\right)}
+\sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
+r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d}
+\theta\wedge \mathrm{d} \phi$}
+Let us check that $\mathcal{F}$ is self-dual, i.e. that it obeys ${}^* \mathcal{F} = -i \mathcal{F}$:
+\begin{verbatim}
+FF.hodge_star(g) == - I * FF
+\end{verbatim}
+\soutput{True}
+To evaluate the right self-dual of the Weyl tensor, we need the 
+tensor $\epsilon^{\alpha\beta}_{\ \ \ \gamma\delta}$:
+\begin{verbatim}
+eps = g.volume_form(2)  # 2 = the first 2 indices are contravariant
+print eps ; eps.symmetries()
+\end{verbatim}
+\soutput{tensor field of type (2,2) on the 4-dimensional manifold 'M'\\
+no symmetry;  antisymmetries: [(0, 1), (2, 3)]}
+The right self-dual Weyl tensor is then:
+\begin{verbatim}
+CC = Cd + I/2*( eps['^rs_..']*Cd['_..rs'] )
+CC.set_name('CC', r'\mathcal{C}') ; 
+print CC ; CC.symmetries()
+\end{verbatim}
+\soutput{tensor field 'CC' of type (0,4) on the 4-dimensional manifold 'M'\\
+no symmetry;  antisymmetries: [(0, 1), (2, 3)]}
+\begin{verbatim}
+CC[0,1,2,3]
+\end{verbatim}
+\soutput{$\frac{{\left(a^{5} m \cos\left(\theta\right)^{5} + 3 i \, a^{4} m r
+\cos\left(\theta\right)^{4} + 3 i \, a^{2} m r^{3} + 2 i \, m r^{5} -
+{\left(3 \, a^{5} m + 5 \, a^{3} m r^{2}\right)}
+\cos\left(\theta\right)^{3} + {\left(-9 i \, a^{4} m r - 7 i \, a^{2} m
+r^{3}\right)} \cos\left(\theta\right)^{2} + 3 \, {\left(3 \, a^{3} m
+r^{2} + 2 \, a m r^{4}\right)} \cos\left(\theta\right)\right)}
+\sin\left(\theta\right)}{a^{6} \cos\left(\theta\right)^{6} + 3 \, a^{4}
+r^{2} \cos\left(\theta\right)^{4} + 3 \, a^{2} r^{4}
+\cos\left(\theta\right)^{2} + r^{6}}$}
+The Ernst 1-form $\sigma_\alpha = 2 \mathcal{F}_{\mu\alpha} \, \xi^\mu$ (0 = contraction on the first index of $\mathcal{F}$):
+\begin{verbatim}
+sigma = 2*FF.contract(0, xi)
+\end{verbatim}
+Instead of invoking the method \code{contract()}, 
+we could have used the index notation to denote the contraction:
+\begin{verbatim}
+sigma == 2*( FF['_ma']*xi['^m'] )
+\end{verbatim}
+\soutput{True}
+\begin{verbatim}
+sigma.set_name('sigma', r'\sigma')
+print sigma ; sigma.view()
+\end{verbatim}
+\soutput{1-form 'sigma' on the 4-dimensional manifold 'M'\\
+$\sigma = \left( -\frac{2 \, a^{2} m \cos\left(\theta\right)^{2} + 4 i \,
+a m r \cos\left(\theta\right) - 2 \, m r^{2}}{a^{4}
+\cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
+\cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} r + \left(
+\frac{{\left(2 i \, a^{3} m \cos\left(\theta\right)^{2} - 4 \, a^{2} m r
+\cos\left(\theta\right) - 2 i \, a m r^{2}\right)}
+\sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
+r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} \theta$}
+The symmetric bilinear form $\gamma = \lambda \, g + \underline{\xi}\otimes\underline{\xi}$:
+\begin{verbatim}
+gamma = lamb*g + xi_form * xi_form
+gamma.set_name('gamma', r'\gamma')
+print gamma ; gamma.view()
+\end{verbatim}
+\soutput{field of symmetric bilinear forms 'gamma' on the 4-dimensional manifold
+'M'\\
+$\gamma = \left( \frac{a^{2} \cos\left(\theta\right)^{2} - 2 \, m r +
+r^{2}}{a^{2} - 2 \, m r + r^{2}} \right) \mathrm{d} r\otimes \mathrm{d}
+r + \left( a^{2} \cos\left(\theta\right)^{2} - 2 \, m r + r^{2} \right)
+\mathrm{d} \theta\otimes \mathrm{d} \theta +$\\
+$\left( \frac{2 \, a^{2} m r
+\sin\left(\theta\right)^{4} - {\left(2 \, a^{2} m r - a^{2} r^{2} + 2 \,
+m r^{3} - r^{4} - {\left(a^{4} + a^{2} r^{2}\right)}
+\cos\left(\theta\right)^{2}\right)} \sin\left(\theta\right)^{2}}{a^{2}
+\cos\left(\theta\right)^{2} + r^{2}} \right) \mathrm{d} \phi\otimes
+\mathrm{d} \phi$}
+The first part of the Simon-Mars tensor is 
+$S^{(1)}_{\alpha\beta\gamma} = 4 \mathcal{C}_{\mu\alpha\nu\beta} \, \xi^\mu \, \xi^\nu \, \sigma_\gamma$:
+\begin{verbatim}
+S1 = 4*( CC.contract(0,xi).contract(1,xi) ) * sigma
+print S1
+\end{verbatim}
+\soutput{tensor field of type (0,3) on the 4-dimensional manifold 'M'}
+The second part is 
+$S^{(2)}_{\alpha\beta\gamma} = \gamma_{\alpha\beta} \, \mathcal{C}_{\rho\gamma\mu\nu} \, \xi^\rho \, \mathcal{F}^{\mu\nu}$, which we 
+compute using the index notation to perform the contractions:
+\begin{verbatim}
+FFuu = FF.up(g)
+xiCC = CC['_.r..']*xi['^r']
+S2 = gamma * ( xiCC['_.mn']*FFuu['^mn'] )
+print S2
+\end{verbatim}
+\soutput{tensor field of type (0,3) on the 4-dimensional manifold 'M'}
+To get the Simon-Mars tensor, we need to antisymmetrize $S^{(1)}$ and
+$S^{(2)}$ on their last two indices; we choose to use the standard
+index notation to perform this operation (an alternative would have been
+to call directly the method \code{antisymmetrize()}):
+\begin{verbatim}
+S1A = S1['_a[bc]']
+S2A = S2['_a[bc]']
+\end{verbatim}
+The Simon-Mars tensor is then 
+\begin{verbatim}
+S = = S1A + S2A
+S.set_name('S')
+print S ; S.symmetries()
+\end{verbatim}
+\soutput{tensor field 'S' of type (0,3) on the 4-dimensional manifold 'M'\\
+no symmetry;  antisymmetry: (1, 2)}
+We check that it vanishes identically, as it should for Kerr spacetime:
+\begin{verbatim}
+S.view()
+\end{verbatim}
+\soutput{$S=0$}
 \begin{verbatim}
 \end{verbatim}
 \begin{verbatim}
@@ -643,10 +929,38 @@ lamb == - ( xi_form['_a']*xi['^a'] )
 
 \section{Conclusion and future propects}
 
-- replacing SR (computation on a numerical spacetime)
+\SM{} is a work in progress. 
+It encompasses currently $\sim 34,000$ lines of Python code (including comments and 
+doctests). 
+The last stable version (0.6), whose functionalities are 
+listed in Sec.~\ref{s:functionalities},
+is freely downloadable from the project web page
+\cite{SM}. The development version is also freely available 
+from the git repository \cite{SM_git}.
+
+Among the future developments are 
+\begin{itemize}
+\item extrinsic geometry of pseudo-Riemannian submanifolds
+\item computation of geodesics (numerical integration via \soft{Sage/GSL} or 
+\soft{Gyoto} \cite{Gyoto})
+\item integrals on submanifolds
+\item adding more graphical outputs
+\item adding more functionalities: symplectic forms, fibre bundles, 
+spinors, variational calculus, etc.
+\item connection with numerical relativity.
+\end{itemize}
+The last point means using \SM{} for an interactive exploration 
+of numerically generated spacetimes. Observing
+the diagram in Fig.~\ref{f:tensorfield_structure}, one realizes that it 
+suffices to replace only the lowest level, currently relying on
+\Sage{}'s symbolic expressions, by computations on numerical data. 
+
+Let us conclude by stating that, in the full spirit of free software, 
+anybody interested in contributing to the project is very welcome!
+
 
 \ack
-This work has benifited from enlightening discussions with Volker Braun,
+This work has benefited from enlightening discussions with Volker Braun,
 Vincent Delecroix, Simon King,  Jos\'e M. Mart\'\i n-Garc\'\i a, 
 S\'ebastien Labb\'e,
 Marc Mezzarobba, Thierry Monteil, Travis Scrimshaw and Nicolas Thi\'ery. 
@@ -707,6 +1021,14 @@ preprint freely downloadable from \url{http://www.gregorybard.com/})
 Lee J M 2013 {\it Introduction to Smooth Manifolds} 2nd edition (New York: Springer)
 \bibitem{Steen51}
 Steenrod N 1951 {\it The Topology of Fibre Bundles} (Princeton: Princeton Univ. Press)
+\bibitem{SM_examples}
+\url{http://sagemanifolds.obspm.fr/examples.html}
+\bibitem{Mars99}
+Mars M 1999 {\it Class. Quantum Grav.} {\bf 16}, 2507
+\bibitem{SM_git}
+\url{https://github.com/sagemanifolds/sage}
+\bibitem{Gyoto}
+\url{http://gyoto.obspm.fr/}
 \end{thebibliography}
 
 \end{document}
