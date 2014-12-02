@@ -19,7 +19,7 @@
 
 
 \begin{document}
-\title{Tensor calculus with free software: \\
+\title{Tensor calculus with free and open software: \\
 the SageManifolds project}
 
 \author{Eric Gourgoulhon$^1$, Micha\l{} Bejger$^2$, Marco Mancini$^1$}
@@ -34,11 +34,11 @@ CNRS, Observatoire de Paris, Universit\'e Paris Diderot,
 \ead{eric.gourgoulhon@obspm.fr, bejger@camk.edu.pl, marco.mancini@obspm.fr}
 
 \begin{abstract}
-SageManifolds aims at extending the mathematics software system Sage towards
-differential geometry and tensor calculus. As Sage, it is a free open-source
-software project and is based on the Python programming language.
+The \SM{} project aims at extending the mathematics software syste \Sage{} towards
+differential geometry and tensor calculus. As \Sage{} itself, it is a free 
+and open-source software project using the Python programming language.
 We discuss here some details of the implementation, which relies 
-on Sage's category pattern, and present a concrete example of use.
+on \Sage{}'s category pattern, and present a concrete example of use.
 \end{abstract}
 
 \section{Introduction}
@@ -49,14 +49,14 @@ The first GR software was \soft{ALAM} (for \emph{Atlas Lisp Algebraic Manipulato
 written by R.A. d'Inverno in 1969; he used it to compute
 the Riemann and Ricci tensors of the Bondi metric.
 According to \cite{Skea94}, 
-the original calculations took Bondi and his collaborators 6 months to go,
+the original calculations took Bondi and collaborators 6 months to finish,
 while the computation with \soft{ALAM} took 4 minutes and yield to the 
 discovery of 6 errors in the original paper. 
-Since then, many packages have been developed and the reader is referred to \cite{MacCa02}
+Since then, many packages have been developed: the reader is referred to \cite{MacCa02}
 for a review of computer algebra
-systems for GR prior to 2002 and to \cite{KorolKS13} for a more recent review,
-focussing on tensor calculus. 
-It is also worth to point out the quasi-exhaustive list of
+systems for GR prior to 2002, and to \cite{KorolKS13} for a more recent review 
+concentrated on tensor calculus. 
+It is also worth to point out the extensive list of
 tensor calculus packages maintained by J. M. Martin-Garcia at \cite{xact_links}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,24 +66,26 @@ tensor calculus packages maintained by J. M. Martin-Garcia at \cite{xact_links}.
 Software packages for differential geometry and tensor calculus can be 
 classified in two categories: 
 \begin{enumerate}
-\item Applications atop some general purpose computer algebra system; 
-notable examples are 
+\item Applications atop some general purpose computer algebra system. 
+Notable examples are 
 the \soft{xAct} suite \cite{Marti08,xAct} and \soft{Ricci} \cite{Ricci}, both
 running atop \soft{Mathematica},
 \soft{DifferentialGeometry} \cite{AnderT12,DiffGeom} integrated into \soft{Maple}, and \soft{Atlas 2}
 \cite{Atlas2} for \soft{Mathematica} and \soft{Maple}.
-\item Standalone applications; recent examples are \soft{Cadabra}  (field theory) \cite{Peete07,Cadabra},
+\item Standalone applications. Recent examples are \soft{Cadabra}  (field theory) \cite{Peete07,Cadabra},
 \soft{SnapPy} (topology and geometry of 3-manifolds) \cite{SnapPy} and
 \soft{Redberry} (tensors) \cite{BolotP13,Redberry}.
 \end{enumerate}
-All applications listed in the second category are free (open-source) software. In
+All applications listed in the second category are free (and open-source) software. In
 the first category, \soft{xAct} and \soft{Ricci} are also free software, but
-they run atop a proprietary product, the sources of which are closed (\soft{Mathematica}). 
+they require a proprietary product, the sources of which are closed and
+which must be purchased first (\soft{Mathematica}).
 
 As far as tensor calculus is concerned, the above packages can be distinguished by 
 the type of computation that they perform: abstract index manipulations 
 (\soft{xAct/xTensor}, \soft{Ricci}, \soft{Cadabra}, \soft{Redberry})
-or component calculus (\soft{xAct/xCoba}, \soft{DifferentialGeometry}, \soft{Atlas 2})
+or component calculus (\soft{xAct/xCoba}, \soft{DifferentialGeometry},
+\soft{Atlas 2}). 
 In the first category, tensor operations such as contraction or covariant differentiation 
 are performed by manipulating the indices themselves rather than the components 
 to which they correspond. In the second category, vector bases are explicitly 
@@ -95,7 +97,7 @@ in a given basis.
 
 \section{An overview of Sage}
 
-\Sage{} \cite{sage} is a free open-source mathematics software system, which is
+\Sage{} \cite{sage} is a free, open-source mathematics software system, which is
 based on the Python programming language. It makes use of 90 open-sources packages, 
 among which \soft{Maxima} and \soft{Pynac} (symbolic calculations),
 \soft{GAP} (group theory), 
@@ -109,21 +111,22 @@ then its development has been sustained by more than a hundred researchers
 (mostly mathematicians). Good introductory textbooks about \Sage{} are
 \cite{JoyneS14,Zimme13,Bard15}. 
  
-Apart from the syntax, based on Python and not on some specific script 
-language, a difference between \Sage{} and \soft{Maple} or \soft{Mathematica}
-is the use of some \emph{parent/element pattern}, which makes \Sage{} closer to 
-actual mathematics. For instance, in \soft{Mathematica}, all objects 
+Apart from the syntax, which is based on a real programming language and not on some specific script 
+language, a difference between \Sage{} and e.g., \soft{Maple} or \soft{Mathematica}
+is a consequent use of the \emph{parent/element pattern}. This 
+\Sage{} feature reflects better the true nature of actual mathematics. 
+For instance, in \soft{Mathematica}, all objects 
 are trees of symbols and the language is essentially a set of 
 sophisticated rules to manipulate the symbols. On the contrary, in \Sage{}
-each object has a given type (i.e. is an instance of a given Python class), 
-and one distinguishes \emph{parent} types, which model mathematical
-sets with some structure (e.g. algebraic structure), from \emph{element} types,
+each object has a given type (i.e., is an instance of a given Python class), 
+but one distinguishes \emph{parent} types, which model mathematical
+sets with some structure (e.g., algebraic structure), from \emph{element} types,
 which model set elements. Moreover, each parent belong to some 
 dynamically generated class that encodes the information 
 about its \emph{category}, in the mathematical sense of the word.
 Calculus rules on elements are determined not by the elements themselves
 but by the category to which their parents belong. Automatic conversion rules, called \emph{coercions},
-prior to a binary operation, e.g. $x+y$ with $x$ and $y$ having different 
+prior to a binary operation, e.g., $x+y$ with $x$ and $y$ having different 
 parents, are defined at the level of the parents.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,16 +135,16 @@ parents, are defined at the level of the parents.
 
 \subsection{Aim and scope}
 
-\Sage{} is well developed in many areas of mathematics but there is
-very little for differential geometry and tensor calculus.
+\Sage{} is well developed in many areas of mathematics but 
+very little is done for differential geometry and tensor calculus.
 The aim of \SM{} \cite{SM} is to introduce differential manifolds and tensor fields
 in \Sage{}, and to do it in a coordinate-independent manner. 
-More precisely, one should not to stick to a single coordinate patch
-but should be able to introduce various coordinate charts
-on a manifold. Tensor fields must be manipulated as such and not through 
+More precisely, one should be able to introduce various coordinate charts
+on a manifold without being restricted to a single coordinate patch. 
+Tensor fields must be manipulated as such and not through 
 their components with respect to a specific (possibly coordinate) vector frame. 
 
-Basically the work amounts to creating new Python classes\footnote{Let us
+Basically, the work amounts to creating new Python classes\footnote{Let us
 recall that within an object-oriented programming language (as Python),
 a \emph{class} is a structure to declare and store the
 properties common to a set of objects; these properties 
@@ -184,13 +187,13 @@ and points on them (\code{Point}).}
 Given a manifold $\mathcal{M}$ of dimension $n$, a coordinate chart 
 on an open subset $U\subset\mathcal{M}$ is implemented in \SM{} 
 via the class \code{Chart}, whose main data is 
-a $n$-uple of \Sage{} symbolic variables $(x_1,\ldots,x_n)$, each of 
+a $n$-tuple of \Sage{} symbolic variables $(x_1,\ldots,x_n)$, each of 
 them representing a coordinate.
 In general, more than one (regular) chart is required to cover the entire manifold.
 For instance, at least 2 charts are necessary for the $n$-dimensional sphere 
 $\mathbb{S}^n$ ($n\geq 1$), 3 charts for the real projective plane
-$\mathbb{RP}^2$ and 4 charts for the torus $\mathbb{T}^2$.
-Within \SM{}, an arbitrary number of charts can be introduced.
+$\mathbb{RP}^2$, and 4 charts for the torus $\mathbb{T}^2$. 
+\SM{} allows for an arbitrary number of charts. 
 To fully specify the manifold, one shall also provide the transition maps
 (changes of coordinates) on
 overlapping chart domains (\SM{} class \code{CoordChange}).
@@ -216,16 +219,16 @@ F(\underbrace{x^1,\ldots, x^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $X$}})
 = \ldots
 \ee
 These representations are 
-stored in an attribute of the class \code{ScalarField} that is a 
+stored in an attribute of the class \code{ScalarField}, a 
 Python dictionary\footnote{A \emph{dictionary}, also known as \emph{associative array}, is a 
 data structure that generalizes the concept of array in the sense that the
-key to access to some element is not restricted to an integer or a tuple of integers.},
+key to access to some element is not restricted to an integer or a tuple of integers.} 
 whose keys are the charts:
 \be \label{e:f_express}
  f.\mbox{\texttt{\_express}} = \left\{ X: F,\ \hat X: \hat F, \ldots \right\} .
 \ee
 Each representation $F$ is an instance of the class \code{FunctionChart}, 
-which resembles \Sage{} native symbolic functions but involves 
+which resembles \Sage{} native symbolic functions, but involves 
 automatic simplifications in all arithmetic operations. 
 
 \begin{figure}
@@ -248,32 +251,32 @@ by pointwise multiplication:
 The algebra $C^\infty(U)$ is implemented in \SM{} via the parent
 class \code{ScalarFieldAlgebra}, in the category
 \code{CommutativeAlgebras}. The corresponding element class 
-is \code{ScalarField} (cf. Fig.~\ref{f:scalar_classes}). 
+is \code{ScalarField} (cf., Fig.~\ref{f:scalar_classes}). 
 
 \subsection{Modules and free modules} \label{s:modules}
 
 Given an open subset $U\subset\mathcal{M}$, the set $\mathcal{X}(U)$
 of all smooth vector fields defined on $U$ has naturally the structure of a 
-module over the algebra $C^\infty(U)$.
+\emph{module over the algebra} $C^\infty(U)$.
 Let us recall that a \emph{module} is similar to a \emph{vector space}, except that it is based
 on a \emph{ring} (here $C^\infty(U)$)
 instead of a \emph{field} (usually $\mathbb{R}$ or
-$\mathbb{C}$ in physics). Of course, since every field is a ring, every vector space is a module.
+$\mathbb{C}$ in physical applications). Of course, since every field is a ring, every vector space is a module.
 There is an importance difference though: every vector space has a basis (as a 
 consequence of the axiom of choice),
 while a module does not necessarily have any. 
-When it possesses one, it is called a \emph{free module}. 
-Moreover if the module's base ring is commutative, all bases have the same
+When it has one, it is called a \emph{free module}. 
+Moreover, if the module's base ring is commutative, all bases have the same
 cardinality, which is called the \emph{rank} of the module 
 (for vector spaces, which are free modules, the word \emph{dimension}
 is used instead of \emph{rank}). 
 
-If $\mathcal{X}(U)$ is a free module, a basis of it is nothing but a \emph{vector frame}
+If $\mathcal{X}(U)$ is a free module, its basis is a \emph{vector frame}
 $(\w{e}_a)_{1\leq a \leq n}$ on $U$:
 \be \label{e:v_expand}
     \forall \w{v}\in\mathcal{X}(U),\quad \w{v} = v^a \w{e}_a,\quad\mbox{with\ } v^a \in C^\infty(U) .
 \ee
-The rank of $\mathcal{X}(U)$ is thus $n$, i.e. the manifold's 
+The rank of $\mathcal{X}(U)$ is thus $n$, i.e., the manifold's 
 dimension\footnote{Note that the dimensionality of $\mathcal{X}(U)$ depends
 of the structure adopted for it: as a vector space over $\mathbb{R}$, the
 dimension of $\mathcal{X}(U)$ is infinite, while as a free module over
@@ -300,20 +303,21 @@ is that of the tangent spaces to manifold $\mathcal{M}$:
 for each $p\in \mathcal{M}$, $T_p\mathcal{M}$ is a free module over 
 $\mathbb{R}$, since it is a vector space over $\mathbb{R}$. 
 
-It turns out that only free modules with a distinguished basis were 
+It turns out that so far only \emph{free modules} with a distinguished basis were 
 implemented in \Sage{}. This means that, given a free module $M$ of rank $n$, 
-all calculations refer a single basis of $M$. This amounts to identifying
+all calculations refer to a single basis of $M$. This amounts to identifying
 $M$ with $R^n$, where $R$ is the ring over which $M$ is based. 
-For dealing with generic manifolds in a coordinate-independent way, 
-this is not appropriate. For instance, there is no canonical 
+Current \Sage{} implementation is unfortunately 
+not sufficient for dealing with generic manifolds in a coordinate-independent way. 
+For instance, there is no canonical 
 isomorphism between $T_p\mathcal{M}$ and $\mathbb{R}^n$ when no coordinate
-system is privileged in the neightbourhood of $p$.
-Therefore we have started a pure algebraic branch \SM{} to implement
+system is privileged in the neighborhood of $p$.
+Therefore we have started a pure algebraic branch of \SM{} to implement
 generic free modules, with an arbitrary number of bases in them, 
 none of them being distinguished. This resulted in the parent class 
 \code{FiniteRankFreeModule}, in the category \code{Modules}, and in the element class 
 \code{FiniteRankFreeModuleElement}. Then both the classes
-\code{VectorFieldFreeModule} (for $\mathcal{X}(U)$ when it is 
+\code{VectorFieldFreeModule} (for $\mathcal{X}(U)$, when it is 
 a free module) and \code{TangentSpace} (for $T_p\mathcal{M}$)
 inherit from \code{FiniteRankFreeModule} (see Fig.~\ref{f:module_classes}). 
 
@@ -332,7 +336,7 @@ inherit from \code{FiniteRankFreeModule} (see Fig.~\ref{f:module_classes}).
 Ultimately, in \SM{}, vector fields are to be described by their 
 components with respect to various vector frames, according to 
 Eq.~(\ref{e:v_expand}), but without any vector frame being privileged, 
-leaving the possibility to the user to change frames, as to change 
+leaving the freedom to select them to the user, as well as to change 
 coordinates. A key point is that 
 not every manifold admits a global vector frame. 
 A manifold $\mathcal{M}$, or more generally an open subset $U\subset\mathcal{M}$,
@@ -344,23 +348,23 @@ parallelizable manifolds are those for which the tangent bundle is trivial:
 $T\mathcal{M} \simeq \mathcal{M}\times \mathbb{R}^n$.
 Examples of parallelizable manifolds are \cite{Lee13}
 \begin{itemize}
-\item the Cartesian space $\mathbb{R}^n$ for $n=1,2,\ldots$; 
-\item the circle $\mathbb{S}^1$; 
-\item the torus $\mathbb{T}^2 = \mathbb{S}^1\times \mathbb{S}^1$;
-\item the 3-sphere $\mathbb{S}^3 \simeq \mathrm{SU}(2)$, as any Lie group;
-\item the 7-sphere $\mathbb{S}^7$ ; 
+\item the Cartesian space $\mathbb{R}^n$ for $n=1,2,\ldots$, 
+\item the circle $\mathbb{S}^1$, 
+\item the torus $\mathbb{T}^2 = \mathbb{S}^1\times \mathbb{S}^1$, 
+\item the 3-sphere $\mathbb{S}^3 \simeq \mathrm{SU}(2)$, as any Lie group, 
+\item the 7-sphere $\mathbb{S}^7$, 
 \item any orientable 3-manifold (Steenrod theorem \cite{Steen51}).
 \end{itemize}
 On the other hand, examples of non-parallelizable manifolds are
 \begin{itemize}
-\item the sphere $\mathbb{S}^2$ (hairy ball theorem!) and any $n$-sphere $\mathbb{S}^n$ with $n\not\in\{1,3,7\}$; 
+\item the sphere $\mathbb{S}^2$ (hairy ball theorem!) and any $n$-sphere $\mathbb{S}^n$ with $n\not\in\{1,3,7\}$, 
 \item the real projective plane $\mathbb{RP}^2$.
 \end{itemize}
 Actually, ``most'' manifolds are non-parallelizable. 
 As noticed above, if a manifold is covered by a single chart, it is 
 parallelizable (the prototype being $\mathbb{R}^n$). But the reverse is not 
-true: $\mathbb{S}^1$ and $\mathbb{T}^2$ are parallelizable and require
-respectively at least two and four charts to cover them. 
+true: $\mathbb{S}^1$ and $\mathbb{T}^2$ are parallelizable and require 
+at least two and four charts to cover them, respectively. 
 
 \begin{figure}
 \begin{center}
@@ -374,11 +378,11 @@ into parallelizable
 open subsets $U_i$ ($1\leq i \leq N$) 
 and consider the restrictions of vector fields to these domains.
 For each $i$, $\mathcal{X}(U_i)$ is a free module of rank $n=\mathrm{dim}\, \mathcal{M}$ and is implemented in \SM{} as an instance of 
-\code{VectorFieldFreeModule} (cf. Sec.~\ref{s:modules} and Figs.~\ref{f:module_classes}
+\code{VectorFieldFreeModule} (cf., Sec.~\ref{s:modules} and Figs.~\ref{f:module_classes}
 and \ref{f:tensor_classes}). 
 Each vector field $\w{v}\in  \mathcal{X}(U_i)$ has different set
 of components $(v^a)_{1\leq a\leq n}$ in different vector frames 
-$(\w{e}_a)_{1\leq a \leq n}$ introduced on $U_i$ [cf. Eq.~(\ref{e:v_expand})]. They are stored
+$(\w{e}_a)_{1\leq a \leq n}$ introduced on $U_i$ (cf., Eq.~\ref{e:v_expand}). They are stored
 as a Python dictionary whose keys are the vector frames:
 \be
 \w{v}.\mbox{\texttt{\_components}} = \left\{ (\w{e}): (v^a),
@@ -397,22 +401,22 @@ components $T^a_{\ \, b}$ only on a parallelizable open subset $U\subset
 \be \label{e:T_expand}
     \left. \w{T} \right| _{U} = T^a_{\ \, b} \, \w{e}_a \otimes \w{e}^b
 \ee
-defining $T^a_{\ \, b}$ is meaningfull only when a vector frame 
+that defines $T^a_{\ \, b}$ is meaningful only when a vector frame 
 $(\w{e}_a)$ exist\footnote{Using standard notation, in Eq.~(\ref{e:T_expand})
 $(\w{e}^b)$ stands for the coframe dual to $(\w{e}_a)$}.
-Therefore, one first decompose the tensor field $\w{T}$  into 
+Therefore, one first decomposes the tensor field $\w{T}$  into 
 its restrictions $\left. \w{T} \right| _{U_i}$ on parallelizable open subsets
-of $\mathcal{M}$, $U_i$ ($1\leq i\leq N$) and then consider 
-the components on various vector frames on each of the $U_i$'s. 
+of $\mathcal{M}$, $U_i$ ($1\leq i\leq N$) and then considers 
+the components on various vector frames on each subset $U_i$. 
 This is illustrated in Fig.~\ref{f:tensorfield_structure}, which details the
 internal storage of tensor fields in \SM{}. Note that each component
 $T^a_{\ \, b}$ is a scalar field on $U_i$, according to the formula
 \be
     T^a_{\ \, b} = \w{T}(\w{e}^a, \w{e}_b) . 
 \ee
-Accordingly, at the last but one level of Fig.~\ref{f:tensorfield_structure}, 
-there appears the scalar field storage, as described by (\ref{e:f_express}).
-The last level is constituted by \Sage{}'s symbolic expressions. 
+Accordingly, the penultimate level of Fig.~\ref{f:tensorfield_structure} 
+corresponds to the scalar field storage, as described by (\ref{e:f_express}).
+The last (bottom) level is constituted by \Sage{}'s symbolic expressions. 
 
 \begin{figure}
 \begin{center}
@@ -428,24 +432,25 @@ The last level is constituted by \Sage{}'s symbolic expressions.
 \section{Current status of SageManifolds}
 
 \subsection{Functionalities} \label{s:functionalities}
-At present (version 0.6), the functionalities included in \SM{} are 
+At present (version 0.6), the functionalities included in \SM{} are as
+follows:  
 \begin{itemize}
-\item maps between manifolds, pullback operator
-\item submanifolds, pushforward operator
+\item maps between manifolds, pullback operator,
+\item submanifolds, pushforward operator,
 \item standard tensor calculus (tensor product, 
-contraction, symmetrization, etc.), even on non-parallelizable manifolds
-\item taking in charge all monoterm tensor symmetries 
+contraction, symmetrization, etc.), even on non-parallelizable manifolds,
+\item taking in charge all monoterm tensor symmetries, 
 \item exterior calculus (wedge product and exterior derivative of differential forms,
-Hodge duality)
-\item Lie derivatives
-\item affine connections (curvature, torsion)
-\item pseudo-Riemannian metrics (Levi-Civita connection, Weyl tensor)
-\item graphical display of charts
+Hodge duality),
+\item Lie derivatives,
+\item affine connections (curvature, torsion),
+\item pseudo-Riemannian metrics (Levi-Civita connection, Weyl tensor),
+\item graphical display of charts.
 \end{itemize}
 
 \subsection{Parallelization}
 
-Computationally demanding operations have been recently parallelized, 
+Computationally demanding operations have been recently parallelized 
 by means of the Python package \code{multiprocessing}, which is
 implemented in \Sage{} via the decorator \code{@parallel}. 
 The parallelization regards the arithmetic and contractions 
@@ -458,13 +463,13 @@ This feature shall be available in version 0.7.
 
 \section{SageManifolds at work: Kerr spacetime and Simon-Mars tensor}
 
-We give hereafter a short illustration of \SM{} focussed on tensor 
+We give hereafter a short illustration of \SM{} focused on tensor 
 calculus. Another example, based on the sphere $\mathbb{S}^2$, 
 focusses more on the use of multiple charts and the treatment of non-parallelizable 
 manifolds. This example and many others are available at
 \cite{SM_examples}.
 
-Let us consider a 4-dimensional spacetime, i.e. a 4-dimensional smooth 
+Let us consider a 4-dimensional spacetime, i.e., a 4-dimensional smooth 
 manifold $\mathcal{M}$ endowed with a Lorentzian metric $\w{g}$. 
 We assume that the spacetime is stationary and denote by $\w{\xi}$ 
 the corresponding Killing vector field. 
@@ -727,7 +732,7 @@ a^{3} m r^{4} - 3 \, a m r^{6}\right)} \cos\left(\theta\right)
 r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3 \,
 {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
 \cos\left(\theta\right)^{2}}$}
-The Ricci tensor vanishes identically, i.e. we check that the Kerr metric is 
+The Ricci tensor vanishes identically, i.e., we check that the Kerr metric is 
 a vacuum solution of Einstein equation:
 \begin{verbatim}
 g.ricci().view()
@@ -750,12 +755,14 @@ C[0,1,0,1]
 r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3 \,
 {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
 \cos\left(\theta\right)^{2}}$}
-To form the Simon-Mars tensor, we need the fully covariant (type-(0,4) tensor) form of the Weyl tensor (i.e. $C_{\alpha\beta\mu\nu} = g_{\alpha\sigma} C^\sigma_{\ \, \beta\mu\nu}$); we get it by lowering the first index with the metric:
+To form the Simon-Mars tensor, we need the fully covariant (type-(0,4)
+tensor) form of the Weyl tensor (i.e., $C_{\alpha\beta\mu\nu} = g_{\alpha\sigma} C^\sigma_{\ \, \beta\mu\nu}$); we get it by lowering the first index with the metric:
 \begin{verbatim}
 Cd = C.down(g) ; print Cd
 \end{verbatim}
 \soutput{tensor field of type (0,4) on the 4-dimensional manifold 'M'}
-The (monoterm) symmetries of this tensor are those inherited from the Weyl tensor, i.e. the antisymmetry on the last two indices (position 2 and 3, the first index being at position 0):
+The (monoterm) symmetries of this tensor are those inherited from the
+Weyl tensor, i.e., the antisymmetry on the last two indices (position 2 and 3, the first index being at position 0):
 \begin{verbatim}
 Cd.symmetries()
 \end{verbatim}
@@ -771,7 +778,8 @@ Cd = Cd.antisymmetrize(0,1)
 Cd.symmetries()
 \end{verbatim}
 \soutput{no symmetry;  antisymmetries: [(0, 1), (2, 3)]}
-The starting point in the evaluation of Simon-Mars tensor is the self-dual complex 2-form associated with the Killing 2-form $F$, i.e. the object $\mathcal{F} := F + i \, {}^* F$, where ${}^*F$ is the Hodge dual of $F$:
+The starting point in the evaluation of Simon-Mars tensor is the
+self-dual complex 2-form associated with the Killing 2-form $F$, i.e., the object $\mathcal{F} := F + i \, {}^* F$, where ${}^*F$ is the Hodge dual of $F$:
 \begin{verbatim}
 FF = F + I * F.hodge_star(g)
 FF.set_name('FF', r'\mathcal{F}')
@@ -806,7 +814,7 @@ r^{2}\right)} \cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2
 \sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
 r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d}
 \theta\wedge \mathrm{d} \phi$}
-Let us check that $\mathcal{F}$ is self-dual, i.e. that it obeys ${}^* \mathcal{F} = -i \mathcal{F}$:
+Let us check that $\mathcal{F}$ is self-dual, i.e., that it obeys ${}^* \mathcal{F} = -i \mathcal{F}$:
 \begin{verbatim}
 FF.hodge_star(g) == - I * FF
 \end{verbatim}
@@ -927,7 +935,7 @@ S.view()
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Conclusion and future propects}
+\section{Conclusion and future prospects}
 
 \SM{} is a work in progress. 
 It encompasses currently $\sim 34,000$ lines of Python code (including comments and 
