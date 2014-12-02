@@ -1,0 +1,70 @@
+\documentclass{standalone}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes,arrows,chains}
+
+\begin{document}
+
+\tikzset{
+base/.style={draw, thick, align=left},
+native/.style={base, fill=cyan!30}, 
+diff/.style = {base, fill=yellow!50, rounded corners},
+empty/.style={align=left},
+%
+legend/.style = {minimum width=2em, minimum height=1em},
+native_legend/.style = {native, legend},
+diff_legend/.style = {diff, legend},
+%
+line/.style = {->, draw, thick, >=triangle 45}
+}
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
+    
+\node[native]
+(unique_represenation){UniqueRepresentation};
+
+\node[native, right=of unique_represenation]
+(parent){Parent};
+
+\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
+
+\node[diff, below=1.5cm of Middle]
+(scalar_field_algebra)
+{ScalarFieldAlgebra\\ 
+{\footnotesize {\it Ring:} SR}\\
+{\footnotesize {\it Element:} ScalarField}};
+
+\path[line] (scalar_field_algebra) -- (unique_represenation);
+\path[line] (scalar_field_algebra) -- node [near start, yshift=-1em, xshift=13em] 
+{\footnotesize {\it Category:} CommutativeAlgebras} (parent);
+
+\node[native, right=3cm of parent]
+(caelement){CommutativeAlgebraElement};
+
+\node[diff, below=1.25cm of caelement](scalarfield)
+{ScalarField\\ \footnotesize{\it Parent:} ScalarFieldAlgebra}; 
+
+\path[line] (scalarfield) -- (caelement);
+
+\node[diff, below=of scalarfield](zeroscalarfield)
+{ZeroScalarField\\ \footnotesize {\it Parent:} ScalarFieldAlgebra}; 
+
+\path[line] (zeroscalarfield) -- (scalarfield);
+
+% legend 
+
+\node[native_legend, left=8cm of zeroscalarfield]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native Sage class};
+
+\node[diff_legend, below=1.em of native_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{Sagemanifolds class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
+
+\end{document}

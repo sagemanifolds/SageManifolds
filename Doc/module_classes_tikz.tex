@@ -1,0 +1,112 @@
+\documentclass{standalone}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes,arrows,chains}
+
+\begin{document}
+
+\tikzset{
+base/.style={draw, thick, align=left},
+native/.style={base, fill=cyan!30}, 
+alg/.style={base, fill=red!40, rounded corners},
+diff/.style = {base, fill=yellow!50, rounded corners},
+empty/.style={align=left},
+% 
+legend/.style = {minimum width=2em, minimum height=1em},
+native_legend/.style = {native, legend},
+alg_legend/.style = {alg, legend},
+diff_legend/.style = {diff, legend},
+%
+line/.style = {->, draw, thick, >=triangle 45}
+}
+\begin{tikzpicture}[font=\small, node distance=0.75cm, minimum height=2em, auto]
+    
+\node[native]
+(unique_represenation){UniqueRepresentation};
+
+\node[native, right=of unique_represenation]
+(parent){Parent};
+
+\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
+
+\node[diff, below=3.5cm of Middle]
+(vectorfieldmodule)
+{VectorFieldModule\\ 
+{\footnotesize {\it Ring:} ScalarFieldAlgebra}\\
+{\footnotesize {\it Element:} VectorField}};
+
+\path[line] (vectorfieldmodule) -- (unique_represenation);
+\path[line] (vectorfieldmodule) -- node [near start, yshift=5em,
+xshift=2.2em, rotate=70] 
+{\footnotesize {\it Category:} Modules} (parent);
+
+\node[diff, left=of vectorfieldmodule]
+(tensorfieldmodule)
+{TensorFieldModule\\ 
+{\footnotesize {\it Ring:} ScalarFieldAlgebra}\\
+{\footnotesize {\it Element:} TensorField}};
+
+\path[line] (tensorfieldmodule) -- (unique_represenation);
+\path[line] (tensorfieldmodule) -- node [near start, xshift=3em,
+yshift=1.5em, rotate=35] 
+{\footnotesize {\it Category:} Modules} (parent);
+
+\node[diff, below=of vectorfieldmodule](vectorfieldfreemodule)
+{VectorFieldFreeModule\\ 
+{\footnotesize {\it Ring:} ScalarFieldAlgebra}\\
+{\footnotesize {\it Element:} VectorFieldFreeParal}};
+
+\node[diff, below=of vectorfieldfreemodule](tensorfieldfreemodule)
+{TensorFieldFreeModule\\
+{\footnotesize {\it Ring:} ScalarFieldAlgebra}\\
+{\footnotesize {\it Element:} TensorFieldParal}};
+
+\node[alg, right=1cm of vectorfieldmodule](finiterankfreemodule)
+{FiniteRankFreeModule\\
+{\footnotesize {\it Ring:} CommutativeRing}\\
+{\footnotesize {\it Element:} FiniteRankFreeModuleElement}};
+
+\node[alg, right=of vectorfieldfreemodule](tensorfreemodule)
+{TensorFreeModule\\
+{\footnotesize {\it Element:}}\\ 
+{\footnotesize FreeModuleTensor}};
+
+\node[diff, right=of tensorfreemodule](tangentspace)
+{TangentSpace\\
+{\footnotesize {\it Ring:} SR}\\
+{\footnotesize {\it Element:}}\\
+{\footnotesize TangentVector}};
+
+\path[line] (finiterankfreemodule) -- (unique_represenation);
+\path[line] (finiterankfreemodule) -- node [near start,
+xshift=2.5em, rotate=-45]
+{\footnotesize {\it Category:} Modules} (parent);
+
+\path[line] (tangentspace) -- (finiterankfreemodule);
+\path[line] (tensorfreemodule) -- (finiterankfreemodule);
+
+\path[line] (vectorfieldfreemodule) -- (finiterankfreemodule);
+\path[line] (tensorfieldfreemodule) -- (tensorfreemodule); 
+
+% legend 
+\node[native_legend, left=4cm of vectorfieldfreemodule]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native Sage class};
+
+\node[alg_legend, below=1.em of native_legend]
+(alg_legend){};
+\node[empty, right=0.5em of alg_legend]
+{Sagemanifolds class\\ \footnotesize (algebraic part)};
+
+\node[diff_legend, below=1.5em of alg_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{Sagemanifolds class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
+
+\end{document}

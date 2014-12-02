@@ -1,0 +1,125 @@
+\documentclass{standalone}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes,arrows,chains}
+
+\begin{document}
+
+\tikzset{
+base/.style={draw, thick, align=center},
+dict/.style={base, fill=pink!40, draw=red},
+tens/.style = {base, fill=yellow!25, align=left},
+empty/.style={align=center},
+%
+line/.style = {->, draw, thick, >=triangle 45}
+}
+\begin{tikzpicture}[font=\small, remember picture, 
+node distance=0.5em, minimum height=0.5em, auto]
+
+\node[tens, align=center](tensorfield)
+{TensorField\\ $T$};
+
+% Restrictions
+\node[dict, below=of tensorfield](restrictions){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{TensorField.\_restrictions}}; 
+  \node[empty, below left=of description](domain1)
+  {Domain 1:\\ {\large $U_1$}}; 
+  \node[tens, right=0em of domain1](tensorfield1)
+  {TensorFieldParal\\ 
+  {\large $T|_{U_1}=T^a_be_a\otimes
+e^b=T^{\hat{a}}_{\hat{b}}\epsilon_{\hat{a}}\otimes \epsilon^{\hat{b}}=\dots$}};
+  \node[empty, right=of tensorfield1](domain2)
+  {Domain 2:\\ {\large $U_2$}};
+  \node[tens, align=center, right=0em of domain2](tensorfield2)
+  {TensorFieldParal\\ {\large $T|_{U_2}$}};
+  \node[empty, right=of tensorfield2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% Components
+\node[dict, below=of restrictions](components){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{TensorField.\_components}};
+  \node[empty, below left=of description](frame1)
+  {Frame 1:\\ {\large $(e_a)$}};
+  \node[tens, right=0em of frame1](components1)
+  {Components\\
+  {\large $(T^a_b)_{1\le a,\,b\,\le n}$}};
+  \node[empty, right=of components1](frame2)
+  {Frame 2:\\ {\large $(\epsilon_{\hat{a}})$}};
+  \node[tens, align=center, right=0em of frame2](components2)
+  {Components\\ 
+  {\large $(T^{\hat{a}}_{\hat{b}})_{1\le \hat{a},\,\hat{b}\,\le n}$}};
+  \node[empty, right=of components2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% comp Scalarfields 
+\node[dict, below=of components](comp){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{Components.\_comp}};
+  \node[empty, below left=of description](comp1)
+  {\large $(1,1):$};
+  \node[tens, right=0em of comp1](scalarfield1)
+  {ScalarField\\
+  {\large $\left(T^1_1\right)$}};
+  \node[empty, right=of scalarfield1](comp2)
+  {\large $(1,2):$};
+  \node[tens, align=center, right=0em of comp2](scalarfield2)
+  {ScalarField\\
+  {\large $\left(T^1_2\right)$}};
+  \node[empty, right=of scalarfield2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% Scalarfield express 
+\node[dict, below=of comp](express){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{ScalarField.\_express}};
+  \node[empty, below left=of description](chart1)
+  {Chart 1:\\
+  {\large $\left(x^a\right)$}};
+  \node[tens, right=0em of chart1](functionchart1)
+  {FunctionChart\\
+  {\large $T^1_1\left(x^1,\dots,x^n\right)$}};
+  \node[empty, right=of functionchart1](chart2)
+  {Chart 2:\\
+  {\large $\left(y^a\right)$}};
+  \node[tens, align=center, right=0em of chart2](functionchart2)
+  {FunctionChart\\
+  {\large $T^1_1\left(y^1,\dots,y^n\right)$}};
+  \node[empty, right=of functionchart2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% expressions 
+\node[tens, below=2em of functionchart1](express1)
+{Expression\\
+{\large $x^1\cos x^2$}};
+\node[tens, below=2em of functionchart2](express2)
+{Expression\\
+{\large $\left(y^1 + y^2\right)\cos\left(y^1 - y^2\right)$}};
+
+% lines 
+\draw[thick, line width=0.2em, black!60,-] (restrictions) -- (tensorfield);
+\draw[thick, line width=0.2em, black!60,-] (components) -- (tensorfield1);
+\draw[thick, line width=0.2em, black!60,-] (comp) -- (components1);
+\draw[thick, line width=0.2em, black!60,-] (express) -- (scalarfield1);
+\draw[thick, line width=0.2em, black!60,-] (express1) -- (functionchart1);
+\draw[thick, line width=0.2em, black!60,-] (express2) -- (functionchart2);
+
+\end{tikzpicture}
+
+\end{document}

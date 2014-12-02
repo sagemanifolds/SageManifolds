@@ -1,0 +1,94 @@
+\documentclass{standalone}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes,arrows,chains}
+
+\begin{document}
+
+\tikzset{
+base/.style={draw, thick, align=left},
+native/.style={base, fill=cyan!30},
+alg/.style={base, fill=red!40, rounded corners},
+diff/.style = {base, fill=yellow!50, rounded corners},
+empty/.style={align=left},
+% 
+legend/.style = {minimum width=2em, minimum height=1em},
+native_legend/.style = {native, legend},
+alg_legend/.style = {alg, legend},
+diff_legend/.style = {diff, legend},
+%
+line/.style = {->, draw, thick, >=triangle 45}
+}
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
+    
+\node[diff](tensorfield)
+{TensorField\\ \footnotesize {\it Parent:}\\ \footnotesize TensorFieldModule};
+
+\node[diff, below=of tensorfield](vectorfield)
+{VectorField\\ \footnotesize {\it Parent:}\\ \footnotesize VectorFieldModule};
+
+\path[line] (vectorfield) -- (tensorfield);
+
+\node[diff, right=of vectorfield](tensorfieldparal)
+{TensorFieldParal\\ \footnotesize {\it Parent:}\\ \footnotesize TensorFieldFreeModule};
+
+\node[diff, below=of tensorfieldparal](Vectorfieldparal)
+{VectorFieldParal\\ \footnotesize {\it Parent:}\\ \footnotesize VectorFieldFreeModule};
+
+\path[line] (Vectorfieldparal) -- (tensorfieldparal);
+\path[line] (Vectorfieldparal) -- (vectorfield);
+\path[line] (tensorfieldparal) -- (tensorfield);
+
+\node[alg, right=6cm of tensorfield](freemoduletensor)
+{FreeModuleTensor\\ \footnotesize {\it Parent:}\\ \footnotesize TensorFreeModule};
+
+\node[alg, below=of freemoduletensor](finiterankfreemoduleelement)
+{FiniteRankFreeModuleElement\\ \footnotesize {\it Parent:}\\ \footnotesize
+FiniteRankFreeModule};
+
+\node[diff, below=of finiterankfreemoduleelement](tangentvector)
+{TangentVector\\ \footnotesize {\it Parent:}\\ \footnotesize 
+TangentSpace};
+
+\node[native, above=4cm of tensorfieldparal]
+(element){Element};
+
+\node[native, below=of element]
+(module_element){ModuleElement\\ {\footnotesize {\it Parent:} Module}};
+
+\path[line] (module_element) -- (element);
+
+\path[line] (tensorfield) -- (module_element);
+
+\path[line] (finiterankfreemoduleelement) -- (freemoduletensor);
+\path[line] (Vectorfieldparal) -- (finiterankfreemoduleelement); 
+
+\path[line] (tangentvector) -- (finiterankfreemoduleelement);
+
+\path[line] (tensorfieldparal) -- (freemoduletensor);
+
+\path[line] (freemoduletensor) -- (module_element);
+
+% legend 
+\node[native_legend, left=4cm of Vectorfieldparal]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native Sage class};
+
+\node[alg_legend, below=1.em of native_legend]
+(alg_legend){};
+\node[empty, right=0.5em of alg_legend]
+{Sagemanifolds class\\ \footnotesize (algebraic part)};
+
+\node[diff_legend, below=1.5em of alg_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{Sagemanifolds class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
+
+
+\end{document}
