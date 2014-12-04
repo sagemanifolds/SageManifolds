@@ -450,12 +450,41 @@ Hodge duality),
 
 \subsection{Parallelization}
 
-Computationally demanding operations have been recently parallelized 
-by means of the Python package \code{multiprocessing}, which is
-implemented in \Sage{} via the decorator \code{@parallel}. 
-The parallelization regards the arithmetic and contractions 
-of tensors, the computation of connection coefficients and the computation
-of the Riemann tensor. 
+
+%% Computationally demanding operations have been recently parallelized 
+%% by means of the Python package \code{multiprocessing}, which is
+%% implemented in \Sage{} via the decorator \code{@parallel}. 
+%% The parallelization regards the arithmetic and contractions 
+%% of tensors, the computation of connection coefficients and the computation
+%% of the Riemann tensor. 
+
+To improve the reactivity of \SM{} and take advantage of
+the recent multicore processors, some tensorial operations are performed by
+parallel processes. The parallelization is done using the built-in
+\Sage{} decorator \code{Parallel}, which permits to define a function
+that will be run on different sub-processes 
+\footnote{The \code{Parallel} class is actually a wrap of the python library
+\code{multiprocessing}.}. If $n$ processes are used, given a function
+and a list of arguments for it, any process will call the function
+with an element of the list, one at time, spanning all the list.
+
+The parallelized tensorial operations are: tensorial algebra, tensor
+contraction, affine connection and Riemann's tensor computation. 
+
+The parallelization of an operation is done by first creating a
+function which computes the required operation on a subset of the
+components of a tensor; second, by creating a list of $2n$ (twice the
+number of used processes) arguments for this function. Then applying this function
+to the input list, the calculation will be done in parallel. 
+At the end of the computation a fourth phase is needed to retrieve the
+results.
+The choice to divide the work in $2n$ is a compromise between a better
+load balancing and cost of create multiple processes.
+
+The number of processors used in the parallelization is controlled by
+the global variable \code{manifoldPara} which member fuction \code{set}
+permits to fix the number of processes to use.
+
 This feature shall be available in version 0.7. 
 
 
