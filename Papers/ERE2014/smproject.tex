@@ -4,6 +4,8 @@
 \usepackage{amssymb,amsfonts} % AMS Symbols
 \usepackage{bm} % bold math
 \usepackage{mathrsfs} % provides \mathscr
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes,arrows,chains}
 
 \hypersetup{pdftitle={SageManifolds},
   colorlinks=true
@@ -41,6 +43,21 @@ and open-source software project and is based on the Python programming language
 We discuss here some details of the implementation, which relies 
 on \Sage{}'s category pattern, and present a concrete example of use.
 \end{abstract}
+
+\tikzset{
+base/.style={draw, thick, align=center},
+native/.style={base, fill=cyan!30}, 
+alg/.style={base, fill=red!40, rounded corners},
+diff/.style = {base, fill=yellow!50, rounded corners},
+empty/.style={align=left},
+% 
+legend/.style = {minimum width=2em, minimum height=1em},
+native_legend/.style = {native, legend},
+alg_legend/.style = {alg, legend},
+diff_legend/.style = {diff, legend},
+%
+line/.style = {->, draw, thick, >=triangle 45}
+}
 
 \section{Introduction}
 
@@ -178,7 +195,63 @@ instance of \code{Manifold} for a given dimension and given name.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{domain_classes.pdf}
+
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
+    
+\node[native]
+(unique_represenation){UniqueRepresentation};
+
+\node[native, right=of unique_represenation]
+(parent){Parent};
+
+\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
+
+\node[diff, below=1.5cm of Middle]
+(domain) {Domain\\ {\scriptsize {\it element:} Point}};
+
+\path[line] (domain) -- (unique_represenation);
+\path[line] (domain) -- node [near start, yshift=-1em, xshift=7em] 
+{\footnotesize {\it category:} Sets} (parent);
+
+\node[diff, below=of domain]
+(opendomain) {OpenDomain};
+
+\path[line] (opendomain) -- (domain);
+
+\node[diff, below=of opendomain]
+(manifold) {Manifold};
+
+\path[line] (manifold) -- (opendomain);
+
+\node[diff, below=of manifold]
+(submanifold) {Submanifold};
+\path[line] (submanifold) -- (manifold);
+
+\node[diff, right=of submanifold]
+(realline) {RealLine};
+\path[line] (realline) -- (manifold);
+%
+\node[native, right=1.5cm of parent]
+(element){Element};
+
+\node[diff, below=1.225cm of element]
+(point){Point}; 
+
+\path[line] (point) -- (element);
+
+% legend 
+
+\node[native_legend, left=5cm of opendomain]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native \soft{Sage} class};
+
+\node[diff_legend, below=1.em of native_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{\soft{SageManifolds} class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
 \end{center}
 \caption{\label{f:domain_classes} Python classes for 
 smooth manifolds (\code{Manifold}), generic subsets of them 
@@ -237,7 +310,52 @@ automatic simplifications in all arithmetic operations.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{scalar_classes.pdf}
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
+    
+\node[native]
+(unique_represenation){UniqueRepresentation};
+
+\node[native, right=of unique_represenation]
+(parent){Parent};
+
+\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
+
+\node[diff, below=1.5cm of Middle]
+(scalar_field_algebra)
+{ScalarFieldAlgebra\\ 
+{\scriptsize {\it ring:} SR}\\
+{\scriptsize {\it element:} ScalarField}};
+
+\path[line] (scalar_field_algebra) -- (unique_represenation);
+\path[line] (scalar_field_algebra) -- node [near start, yshift=-1em, xshift=13em] 
+{\footnotesize {\it category:} CommutativeAlgebras} (parent);
+
+\node[native, right=3cm of parent]
+(caelement){CommutativeAlgebraElement};
+
+\node[diff, below=1.25cm of caelement](scalarfield)
+{ScalarField\\ \scriptsize{\it parent:} ScalarFieldAlgebra}; 
+
+\path[line] (scalarfield) -- (caelement);
+
+\node[diff, below=of scalarfield](zeroscalarfield)
+{ZeroScalarField\\ \scriptsize {\it parent:} ScalarFieldAlgebra}; 
+
+\path[line] (zeroscalarfield) -- (scalarfield);
+
+% legend 
+
+\node[native_legend, left=8cm of zeroscalarfield]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native \Sage{} class};
+
+\node[diff_legend, below=1.em of native_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{\SM{} class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
 \end{center}
 \caption{\label{f:scalar_classes} Python classes for scalar fields
 on a manifold.}
@@ -330,7 +448,92 @@ inherit from \code{FiniteRankFreeModule} (see Fig.~\ref{f:module_classes}).
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{module_classes.pdf}
+\begin{tikzpicture}[font=\small, node distance=0.75cm, minimum height=2em, auto]
+    
+\node[native]
+(unique_represenation){UniqueRepresentation};
+
+\node[native, right=of unique_represenation]
+(parent){Parent};
+
+\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
+
+\node[diff, below=3.5cm of Middle]
+(vectorfieldmodule)
+{VectorFieldModule\\ 
+{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
+{\scriptsize {\it element:} VectorField}};
+
+\path[line] (vectorfieldmodule) -- (unique_represenation);
+\path[line] (vectorfieldmodule) -- node [near start, yshift=5em,
+xshift=2.2em, rotate=70] 
+{\footnotesize {\it category:} Modules} (parent);
+
+\node[diff, left=of vectorfieldmodule]
+(tensorfieldmodule)
+{TensorFieldModule\\ 
+{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
+{\scriptsize {\it element:} TensorField}};
+
+\path[line] (tensorfieldmodule) -- (unique_represenation);
+\path[line] (tensorfieldmodule) -- node [near start, xshift=3em,
+yshift=1.5em, rotate=35] 
+{\footnotesize {\it category:} Modules} (parent);
+
+\node[diff, below=of vectorfieldmodule](vectorfieldfreemodule)
+{VectorFieldFreeModule\\ 
+{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
+{\scriptsize {\it element:} VectorFieldParal}};
+
+\node[diff, below=of vectorfieldfreemodule](tensorfieldfreemodule)
+{TensorFieldFreeModule\\
+{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
+{\scriptsize {\it element:} TensorFieldParal}};
+
+\node[alg, right=1cm of vectorfieldmodule](finiterankfreemodule)
+{FiniteRankFreeModule\\
+{\scriptsize {\it ring:} CommutativeRing}\\
+{\scriptsize {\it element:} FiniteRankFreeModuleElement}};
+
+\node[alg, right=of vectorfieldfreemodule](tensorfreemodule)
+{TensorFreeModule\\
+{\scriptsize {\it element:}}\\ 
+{\scriptsize FreeModuleTensor}};
+
+\node[diff, right=of tensorfreemodule](tangentspace)
+{TangentSpace\\
+{\scriptsize {\it ring:} SR}\\
+{\scriptsize {\it element:}}\\
+{\scriptsize TangentVector}};
+
+\path[line] (finiterankfreemodule) -- (unique_represenation);
+\path[line] (finiterankfreemodule) -- node [near start,
+xshift=2.5em, rotate=-45]
+{\footnotesize {\it category:} Modules} (parent);
+
+\path[line] (tangentspace) -- (finiterankfreemodule);
+\path[line] (tensorfreemodule) -- (finiterankfreemodule);
+
+\path[line] (vectorfieldfreemodule) -- (finiterankfreemodule);
+\path[line] (tensorfieldfreemodule) -- (tensorfreemodule); 
+
+% legend 
+\node[native_legend, left=4cm of vectorfieldfreemodule]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native \Sage{} class};
+
+\node[alg_legend, below=1.em of native_legend]
+(alg_legend){};
+\node[empty, right=0.5em of alg_legend]
+{\SM{} class\\ \footnotesize (algebraic part)};
+
+\node[diff_legend, below=1.5em of alg_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{\SM{} class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
 \end{center}
 \caption{\label{f:module_classes} Various module classes.}
 \end{figure}
