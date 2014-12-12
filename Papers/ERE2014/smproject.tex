@@ -22,7 +22,7 @@
 
 
 \begin{document}
-\title{Tensor calculus with free and open software: \\
+\title{Tensor calculus with open-source software: \\
 the SageManifolds project}
 
 \author{Eric Gourgoulhon$^1$, Micha\l{} Bejger$^2$, Marco Mancini$^1$}
@@ -49,6 +49,8 @@ base/.style={draw, thick, align=center},
 native/.style={base, fill=cyan!30}, 
 alg/.style={base, fill=red!40, rounded corners},
 diff/.style = {base, fill=yellow!50, rounded corners},
+dict/.style={base, fill=pink!40, draw=red},
+tens/.style = {base, fill=yellow!25, align=left},
 empty/.style={align=left},
 % 
 legend/.style = {minimum width=2em, minimum height=1em},
@@ -426,29 +428,10 @@ is that of the tangent spaces to manifold $\mathcal{M}$:
 for each $p\in \mathcal{M}$, $T_p\mathcal{M}$ is a free module over 
 $\mathbb{R}$, since it is a vector space over $\mathbb{R}$. 
 
-It turns out that so far only free modules \emph{with a distinguished basis} were 
-implemented in \Sage{}. This means that, given a free module $M$ of rank $n$, 
-all calculations refer to a single basis of $M$. This amounts to identifying
-$M$ with $R^n$, where $R$ is the ring over which $M$ is based. 
-This is unfortunately not sufficient for dealing with smooth manifolds in a
-coordinate-independent way. 
-For instance, there is no canonical 
-isomorphism between $T_p\mathcal{M}$ and $\mathbb{R}^n$ when no coordinate
-system is privileged in the neighborhood of $p$.
-Therefore we have started a pure algebraic branch of \SM{} to implement
-generic free modules, with an arbitrary number of bases in them, 
-none of them being distinguished. This resulted in (i) the parent class 
-\code{FiniteRankFreeModule}, within \Sage{}'s category \code{Modules}, and (ii)
-the element class 
-\code{FiniteRankFreeModuleElement}. Then both classes
-\code{VectorFieldFreeModule} (for $\mathscr{X}(U)$, when it is 
-a free module) and \code{TangentSpace} (for $T_p\mathcal{M}$)
-inherit from \code{FiniteRankFreeModule} (see Fig.~\ref{f:module_classes}). 
-
 
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[font=\small, node distance=0.75cm, minimum height=2em, auto]
+\begin{tikzpicture}[font=\footnotesize, node distance=0.75cm, minimum height=2em, auto]
     
 \node[native]
 (unique_represenation){UniqueRepresentation};
@@ -538,7 +521,98 @@ xshift=2.5em, rotate=-45]
 \caption{\label{f:module_classes} Various module classes.}
 \end{figure}
 
+It turns out that so far only free modules \emph{with a distinguished basis} were 
+implemented in \Sage{}. This means that, given a free module $M$ of rank $n$, 
+all calculations refer to a single basis of $M$. This amounts to identifying
+$M$ with $R^n$, where $R$ is the ring over which $M$ is based. 
+This is unfortunately not sufficient for dealing with smooth manifolds in a
+coordinate-independent way. 
+For instance, there is no canonical 
+isomorphism between $T_p\mathcal{M}$ and $\mathbb{R}^n$ when no coordinate
+system is privileged in the neighborhood of $p$.
+Therefore we have started a pure algebraic branch of \SM{} to implement
+generic free modules, with an arbitrary number of bases in them, 
+none of them being distinguished. This resulted in (i) the parent class 
+\code{FiniteRankFreeModule}, within \Sage{}'s category \code{Modules}, and (ii)
+the element class 
+\code{FiniteRankFreeModuleElement}. Then both classes
+\code{VectorFieldFreeModule} (for $\mathscr{X}(U)$, when it is 
+a free module) and \code{TangentSpace} (for $T_p\mathcal{M}$)
+inherit from \code{FiniteRankFreeModule} (see Fig.~\ref{f:module_classes}). 
 
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
+    
+\node[diff](tensorfield)
+{TensorField\\ \scriptsize {\it parent:}\\ \scriptsize TensorFieldModule};
+
+\node[diff, below=of tensorfield](vectorfield)
+{VectorField\\ \scriptsize {\it parent:}\\ \scriptsize VectorFieldModule};
+
+\path[line] (vectorfield) -- (tensorfield);
+
+\node[diff, right=of vectorfield](tensorfieldparal)
+{TensorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize TensorFieldFreeModule};
+
+\node[diff, below=of tensorfieldparal](Vectorfieldparal)
+{VectorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize VectorFieldFreeModule};
+
+\path[line] (Vectorfieldparal) -- (tensorfieldparal);
+\path[line] (Vectorfieldparal) -- (vectorfield);
+\path[line] (tensorfieldparal) -- (tensorfield);
+
+\node[alg, right=6cm of tensorfield](freemoduletensor)
+{FreeModuleTensor\\ \scriptsize {\it parent:}\\ \scriptsize TensorFreeModule};
+
+\node[alg, below=of freemoduletensor](finiterankfreemoduleelement)
+{FiniteRankFreeModuleElement\\ \scriptsize {\it parent:}\\ \scriptsize
+FiniteRankFreeModule};
+
+\node[diff, below=of finiterankfreemoduleelement](tangentvector)
+{TangentVector\\ \scriptsize {\it parent:}\\ \scriptsize 
+TangentSpace};
+
+\node[native, above=4cm of tensorfieldparal]
+(element){Element};
+
+\node[native, below=of element]
+(module_element){ModuleElement\\ {\scriptsize {\it parent:} Module}};
+
+\path[line] (module_element) -- (element);
+
+\path[line] (tensorfield) -- (module_element);
+
+\path[line] (finiterankfreemoduleelement) -- (freemoduletensor);
+\path[line] (Vectorfieldparal) -- (finiterankfreemoduleelement); 
+
+\path[line] (tangentvector) -- (finiterankfreemoduleelement);
+
+\path[line] (tensorfieldparal) -- (freemoduletensor);
+
+\path[line] (freemoduletensor) -- (module_element);
+
+% legend 
+\node[native_legend, left=4cm of Vectorfieldparal]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native \Sage{} class};
+
+\node[alg_legend, below=1.em of native_legend]
+(alg_legend){};
+\node[empty, right=0.5em of alg_legend]
+{\SM{} class\\ \footnotesize (algebraic part)};
+
+\node[diff_legend, below=1.5em of alg_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{\SM{} class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
+\end{center}
+\caption{\label{f:tensor_classes} Classes implementing tensors and tensor fields.}
+\end{figure}
 
 \subsection{Implementation of vector fields}
 
@@ -576,12 +650,6 @@ parallelizable (the prototype being $\mathbb{R}^n$). But the reverse is not
 true: $\mathbb{S}^1$ and $\mathbb{T}^2$ are parallelizable and require 
 at least two and four charts to cover them, respectively. 
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{tensorfield_classes.pdf}
-\end{center}
-\caption{\label{f:tensor_classes} Tensor and tensor field classes.}
-\end{figure}
 
 If the manifold $\mathcal{M}$ is not parallelizable,
 we assume that it can be decomposed into a finite number $N$
@@ -617,7 +685,11 @@ $(\w{e}^b)$ stands for the coframe dual to $(\w{e}_a)$}.
 Therefore, one first decomposes the tensor field $\w{T}$  into 
 its restrictions $\left. \w{T} \right| _{U_i}$ on parallelizable open subsets
 of $\mathcal{M}$, $U_i$ ($1\leq i\leq N$) and then considers 
-the components on various vector frames on each subset $U_i$. 
+the components on various vector frames on each subset $U_i$.
+For each vector frame $(\w{e}_a)$, the set of components $(T^a_{\ \, b})$
+is stored in a devoted class (named \code{Components}), which takes into account
+all the tensor monoterm symmetries and antisymmetries: only non-redundant
+components are stored, the other ones being deduced by (anti)symmetry. 
 This is illustrated in Fig.~\ref{f:tensorfield_structure}, which depicts the
 internal storage of tensor fields in \SM{}. Note that each component
 $T^a_{\ \, b}$ is a scalar field on $U_i$, according to the formula
@@ -626,13 +698,121 @@ $T^a_{\ \, b}$ is a scalar field on $U_i$, according to the formula
 \ee
 Accordingly, the penultimate level of Fig.~\ref{f:tensorfield_structure} 
 corresponds to the scalar field storage, as described by (\ref{e:f_express}).
-The last (bottom) level is constituted by \Sage{}'s symbolic expressions. 
+The last (bottom) level is constituted by \Sage{}'s symbolic expressions
+(class \code{Expression}). 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{tensorfield_structure.pdf}
+\begin{tikzpicture}[font=\footnotesize, remember picture, 
+node distance=0.5em, minimum height=0.5em, auto]
+
+\node[tens, align=center](tensorfield)
+{\code{TensorField}\\ \normalsize $T$};
+
+% Restrictions
+\node[dict, below=of tensorfield](restrictions){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{\code{TensorField.\_restrictions}}}; 
+  \node[empty, below left=of description](domain1)
+  {domain 1:\\ {\normalsize $U_1$}}; 
+  \node[tens, right=0em of domain1](tensorfield1)
+  {\code{TensorFieldParal}\\ 
+  {\normalsize $T|_{U_1}=T^a_{\ \, b} e_a\otimes
+e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes \varepsilon^{\hat{b}}=\dots$}};
+  \node[empty, right=of tensorfield1](domain2)
+  {domain 2:\\ {\normalsize $U_2$}};
+  \node[tens, align=center, right=0em of domain2](tensorfield2)
+  {\code{TensorFieldParal}\\ {\normalsize $T|_{U_2}$}};
+  \node[empty, right=of tensorfield2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% Components
+\node[dict, below=of restrictions](components){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{\code{TensorFieldParal.\_components}}};
+  \node[empty, below left=of description](frame1)
+  {frame 1:\\ {\normalsize $(e_a)$}};
+  \node[tens, right=0em of frame1](components1)
+  {\code{Components}\\
+  {\normalsize $(T^a_{\ \, b})_{1\le a,\,b\,\le n}$}};
+  \node[empty, right=of components1](frame2)
+  {frame 2:\\ {\normalsize $(\varepsilon_{\hat{a}})$}};
+  \node[tens, right=0em of frame2](components2)
+  {\code{Components}\\ 
+  {\normalsize $(T^{\hat{a}}_{\ \, \hat{b}})_{1\le \hat{a},\,\hat{b}\,\le n}$}};
+  \node[empty, right=of components2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% comp Scalarfields 
+\node[dict, below=of components](comp){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{\code{Components.\_comp}}};
+  \node[empty, below left=of description](comp1)
+  {\normalsize $(1,1):$};
+  \node[tens, align=center, right=0em of comp1](scalarfield1)
+  {\code{ScalarField}\\
+  {\normalsize $T^1_{\ \, 1}$}};
+  \node[empty, right=of scalarfield1](comp2)
+  {\normalsize $(1,2):$};
+  \node[tens, align=center, right=0em of comp2](scalarfield2)
+  {\code{ScalarField}\\
+  {\normalsize $T^1_{\ \, 2}$}};
+  \node[empty, right=of scalarfield2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% Scalarfield express 
+\node[dict, below=of comp](express){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{\code{ScalarField.\_express}}};
+  \node[empty, below left=of description](chart1)
+  {chart 1:\\
+  {\normalsize $\left(x^a\right)$}};
+  \node[tens, right=0em of chart1](functionchart1)
+  {\code{FunctionChart}\\
+  {\normalsize $T^1_{\ \, 1}\left(x^1,\dots,x^n\right)$}};
+  \node[empty, right=of functionchart1](chart2)
+  {chart 2:\\
+  {\normalsize $\left(y^a\right)$}};
+  \node[tens, right=0em of chart2](functionchart2)
+  {\code{FunctionChart}\\
+  {\normalsize $T^1_{\ \, 1}\left(y^1,\dots,y^n\right)$}};
+  \node[empty, right=of functionchart2](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
+% expressions 
+\node[tens, below=2em of functionchart1](express1)
+{\code{Expression}\\
+{\normalsize $x^1\cos x^2$}};
+\node[tens, below=2em of functionchart2](express2)
+{\code{Expression}\\
+{\normalsize $\left(y^1 + y^2\right)\cos\left(y^1 - y^2\right)$}};
+
+% lines 
+\draw[thick, line width=0.2em, black!60,-] (restrictions) -- (tensorfield);
+\draw[thick, line width=0.2em, black!60,-] (components) -- (tensorfield1);
+\draw[thick, line width=0.2em, black!60,-] (comp) -- (components1);
+\draw[thick, line width=0.2em, black!60,-] (express) -- (scalarfield1);
+\draw[thick, line width=0.2em, black!60,-] (express1) -- (functionchart1);
+\draw[thick, line width=0.2em, black!60,-] (express2) -- (functionchart2);
+
+\end{tikzpicture}
 \end{center}
-\caption{\label{f:tensorfield_structure} Storage of tensor fields.}
+\caption{\label{f:tensorfield_structure} Storage of tensor fields in \SM{}.
+Each red box represent a Python dictionary; within a dictionary, the values are
+depicted by yellow boxes, and the keys are indicated at the left of each
+box.}
 \end{figure}
 
 
@@ -669,33 +849,33 @@ Hodge duality),
 %% of the Riemann tensor. 
 
 To improve the reactivity of \SM{} and take advantage of
-the recent multicore processors, some tensorial operations are performed by
-parallel processes. The parallelization is done using the built-in
-\Sage{} decorator \code{Parallel}, which permits to define a function
-that will be run on different sub-processes 
-\footnote{The \code{Parallel} class is actually a wrap of the python library
-\code{multiprocessing}.}. If $n$ processes are used, given a function
+multicore processors, some tensorial operations are performed by
+parallel processes. The parallelization is implemented by means of
+the Python library \code{multiprocessing}, via the built-in
+\Sage{} decorator \code{@parallel}. Using it permits to define a function
+that is run on different sub-processes. If $n$ processes are used, given a function
 and a list of arguments for it, any process will call the function
 with an element of the list, one at time, spanning all the list.
 
-The parallelized tensorial operations are: tensorial algebra, tensor
-contraction, affine connection and Riemann's tensor computation. 
+Currently\footnote{in the development version of \SM{}; this
+will become available in version 0.7 of the stable release.},
+the parallelized operations are tensor algebra, tensor
+contractions, computation of the connection coefficient
+and computation of Riemann tensor.
 
-The parallelization of an operation is done by first creating a
+The parallelization of an operation is achieved by first creating a
 function which computes the required operation on a subset of the
 components of a tensor; second, by creating a list of $2n$ (twice the
 number of used processes) arguments for this function. Then applying this function
-to the input list, the calculation will be done in parallel. 
+to the input list, the calculation is performed in parallel. 
 At the end of the computation a fourth phase is needed to retrieve the
 results.
-The choice to divide the work in $2n$ is a compromise between a better
-load balancing and cost of create multiple processes.
+The choice to divide the work in $2n$ is a compromise between the 
+load balancing and the cost of creating multiple processes.
 
-The number of processors used in the parallelization is controlled by
-the global variable \code{manifoldPara} which member fuction \code{set}
-permits to fix the number of processes to use.
+The number of processors to be used in the parallelization can be controlled by the
+user. 
 
-This feature shall be available in version 0.7. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -732,8 +912,8 @@ ${}^*\!F_{\alpha\beta} := \frac{1}{2} \epsilon^{\mu\nu}_{\ \ \, \alpha\beta} F_{
 (Hodge dual of $F_{\alpha\beta}$);
 \item $\sigma_\alpha := 2 \mathcal{F}_{\mu\alpha} \xi^\mu$ (Ernst 1-form).
 \end{itemize}
-As shown by Mars \cite{Mars99}, the 
-Simon-Mars tensor provides a nice characterization of Kerr spacetime:
+The Simon-Mars tensor provides a nice characterization of Kerr spacetime,
+according the following theorem proved by Mars \cite{Mars99}:
 if $\w{g}$ satisfies the vacuum Einstein equation and $(\mathcal{M},\w{g})$
 contains a stationary asymptotically flat end $\mathcal{M}^\infty$ such
 that $\w{\xi}$ tends to a time translation at infinity in $\mathcal{M}^\infty$
@@ -743,7 +923,7 @@ to a Kerr spacetime.
 
 In what follows, we use \SM{} to compute the Simon-Mars tensor 
 according to formula (\ref{e:def_Simon-Mars}) for the Kerr metric and check 
-that we get zero, which is not trivial. 
+that we get zero (the ``if'' part of the above theorem). 
 The corresponding worksheet can be downloaded from \\
 \url{http://sagemanifolds.obspm.fr/examples/html/SM_Mars-Simon.html}.\\
 To fully understand what follows, the reader must be aware that, 
@@ -770,17 +950,22 @@ M = Manifold(4, 'M', latex_name=r'\mathcal{M}')
 print M
 \end{verbatim}
 \soutput{4-dimensional manifold 'M'}
-We introduce the standard Boyer-Lindquist coordinates $(t,r,\theta,\phi)$
-by declaring a chart $X$ on $\mathcal{M}$:
+The standard Boyer-Lindquist coordinates $(t,r,\theta,\phi)$
+are introduced by declaring a chart $X$ on $\mathcal{M}$, via the
+method \code{chart()}, the argument of which is a string expressing the
+coordinates names, their ranges (the default is $(-\infty,+\infty)$)
+and their \LaTeX{} symbols:
 \begin{verbatim}
-X.<t,r,th,ph> = M.chart(r't r:(0,+oo) th:(0,pi):\theta ph:(0,2*pi):\phi') 
+X.<t,r,th,ph> = M.chart('t r:(0,+oo) th:(0,pi):\\theta ph:(0,2*pi):\\phi') 
 print X ; X
 \end{verbatim}
 \soutput{chart (M, (t, r, th, ph))\\
 $(\mathcal{M},(t, r, \theta, \phi))$}
-We define next the Kerr metric $g$ by setting its components in the 
-coordinate frame associated with Boyer-Lindquist coordinates, 
-which is the current manifold's default frame:
+We define next the Kerr metric $\w{g}$ by setting its components in the 
+coordinate frame associated with Boyer-Lindquist coordinates.
+Since the latter is the current manifold's default frame (being the only one defined
+at this stage), we do not need to specify it when referring to the components
+by their indices:
 \begin{verbatim}
 g = M.lorentz_metric('g')
 m = var('m') ; a = var('a')
@@ -808,20 +993,21 @@ r \sin\left(\theta\right)^{4} + {\left(a^{2} r^{2} + r^{4} +
 {\left(a^{4} + a^{2} r^{2}\right)} \cos\left(\theta\right)^{2}\right)}
 \sin\left(\theta\right)^{2}}{a^{2} \cos\left(\theta\right)^{2} + r^{2}}
 \right) \mathrm{d} \phi\otimes \mathrm{d} \phi $}
-The Levi-Civita connection $\nabla$ associated with g is obtained
+The Levi-Civita connection $\w{\nabla}$ associated with $\w{g}$ is obtained
 by the method \code{connection()}:
 \begin{verbatim}
 nab = g.connection() ; print nab
 \end{verbatim}
 \soutput{Levi-Civita connection 'nabla\_g' associated with the Lorentzian metric
 'g' on the 4-dimensional manifold 'M'}
-As a check, we verify that the covariant derivative of $g$ with respect to
-$\nabla$ vanishes identically:
+As a check, we verify that the covariant derivative of $\w{g}$ with respect to
+$\w{\nabla}$ vanishes identically:
 \begin{verbatim}
 nab(g).view()
 \end{verbatim}
 \soutput{$ \nabla_{g} g = 0$}
-The default vector frame on the spacetime manifold is the coordinate basis associated with Boyer-Lindquist coordinates:
+As mentionned above, 
+the default vector frame on the spacetime manifold is the coordinate basis associated with Boyer-Lindquist coordinates:
 \begin{verbatim}
 M.default_frame() is X.frame()
 \end{verbatim}
@@ -898,7 +1084,7 @@ Let us check that the Killing equation is satisfied:
 nab_xi.symmetrize().view()
 \end{verbatim}
 \soutput{$0$}
-Equivalently, we check that the Lie derivative of the metric along $\xi$
+Equivalently, we check that the Lie derivative of the metric along $\w{\xi}$
 vanishes:
 \begin{verbatim}
 g.lie_der(xi).view()
@@ -938,18 +1124,18 @@ $\begin{array}{llcl} \lambda:& \mathcal{M} & \longrightarrow
 & \mathbb{R} \\ & \left(t, r, \theta, \phi\right) & \longmapsto
 & \frac{a^{2} \cos\left(\theta\right)^{2} - 2 \, m r + r^{2}}{a^{2}
 \cos\left(\theta\right)^{2} + r^{2}} \end{array}$\\[-1ex]}
-Instead of invoking $g(\xi,\xi)$, we could have evaluated $\lambda$ 
-by means of the 1-form $\underline{\xi}$ acting on the vector field $\xi$:
+Instead of invoking $\w{g}(\w{\xi},\w{\xi})$, we could have evaluated $\lambda$ 
+by means of the 1-form $\w{\underline{\xi}}$ acting on the vector field $\w{\xi}$:
 \begin{verbatim}
 lamb == - xi_form(xi)
 \end{verbatim}
 \soutput{True}
-or, using index notation,
+or, using index notation as $\lambda = - \xi_a \xi^a$:
 \begin{verbatim}
 lamb == - ( xi_form['_a']*xi['^a'] )
 \end{verbatim}
 \soutput{True}
-The Riemann curvature tensor associated with $g$ is:
+The Riemann curvature tensor associated with $\w{g}$ is:
 \begin{verbatim}
 Riem = g.riemann()
 print Riem
@@ -971,8 +1157,9 @@ a^{3} m r^{4} - 3 \, a m r^{6}\right)} \cos\left(\theta\right)
 r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3 \,
 {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
 \cos\left(\theta\right)^{2}}$}
-The Ricci tensor vanishes identically, i.e. we check that the Kerr metric is 
-a vacuum solution of Einstein equation:
+Let us check that the Kerr metric is 
+a vacuum solution of Einstein equation, i.e. that the Ricci tensor
+vanishes identically:
 \begin{verbatim}
 g.ricci().view()
 \end{verbatim}
@@ -994,8 +1181,8 @@ C[0,1,0,1]
 r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3 \,
 {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
 \cos\left(\theta\right)^{2}}$}
-To form the Simon-Mars tensor, we need the fully covariant (type-(0,4)
-tensor) form of the Weyl tensor (i.e. $C_{\alpha\beta\mu\nu} = g_{\alpha\sigma} C^\sigma_{\ \, \beta\mu\nu}$); we get it by lowering the first index with the metric:
+To form the Simon-Mars tensor, we need the fully covariant form (type-(0,4)
+tensor) of the Weyl tensor (i.e. $C_{\alpha\beta\mu\nu} = g_{\alpha\sigma} C^\sigma_{\ \, \beta\mu\nu}$); we get it by lowering the first index with the metric:
 \begin{verbatim}
 Cd = C.down(g) ; print Cd
 \end{verbatim}
@@ -1006,7 +1193,7 @@ Weyl tensor, i.e. the antisymmetry on the last two indices (position 2 and 3, th
 Cd.symmetries()
 \end{verbatim}
 \soutput{no symmetry;  antisymmetry: (2, 3)}
-Actually, Cd is also antisymmetric with respect to the first two indices (positions 0 and 1), as we can check:
+Actually, \code{Cd} is also antisymmetric with respect to the first two indices (positions 0 and 1), as we can check:
 \begin{verbatim}
 Cd == Cd.antisymmetrize(0,1)
 \end{verbatim}
@@ -1177,7 +1364,7 @@ S.view()
 \section{Conclusion and future prospects}
 
 \SM{} is a work in progress. 
-It encompasses currently $\sim 34,000$ lines of Python code (including comments and 
+It encompasses currently $\sim 35,000$ lines of Python code (including comments and 
 doctests). 
 The last stable version (0.6), the functionalities of which are 
 listed in Sec.~\ref{s:functionalities},
