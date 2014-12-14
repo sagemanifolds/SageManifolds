@@ -38,8 +38,8 @@ CNRS, Observatoire de Paris, Universit\'e Paris Diderot,
 
 \begin{abstract}
 The \SM{} project aims at extending the mathematics software system \Sage{} towards
-differential geometry and tensor calculus. As \Sage{} itself, it is a free 
-and open-source software project and is based on the Python programming language.
+differential geometry and tensor calculus. As \Sage{} itself, it is free,
+open-source and is based on the Python programming language.
 We discuss here some details of the implementation, which relies 
 on \Sage{}'s category pattern, and present a concrete example of use.
 \end{abstract}
@@ -75,7 +75,7 @@ discovery of 6 errors in the original paper.
 Since then, numerous packages have been developed: the reader is referred to \cite{MacCa02}
 for a review of computer algebra
 systems for GR prior to 2002, and to \cite{KorolKS13} for a more recent review 
-concentrated on tensor calculus. 
+focused on tensor calculus. 
 It is also worth to point out the extensive list of
 tensor calculus packages maintained by J. M. Martin-Garcia at \cite{xact_links}.
 
@@ -96,7 +96,7 @@ running atop \soft{Mathematica},
 \soft{SnapPy} (topology and geometry of 3-manifolds) \cite{SnapPy} and
 \soft{Redberry} (tensors) \cite{BolotP13,Redberry}.
 \end{enumerate}
-All applications listed in the second category are free (and open-source) software. In
+All applications listed in the second category are free software. In
 the first category, \soft{xAct} and \soft{Ricci} are also free software, but
 they require a proprietary product, the sources of which are closed (\soft{Mathematica}).
 
@@ -133,10 +133,10 @@ then its development has been sustained by more than a hundred researchers
 Apart from the syntax, which is based on a real programming language and not on some specific script 
 language, a difference between \Sage{} and e.g. \soft{Maple} or \soft{Mathematica}
 is a consequent use of the \emph{parent/element pattern}. The latter  
-feature reflects better actual mathematics. 
+feature closely reflects actual mathematics. 
 For instance, in \soft{Mathematica}, all objects 
 are trees of symbols and the language is essentially a set of 
-sophisticated rules to manipulate the symbols. On the contrary, in \Sage{}
+sophisticated rules to manipulate symbols. On the contrary, in \Sage{}
 each object has a given type (i.e. is an instance of a given
 Python class\footnote{Let us
 recall that within an object-oriented programming language (as Python),
@@ -146,10 +146,10 @@ are data (called
 \emph{attributes} or \emph{state variables}) and functions acting 
 on the data (called \emph{methods}); a specific realization of an object 
 within a given class is called an \emph{instance} of that class.}), 
-but one distinguishes \emph{parent} types, which model mathematical
+and one distinguishes \emph{parent} types, which model mathematical
 sets with some structure (e.g. algebraic structure), from \emph{element} types,
 which model set elements. Moreover, each parent belong to some 
-dynamically generated class that encodes the information 
+dynamically generated class that encodes informations 
 about its \emph{category}, in the mathematical sense of the word.
 Calculus rules on elements are determined not by the elements themselves
 but by the category to which their parents belong. Automatic conversion rules, called \emph{coercions},
@@ -164,6 +164,13 @@ parents, are defined at the level of the parents.
 
 \Sage{} is well developed in many areas of mathematics but 
 very little exists for differential geometry and tensor calculus.
+One may mention differential forms defined on a fixed coordinate patch,
+implemented by J.~Vankerschaver \cite{sage_diff_form},
+and the 2-dimensional parametrized surfaces of
+the 3-dimensional Euclidean space recently added
+ by M.~Malakhaltsev and J.~Vankerschaver
+\cite{sage_param_surf}. 
+
 The aim of \SM{} \cite{SM} is to introduce differential manifolds and tensor fields
 in \Sage{}, and to do it in a coordinate-independent manner. 
 More precisely, one should be able to introduce various coordinate charts
@@ -182,7 +189,7 @@ On the other hand, the class devoted to manifold points, \code{Point},
 is an element class and therefore inherits from Sage native class 
 \code{Element}.
 This is illustrated by the inheritance diagram of Fig.~\ref{f:domain_classes}.
-In this diagram, each class at the base of an arrow is a subclass (also
+In this diagram, each class at the base of some arrow is a subclass (also
 called \emph{derived class}) of the class at the arrowhead.
 Note however that the actual type of a parent is a dynamically generated
 class taking into account the mathematical category to which it belongs. 
@@ -193,7 +200,7 @@ declared in the category of sets\footnote{A tighter category would be
 topological spaces, but such a category has been not implemented in \Sage{} yet.}.
 Note also that the class \code{Manifold} inherits from \Sage{} native class
 \texttt{UniqueRepresentation}, which ensures that there is a unique
-instance of \code{Manifold} for a given dimension and given name. 
+manifold instance for a given dimension and given name. 
 
 \begin{figure}
 \begin{center}
@@ -264,14 +271,14 @@ and points on them (\code{Point}).}
 \subsection{Implementation of charts}
 
 Given a manifold $\mathcal{M}$ of dimension $n$, a coordinate chart 
-on an open subset $U\subset\mathcal{M}$ is implemented in \SM{} 
+on some open subset $U\subset\mathcal{M}$ is implemented in \SM{} 
 via the class \code{Chart}, whose main data is 
 a $n$-tuple of \Sage{} symbolic variables $(x_1,\ldots,x_n)$, each of 
 them representing a coordinate.
 In general, more than one (regular) chart is required to cover the entire manifold.
 For instance, at least 2 charts are necessary for the $n$-dimensional sphere 
 $\mathbb{S}^n$ ($n\geq 1$), 3 charts for the real projective plane
-$\mathbb{RP}^2$, and 4 charts for the torus $\mathbb{T}^2$. 
+$\mathbb{RP}^2$ (see Fig.~\ref{f:boy} below), and 4 charts for the torus $\mathbb{T}^2$. 
 Accordingly, \SM{} allows for an arbitrary number of charts. 
 To fully specify the manifold, one shall also provide the transition maps
 (changes of coordinates) on
@@ -287,9 +294,8 @@ A \emph{scalar field} on manifold $\mathcal{M}$ is a smooth mapping
        & p & \longmapsto  & f(p) ,
     \end{array}
 \ee
-where $U$ is an open subset of $\mathcal{M}$.
-Note that a scalar field maps \emph{points}, not \emph{coordinates}, to real numbers. 
-A scalar field $f$ has different coordinate representations $F$, $\hat F$, etc. 
+where $U$ is some open subset of $\mathcal{M}$.
+A scalar field has different coordinate representations $F$, $\hat F$, etc. 
 in different charts $X$, $\hat X$, etc. defined on $U$:
 \be
     f(p) = 
@@ -385,7 +391,8 @@ of all smooth vector fields defined on $U$ has naturally the structure of a
 Let us recall that a \emph{module} is similar to a \emph{vector space}, except that it is based
 on a \emph{ring} (here $C^\infty(U)$)
 instead of a \emph{field} (usually $\mathbb{R}$ or
-$\mathbb{C}$ in physical applications). Of course, since every field is a ring, every vector space is a module.
+$\mathbb{C}$ in physical applications). Of course, every vector space is a module,
+since every field is a ring.
 There is an important difference though: every vector space has a basis (as a 
 consequence of the axiom of choice),
 while a module does not necessarily have any. 
@@ -396,14 +403,14 @@ cardinality, which is called the \emph{rank} of the module
 (for vector spaces, which are free modules, the word \emph{dimension}
 is used instead of \emph{rank}). 
 
-If $\mathscr{X}(U)$ is a free module, a basis of it nothing but a \emph{vector frame}
+If $\mathscr{X}(U)$ is a free module, a basis of it is nothing but a \emph{vector frame}
 $(\w{e}_a)_{1\leq a \leq n}$ on $U$:
 \be \label{e:v_expand}
     \forall \w{v}\in\mathscr{X}(U),\quad \w{v} = v^a \w{e}_a,\quad\mbox{with\ } v^a \in C^\infty(U) .
 \ee
 The rank of $\mathscr{X}(U)$ is thus $n$, i.e. the manifold's 
 dimension\footnote{Note that the dimensionality of $\mathscr{X}(U)$ depends
-of the structure adopted for it: as a vector space over $\mathbb{R}$, the
+of the adopted structure: as a vector space over $\mathbb{R}$, the
 dimension of $\mathscr{X}(U)$ is infinite, while as a free module over
 $C^\infty(U)$, $\mathscr{X}(U)$ has a finite rank. Note also that if $\mathscr{X}(U)$
 is not free (i.e. no global vector frame exists on $U$), the notion of rank 
@@ -616,17 +623,17 @@ TangentSpace};
 
 \subsection{Implementation of vector fields}
 
-Ultimately, in \SM{}, vector fields are to be described by their 
+Ultimately, in \SM{}, vector fields are described by their 
 components with respect to various vector frames, according to 
 Eq.~(\ref{e:v_expand}), but without any vector frame being privileged, 
-leaving the freedom to select them to the user, as well as to change 
+leaving the freedom to select one to the user, as well as to change 
 coordinates. A key point is that 
 not every manifold admits a global vector frame. 
 A manifold $\mathcal{M}$, or more generally an open subset $U\subset\mathcal{M}$,
 that admits a global vector frame is called 
 \emph{parallelizable}. Equivalently,
 $\mathcal{M}$ is parallelizable if, and only if, $\mathscr{X}(\mathcal{M})$
-is a free module. In terms of the tangent bundle, 
+is a free module. In terms of tangent bundles, 
 parallelizable manifolds are those for which the tangent bundle is trivial:
 $T\mathcal{M} \simeq \mathcal{M}\times \mathbb{R}^n$.
 Examples of parallelizable manifolds are \cite{Lee13}
@@ -641,7 +648,7 @@ Examples of parallelizable manifolds are \cite{Lee13}
 On the other hand, examples of non-parallelizable manifolds are
 \begin{itemize}
 \item the sphere $\mathbb{S}^2$ (as a consequence of the hairy ball theorem),
-as well as any $n$-sphere $\mathbb{S}^n$ with $n\not\in\{1,3,7\}$, 
+as well as any sphere $\mathbb{S}^n$ with $n\not\in\{1,3,7\}$, 
 \item the real projective plane $\mathbb{RP}^2$.
 \end{itemize}
 Actually, ``most'' manifolds are non-parallelizable. 
@@ -672,7 +679,7 @@ as a Python dictionary whose keys are the vector frames:
 
 The implementation of tensor fields in \SM{} follows the strategy 
 adopted for vector fields. Consider for instance a tensor field $\w{T}$ 
-of type-(1,1) on the manifold $\mathcal{M}$. 
+of type (1,1) on the manifold $\mathcal{M}$. 
 It can be represented by 
 components $T^a_{\ \, b}$ only on a parallelizable open subset $U\subset
 \mathcal{M}$, since the decomposition 
@@ -680,7 +687,7 @@ components $T^a_{\ \, b}$ only on a parallelizable open subset $U\subset
     \left. \w{T} \right| _{U} = T^a_{\ \, b} \, \w{e}_a \otimes \w{e}^b ,
 \ee
 which defines $T^a_{\ \, b}$, is meaningful only when a vector frame 
-$(\w{e}_a)$ exist\footnote{Using standard notation, in Eq.~(\ref{e:T_expand}),
+$(\w{e}_a)$ exists\footnote{Using standard notation, in Eq.~(\ref{e:T_expand}),
 $(\w{e}^b)$ stands for the coframe dual to $(\w{e}_a)$}.
 Therefore, one first decomposes the tensor field $\w{T}$  into 
 its restrictions $\left. \w{T} \right| _{U_i}$ on parallelizable open subsets
@@ -698,7 +705,7 @@ $T^a_{\ \, b}$ is a scalar field on $U_i$, according to the formula
 \ee
 Accordingly, the penultimate level of Fig.~\ref{f:tensorfield_structure} 
 corresponds to the scalar field storage, as described by (\ref{e:f_express}).
-The last (bottom) level is constituted by \Sage{}'s symbolic expressions
+The last level is constituted by \Sage{}'s symbolic expressions
 (class \code{Expression}). 
 
 \begin{figure}
@@ -810,8 +817,8 @@ e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes \varepsilon^{\hat{b}}
 \end{tikzpicture}
 \end{center}
 \caption{\label{f:tensorfield_structure} Storage of tensor fields in \SM{}.
-Each red box represent a Python dictionary; within a dictionary, the values are
-depicted by yellow boxes, and the keys are indicated at the left of each
+Each red box represents a Python dictionary; the dictionary values are
+depicted by yellow boxes, the keys being indicated at the left of each
 box.}
 \end{figure}
 
@@ -832,7 +839,7 @@ contraction, symmetrization, etc.), even on non-parallelizable manifolds,
 \item taking in charge all monoterm tensor symmetries, 
 \item exterior calculus (wedge product and exterior derivative of differential forms,
 Hodge duality),
-\item Lie derivatives,
+\item Lie derivatives along a vector field,
 \item affine connections (curvature, torsion),
 \item pseudo-Riemannian metrics (Levi-Civita connection, Weyl tensor),
 \item graphical display of charts.
@@ -883,10 +890,44 @@ user.
 \section{SageManifolds at work: Kerr spacetime and Simon-Mars tensor}
 
 We give hereafter a short illustration of \SM{} focused on tensor 
-calculus. Another example, based on the sphere $\mathbb{S}^2$, 
-focusses more on the use of multiple charts and on the treatment of non-parallelizable 
-manifolds. This example and many others are available at
-\cite{SM_examples}.
+calculus in 4-dimensional general relativity.
+Another example, to be found at \cite{SM_examples}, is
+based on the manifold $\mathbb{S}^2$ and 
+focuses more on the use of multiple charts and on the treatment of non-parallelizable 
+manifolds. Yet another example illustrates some graphical capabilities of
+\SM{}: Figure~\ref{f:boy} shows the famous
+immersion of the real projective plane $\mathbb{RP}^2$ into
+the Euclidean space $\mathbb{R}^3$ known as the \emph{Boy surface}.
+This figure has been obtained by means of the method \code{plot()} applied
+to three coordinate charts covering $\mathbb{RP}^2$,
+the definition of which is related to the interpretation of
+$\mathbb{RP}^2$ as the set of straight lines $\Delta$
+through the origin of $\mathbb{R}^3$:
+(i) in red, the chart $X_1$ covering the open subset of $\mathbb{RP}^2$ defined
+by all lines $\Delta$ that are not parallel to the plane $z=0$,
+the coordinates of $X_1$ being the coordinates $(x,y)$ of the intersection of
+the considered line $\Delta$ with the plane $z=1$;
+(ii) in green, the chart $X_2$ covering the open subset defined
+by all lines $\Delta$ that are not parallel to the plane $x=0$,
+the coordinates of $X_2$ being the coordinates $(y,z)$ of intersection  with the plane $x=1$;
+(iii) in blue, the chart $X_3$ covering the open subset defined
+by all lines $\Delta$ that are not parallel to the plane $y=0$,
+the coordinates of $X_2$ being the coordinates $(z,x)$ of intersection with the plane $y=1$.
+Figure~\ref{f:boy} actually shows the coordinate grids of these three
+charts through the Ap\'ery map \cite{Apery86}, which realizes an immersion
+of $\mathbb{RP}^2$ into $\mathbb{R}^3$. This example, as many others,
+can be found at \cite{SM_examples}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{boy_surface.png}
+\end{center}
+\caption{\label{f:boy} Boy surface depicted via the grids of
+3 coordinate charts covering
+$\mathbb{RP}^2$ (see the text for the color code).}
+\end{figure}
+
+
 
 Let us consider a 4-dimensional spacetime, i.e. a 4-dimensional smooth 
 manifold $\mathcal{M}$ endowed with a Lorentzian metric $\w{g}$. 
@@ -1090,7 +1131,7 @@ vanishes:
 g.lie_der(xi).view()
 \end{verbatim}
 \soutput{$0$}
-Thanks to Killing equation, $\nabla_g \underline{\xi}$ is antisymmetric. We may therefore define a 2-form by $F:= - \nabla_g \underline{\xi}$. Here we enforce the antisymmetry by calling the method \code{antisymmetrize()} on \code{nab\_xi}:
+Thanks to Killing equation, $\w{\nabla} \underline{\w{\xi}}$ is antisymmetric. We may therefore define a 2-form by $\w{F}:= - \w{\nabla} \underline{\w{\xi}}$. Here we enforce the antisymmetry by calling the method \code{antisymmetrize()} on \code{nab\_xi}:
 \begin{verbatim}
 F = - nab_xi.antisymmetrize()
 F.set_name('F')
@@ -1205,7 +1246,8 @@ Cd.symmetries()
 \end{verbatim}
 \soutput{no symmetry;  antisymmetries: [(0, 1), (2, 3)]}
 The starting point in the evaluation of Simon-Mars tensor is the
-self-dual complex 2-form associated with the Killing 2-form $F$, i.e. the object $\mathcal{F} := F + i \, {}^* F$, where ${}^*F$ is the Hodge dual of $F$:
+self-dual complex 2-form associated with the Killing 2-form $\w{F}$, i.e. the object
+$\w{\mathcal{F}} := \w{F} + i \, {}^* \w{F}$, where ${}^*\w{F}$ is the Hodge dual of $\w{F}$:
 \begin{verbatim}
 FF = F + I * F.hodge_star(g)
 FF.set_name('FF', r'\mathcal{F}')
@@ -1240,7 +1282,8 @@ r^{2}\right)} \cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2
 \sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
 r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d}
 \theta\wedge \mathrm{d} \phi$}
-Let us check that $\mathcal{F}$ is self-dual, i.e. that it obeys ${}^* \mathcal{F} = -i \mathcal{F}$:
+Let us check that $\w{\mathcal{F}}$ is self-dual, i.e. that it obeys
+${}^* \w{\mathcal{F}} = -i \w{\mathcal{F}}$:
 \begin{verbatim}
 FF.hodge_star(g) == - I * FF
 \end{verbatim}
@@ -1273,7 +1316,7 @@ r^{2} + 2 \, a m r^{4}\right)} \cos\left(\theta\right)\right)}
 \sin\left(\theta\right)}{a^{6} \cos\left(\theta\right)^{6} + 3 \, a^{4}
 r^{2} \cos\left(\theta\right)^{4} + 3 \, a^{2} r^{4}
 \cos\left(\theta\right)^{2} + r^{6}}$}
-The Ernst 1-form $\sigma_\alpha = 2 \mathcal{F}_{\mu\alpha} \, \xi^\mu$ (0 = contraction on the first index of $\mathcal{F}$):
+The Ernst 1-form $\sigma_\alpha = 2 \mathcal{F}_{\mu\alpha} \, \xi^\mu$ (0 = contraction on the first index of $\w{\mathcal{F}}$):
 \begin{verbatim}
 sigma = 2*FF.contract(0, xi)
 \end{verbatim}
@@ -1296,7 +1339,8 @@ a m r \cos\left(\theta\right) - 2 \, m r^{2}}{a^{4}
 \cos\left(\theta\right) - 2 i \, a m r^{2}\right)}
 \sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
 r^{2} \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} \theta$}
-The symmetric bilinear form $\gamma = \lambda \, g + \underline{\xi}\otimes\underline{\xi}$:
+The symmetric bilinear form
+$\w{\gamma} = \lambda \, \w{g} + \underline{\w{\xi}}\otimes\underline{\w{\xi}}$:
 \begin{verbatim}
 gamma = lamb*g + xi_form * xi_form
 gamma.set_name('gamma', r'\gamma')
@@ -1331,8 +1375,8 @@ S2 = gamma * ( xiCC['_.mn']*FFuu['^mn'] )
 print S2
 \end{verbatim}
 \soutput{tensor field of type (0,3) on the 4-dimensional manifold 'M'}
-To get the Simon-Mars tensor, we need to antisymmetrize $S^{(1)}$ and
-$S^{(2)}$ on their last two indices; we choose to use the standard
+To get the Simon-Mars tensor, we need to antisymmetrize $\w{S}^{(1)}$ and
+$\w{S}^{(2)}$ on their last two indices; we choose to use the standard
 index notation to perform this operation (an alternative would have been
 to call directly the method \code{antisymmetrize()}):
 \begin{verbatim}
@@ -1370,21 +1414,21 @@ The last stable version (0.6), the functionalities of which are
 listed in Sec.~\ref{s:functionalities},
 is freely downloadable from the project web page
 \cite{SM}. The development version is also freely available 
-from the git repository \cite{SM_git}.
+from that page.
 
 Among the future developments are 
 \begin{itemize}
-\item extrinsic geometry of pseudo-Riemannian submanifolds
+\item extrinsic geometry of pseudo-Riemannian submanifolds,
 \item computation of geodesics (numerical integration via \soft{Sage/GSL} or 
-\soft{Gyoto} \cite{Gyoto})
-\item integrals on submanifolds
-\item adding more graphical outputs
+\soft{Gyoto} \cite{Gyoto}),
+\item integrals on submanifolds,
+\item adding more graphical outputs,
 \item adding more functionalities: symplectic forms, fibre bundles, 
 spinors, variational calculus, etc.
 \item connection with numerical relativity.
 \end{itemize}
-The last point means using \SM{} for an interactive exploration 
-of numerically generated spacetimes. Observing
+The last point means using \SM{} for interactive exploration 
+of numerically generated spacetimes. Looking at
 the diagram in Fig.~\ref{f:tensorfield_structure}, one realizes that it 
 suffices to replace only the lowest level, currently relying on
 \Sage{}'s symbolic expressions, by computations on numerical data. 
@@ -1449,6 +1493,10 @@ freely downloadable from \url{http://sagebook.gforge.inria.fr/}
 \bibitem{Bard15}
 Bard G V 2015 {\it Sage for Undergraduates} (Americ. Math. Soc.) in press;
 preprint freely downloadable from \url{http://www.gregorybard.com/})
+\bibitem{sage_diff_form}
+\url{http://sagemath.org/doc/reference/tensor/}
+\bibitem{sage_param_surf}
+\url{http://sagemath.org/doc/reference/riemannian_geometry/}
 \bibitem{SM}
 \url{http://sagemanifolds.obspm.fr/}
 \bibitem{Lee13}
@@ -1457,10 +1505,10 @@ Lee J M 2013 {\it Introduction to Smooth Manifolds} 2nd edition (New York: Sprin
 Steenrod N 1951 {\it The Topology of Fibre Bundles} (Princeton: Princeton Univ. Press)
 \bibitem{SM_examples}
 \url{http://sagemanifolds.obspm.fr/examples.html}
+\bibitem{Apery86}
+Ap\'ery F 1986 {\it Adv. Math.} {\bf 61}, 185
 \bibitem{Mars99}
 Mars M 1999 {\it Class. Quantum Grav.} {\bf 16}, 2507
-\bibitem{SM_git}
-\url{https://github.com/sagemanifolds/sage}
 \bibitem{Gyoto}
 \url{http://gyoto.obspm.fr/}
 \end{thebibliography}
