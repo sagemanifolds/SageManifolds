@@ -88,13 +88,13 @@ classified in two categories:
 \begin{enumerate}
 \item Applications atop some general purpose computer algebra system. 
 Notable examples are 
-the \soft{xAct} suite \cite{Marti08,xAct} and \soft{Ricci} \cite{Ricci}, both
+the \soft{xAct} suite \cite{Marti08} and \soft{Ricci} \cite{Ricci}, both
 running atop \soft{Mathematica},
-\soft{DifferentialGeometry} \cite{AnderT12,DiffGeom} integrated into \soft{Maple}, and \soft{Atlas 2}
+\soft{DifferentialGeometry} \cite{AnderT12} integrated into \soft{Maple}, and \soft{Atlas 2}
 \cite{Atlas2} for \soft{Mathematica} and \soft{Maple}.
-\item Standalone applications. Recent examples are \soft{Cadabra}  (field theory) \cite{Peete07,Cadabra},
+\item Standalone applications. Recent examples are \soft{Cadabra}  (field theory) \cite{Peete07},
 \soft{SnapPy} (topology and geometry of 3-manifolds) \cite{SnapPy} and
-\soft{Redberry} (tensors) \cite{BolotP13,Redberry}.
+\soft{Redberry} (tensors) \cite{BolotP13}.
 \end{enumerate}
 All applications listed in the second category are free software. In
 the first category, \soft{xAct} and \soft{Ricci} are also free software, but
@@ -977,13 +977,13 @@ In a functional language, this would be written instead as
  \begin{center}
 \textcolor{blue}{\texttt{result}} = \texttt{function(}\textcolor{red}{\texttt{object}}\texttt{,}\textcolor{green}{\texttt{arguments}}\texttt{)}
 \end{center}
-For instance, the Riemann tensor of a metric $g$ is obtained as 
-\begin{verbatim}
-riem = g.riemann()
-\end{verbatim}
-In this case, there is no extra argument, hence the empty parentheses. 
-With this is mind, let us proceed with the computation by means of 
-\SM{}. 
+For instance, the Riemann tensor of a metric $\w{g}$ is obtained as 
+\verb+riem = g.riemann()+
+(in this case, there is no extra argument, hence the empty parentheses). 
+With this in mind, let us proceed with the computation by means of 
+\SM{}. In the text below, the blue color denotes the outputs as they appear in
+the \Sage{} notebook (note that all mathematical outputs are automatically
+\LaTeX{}-formatted by \Sage).
 
 The first step is to declare the Kerr spacetime (or more precisely the part of the Kerr spacetime covered by Boyer-Lindquist coordinates) as a 4-dimensional manifold:
 \begin{verbatim}
@@ -1413,19 +1413,19 @@ doctests).
 The last stable version (0.6), the functionalities of which are 
 listed in Sec.~\ref{s:functionalities},
 is freely downloadable from the project web page
-\cite{SM}. The development version is also freely available 
+\cite{SM}. The development version is also available 
 from that page.
 
 Among the future developments are 
 \begin{itemize}
-\item extrinsic geometry of pseudo-Riemannian submanifolds,
-\item computation of geodesics (numerical integration via \soft{Sage/GSL} or 
+\item the extrinsic geometry of pseudo-Riemannian submanifolds,
+\item the computation of geodesics (numerical integration via \soft{Sage/GSL} or 
 \soft{Gyoto} \cite{Gyoto}),
-\item integrals on submanifolds,
+\item evaluating integrals on submanifolds,
 \item adding more graphical outputs,
 \item adding more functionalities: symplectic forms, fibre bundles, 
 spinors, variational calculus, etc.
-\item connection with numerical relativity.
+\item the connection with numerical relativity.
 \end{itemize}
 The last point means using \SM{} for interactive exploration 
 of numerically generated spacetimes. Looking at
@@ -1439,11 +1439,9 @@ anybody interested in contributing to the project is very welcome!
 
 \ack
 This work has benefited from enlightening discussions with Volker Braun,
-Vincent Delecroix, Simon King,  Jos\'e M. Mart\'\i n-Garc\'\i a, 
-S\'ebastien Labb\'e,
+Vincent Delecroix, Simon King, S\'ebastien Labb\'e, Jos\'e M. Mart\'\i n-Garc\'\i a, 
 Marc Mezzarobba, Thierry Monteil, Travis Scrimshaw and Nicolas Thi\'ery. 
 We also thank St\'ephane M\'en\'e for his technical help. 
- 
 
 
 \section*{References}
@@ -1460,26 +1458,22 @@ Korol'kova A V, Kulyabov D S and Sevast'yanov L A 2013 {\it Prog. Comput. Soft.}
 \bibitem{xact_links} 
 \url{http://www.xact.es/links.html}
 \bibitem{Marti08}
-Martin-Garcia J M 2008 {\it Comput. Phys. Commun.} {\bf 179}, 597
-\bibitem{xAct}
+Martin-Garcia J M 2008 {\it Comput. Phys. Commun.} {\bf 179}, 597; 
 \url{http://www.xact.es}
 \bibitem{Ricci}
 \url{http://www.math.washington.edu/~lee/Ricci/}
 \bibitem{AnderT12}
-Anderson I M and Torre C G 2012 {\it J. Math. Phys.} {\bf 53}, 013511
-\bibitem{DiffGeom}
+Anderson I M and Torre C G 2012 {\it J. Math. Phys.} {\bf 53}, 013511; 
 \url{http://digitalcommons.usu.edu/dg/}
 \bibitem{Atlas2}
 \url{http://digi-area.com/Maple/atlas/}
 \bibitem{Peete07}
-Peeters K 2007 {\it Comput. Phys. Commun.} {\bf 15}, 550
-\bibitem{Cadabra}
+Peeters K 2007 {\it Comput. Phys. Commun.} {\bf 15}, 550;
 \url{http://cadabra.phi-sci.com/}
 \bibitem{SnapPy}
 Culler M, Dunfield N M and Weeks J R, SnapPy, a computer program for studying the geometry and topology of 3-manifolds, \url{http://snappy.computop.org}
 \bibitem{BolotP13}
-Bolotin D A and Poslavsky S V 2013 Introduction to Redberry: the computer algebra system designed for tensor manipulation {\it Preprint} arXiv:1302.1219
-\bibitem{Redberry}
+Bolotin D A and Poslavsky S V 2013 Introduction to Redberry: the computer algebra system designed for tensor manipulation {\it Preprint} arXiv:1302.1219;
 \url{http://redberry.cc/}
 \bibitem{sage}
 \url{http://sagemath.org/}
@@ -1492,7 +1486,7 @@ Zimmermann P et al. 2013 {\it Calcul math\'ematique avec Sage} (CreateSpace);
 freely downloadable from \url{http://sagebook.gforge.inria.fr/}
 \bibitem{Bard15}
 Bard G V 2015 {\it Sage for Undergraduates} (Americ. Math. Soc.) in press;
-preprint freely downloadable from \url{http://www.gregorybard.com/})
+preprint freely downloadable from \url{http://www.gregorybard.com/}
 \bibitem{sage_diff_form}
 \url{http://sagemath.org/doc/reference/tensor/}
 \bibitem{sage_param_surf}
