@@ -2,7 +2,10 @@
 %% to produce png run pdflatex --shell-escape 
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
+\newcommand{\soft}[1]{\textsf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\Sage}{\soft{Sage}}
+\newcommand{\SM}{\soft{SageManifolds}}
 
 \usepackage{color}
 \usepackage{tikz}
@@ -12,19 +15,24 @@
 
 \tikzset{
 base/.style={draw, thick, align=center},
-native/.style={base, fill=cyan!30}, 
+native/.style={base, fill=cyan!30},
+alg/.style={base, fill=red!40, rounded corners},
 diff/.style = {base, fill=yellow!50, rounded corners},
+dict/.style={base, fill=pink!40, draw=red},
+tens/.style = {base, fill=yellow!25, align=left},
 empty/.style={align=left},
 % 
 legend/.style = {minimum width=2em, minimum height=1em},
 native_legend/.style = {native, legend},
-diff_legend/.style = {diff, legend}, 
+alg_legend/.style = {alg, legend},
+diff_legend/.style = {diff, legend},
 %
 line/.style = {->, draw, thick, >=triangle 45}
 }
 
-\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
-    
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum
+height=2em, auto]
+
 \node[native]
 (unique_represenation){UniqueRepresentation};
 
@@ -34,11 +42,11 @@ line/.style = {->, draw, thick, >=triangle 45}
 \coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
 
 \node[diff, below=1.5cm of Middle]
-(domain) {Domain\\ {\small {\it Element:} Point}};
+(domain) {Domain\\ {\scriptsize {\it element:} Point}};
 
 \path[line] (domain) -- (unique_represenation);
-\path[line] (domain) -- node [near start, yshift=-1em, xshift=7em] 
-{\footnotesize {\it Category:} Sets} (parent);
+\path[line] (domain) -- node [near start, yshift=-1em, xshift=7em]
+{\footnotesize {\it category:} Sets} (parent);
 
 \node[diff, below=of domain]
 (opendomain) {OpenDomain};
@@ -62,7 +70,7 @@ line/.style = {->, draw, thick, >=triangle 45}
 (element){Element};
 
 \node[diff, below=1.225cm of element]
-(point){Point}; 
+(point){Point};
 
 \path[line] (point) -- (element);
 
@@ -71,12 +79,12 @@ line/.style = {->, draw, thick, >=triangle 45}
 \node[native_legend, left=5cm of opendomain]
 (native_legend){};
 \node[empty, right=0.5em of native_legend]
-{Native Sage class};
+{Native \soft{Sage} class};
 
 \node[diff_legend, below=1.em of native_legend]
 (diff_legend){};
 \node[empty, right=0.5em of diff_legend]
-{Sagemanifolds class\\ \footnotesize (differential part)};
+{\soft{SageManifolds} class\\ \footnotesize (differential part)};
 
 \end{tikzpicture}
 

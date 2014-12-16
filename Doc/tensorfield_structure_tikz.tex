@@ -2,7 +2,10 @@
 %% to produce png run pdflatex --shell-escape 
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
+\newcommand{\soft}[1]{\textsf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\Sage}{\soft{Sage}}
+\newcommand{\SM}{\soft{SageManifolds}}
 
 \usepackage{color}
 \usepackage{tikz}
@@ -12,33 +15,43 @@
 
 \tikzset{
 base/.style={draw, thick, align=center},
+native/.style={base, fill=cyan!30},
+alg/.style={base, fill=red!40, rounded corners},
+diff/.style = {base, fill=yellow!50, rounded corners},
 dict/.style={base, fill=pink!40, draw=red},
 tens/.style = {base, fill=yellow!25, align=left},
-empty/.style={align=center},
+empty/.style={align=left},
+% 
+legend/.style = {minimum width=2em, minimum height=1em},
+native_legend/.style = {native, legend},
+alg_legend/.style = {alg, legend},
+diff_legend/.style = {diff, legend},
 %
 line/.style = {->, draw, thick, >=triangle 45}
 }
-\begin{tikzpicture}[font=\small, remember picture, 
+
+\begin{tikzpicture}[font=\footnotesize, remember picture,
 node distance=0.5em, minimum height=0.5em, auto]
 
 \node[tens, align=center](tensorfield)
-{TensorField\\ $T$};
+{\code{TensorField}\\ \normalsize $T$};
 
 % Restrictions
 \node[dict, below=of tensorfield](restrictions){
 \begin{tikzpicture}
   \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{TensorField.\_restrictions}}; 
+  {\bf dictionary \textcolor{red}{\code{TensorField.\_restrictions}}};
   \node[empty, below left=of description](domain1)
-  {Domain 1:\\ {\large $U_1$}}; 
+  {domain 1:\\ {\normalsize $U_1$}};
   \node[tens, right=0em of domain1](tensorfield1)
-  {TensorFieldParal\\ 
-  {\large $T|_{U_1}=T^a_be_a\otimes
-e^b=T^{\hat{a}}_{\hat{b}}\epsilon_{\hat{a}}\otimes \epsilon^{\hat{b}}=\dots$}};
+  {\code{TensorFieldParal}\\
+  {\normalsize $T|_{U_1}=T^a_{\ \, b} e_a\otimes
+e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes
+\varepsilon^{\hat{b}}=\dots$}};
   \node[empty, right=of tensorfield1](domain2)
-  {Domain 2:\\ {\large $U_2$}};
+  {domain 2:\\ {\normalsize $U_2$}};
   \node[tens, align=center, right=0em of domain2](tensorfield2)
-  {TensorFieldParal\\ {\large $T|_{U_2}$}};
+  {\code{TensorFieldParal}\\ {\normalsize $T|_{U_2}$}};
   \node[empty, right=of tensorfield2](more)
   {\large $\dots$};
 \end{tikzpicture}
@@ -48,17 +61,19 @@ e^b=T^{\hat{a}}_{\hat{b}}\epsilon_{\hat{a}}\otimes \epsilon^{\hat{b}}=\dots$}};
 \node[dict, below=of restrictions](components){
 \begin{tikzpicture}
   \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{TensorField.\_components}};
+  {\bf dictionary
+\textcolor{red}{\code{TensorFieldParal.\_components}}};
   \node[empty, below left=of description](frame1)
-  {Frame 1:\\ {\large $(e_a)$}};
+  {frame 1:\\ {\normalsize $(e_a)$}};
   \node[tens, right=0em of frame1](components1)
-  {Components\\
-  {\large $(T^a_b)_{1\le a,\,b\,\le n}$}};
+  {\code{Components}\\
+  {\normalsize $(T^a_{\ \, b})_{1\le a,\,b\,\le n}$}};
   \node[empty, right=of components1](frame2)
-  {Frame 2:\\ {\large $(\epsilon_{\hat{a}})$}};
-  \node[tens, align=center, right=0em of frame2](components2)
-  {Components\\ 
-  {\large $(T^{\hat{a}}_{\hat{b}})_{1\le \hat{a},\,\hat{b}\,\le n}$}};
+  {frame 2:\\ {\normalsize $(\varepsilon_{\hat{a}})$}};
+  \node[tens, right=0em of frame2](components2)
+  {\code{Components}\\
+  {\normalsize $(T^{\hat{a}}_{\ \, \hat{b}})_{1\le
+\hat{a},\,\hat{b}\,\le n}$}};
   \node[empty, right=of components2](more)
   {\large $\dots$};
 \end{tikzpicture}
@@ -68,17 +83,17 @@ e^b=T^{\hat{a}}_{\hat{b}}\epsilon_{\hat{a}}\otimes \epsilon^{\hat{b}}=\dots$}};
 \node[dict, below=of components](comp){
 \begin{tikzpicture}
   \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{Components.\_comp}};
+  {\bf dictionary \textcolor{red}{\code{Components.\_comp}}};
   \node[empty, below left=of description](comp1)
-  {\large $(1,1):$};
-  \node[tens, right=0em of comp1](scalarfield1)
-  {ScalarField\\
-  {\large $\left(T^1_1\right)$}};
+  {\normalsize $(1,1):$};
+  \node[tens, align=center, right=0em of comp1](scalarfield1)
+  {\code{ScalarField}\\
+  {\normalsize $T^1_{\ \, 1}$}};
   \node[empty, right=of scalarfield1](comp2)
-  {\large $(1,2):$};
+  {\normalsize $(1,2):$};
   \node[tens, align=center, right=0em of comp2](scalarfield2)
-  {ScalarField\\
-  {\large $\left(T^1_2\right)$}};
+  {\code{ScalarField}\\
+  {\normalsize $T^1_{\ \, 2}$}};
   \node[empty, right=of scalarfield2](more)
   {\large $\dots$};
 \end{tikzpicture}
@@ -88,19 +103,19 @@ e^b=T^{\hat{a}}_{\hat{b}}\epsilon_{\hat{a}}\otimes \epsilon^{\hat{b}}=\dots$}};
 \node[dict, below=of comp](express){
 \begin{tikzpicture}
   \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{ScalarField.\_express}};
+  {\bf dictionary \textcolor{red}{\code{ScalarField.\_express}}};
   \node[empty, below left=of description](chart1)
-  {Chart 1:\\
-  {\large $\left(x^a\right)$}};
+  {chart 1:\\
+  {\normalsize $\left(x^a\right)$}};
   \node[tens, right=0em of chart1](functionchart1)
-  {FunctionChart\\
-  {\large $T^1_1\left(x^1,\dots,x^n\right)$}};
+  {\code{FunctionChart}\\
+  {\normalsize $T^1_{\ \, 1}\left(x^1,\dots,x^n\right)$}};
   \node[empty, right=of functionchart1](chart2)
-  {Chart 2:\\
-  {\large $\left(y^a\right)$}};
-  \node[tens, align=center, right=0em of chart2](functionchart2)
-  {FunctionChart\\
-  {\large $T^1_1\left(y^1,\dots,y^n\right)$}};
+  {chart 2:\\
+  {\normalsize $\left(y^a\right)$}};
+  \node[tens, right=0em of chart2](functionchart2)
+  {\code{FunctionChart}\\
+  {\normalsize $T^1_{\ \, 1}\left(y^1,\dots,y^n\right)$}};
   \node[empty, right=of functionchart2](more)
   {\large $\dots$};
 \end{tikzpicture}
@@ -108,19 +123,23 @@ e^b=T^{\hat{a}}_{\hat{b}}\epsilon_{\hat{a}}\otimes \epsilon^{\hat{b}}=\dots$}};
 
 % expressions 
 \node[tens, below=2em of functionchart1](express1)
-{Expression\\
-{\large $x^1\cos x^2$}};
+{\code{Expression}\\
+{\normalsize $x^1\cos x^2$}};
 \node[tens, below=2em of functionchart2](express2)
-{Expression\\
-{\large $\left(y^1 + y^2\right)\cos\left(y^1 - y^2\right)$}};
+{\code{Expression}\\
+{\normalsize $\left(y^1 + y^2\right)\cos\left(y^1 - y^2\right)$}};
 
 % lines 
-\draw[thick, line width=0.2em, black!60,-] (restrictions) -- (tensorfield);
-\draw[thick, line width=0.2em, black!60,-] (components) -- (tensorfield1);
+\draw[thick, line width=0.2em, black!60,-] (restrictions) --
+(tensorfield);
+\draw[thick, line width=0.2em, black!60,-] (components) --
+(tensorfield1);
 \draw[thick, line width=0.2em, black!60,-] (comp) -- (components1);
 \draw[thick, line width=0.2em, black!60,-] (express) -- (scalarfield1);
-\draw[thick, line width=0.2em, black!60,-] (express1) -- (functionchart1);
-\draw[thick, line width=0.2em, black!60,-] (express2) -- (functionchart2);
+\draw[thick, line width=0.2em, black!60,-] (express1) --
+(functionchart1);
+\draw[thick, line width=0.2em, black!60,-] (express2) --
+(functionchart2);
 
 \end{tikzpicture}
 

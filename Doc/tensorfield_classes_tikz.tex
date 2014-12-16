@@ -2,7 +2,10 @@
 %% to produce png run pdflatex --shell-escape 
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
+\newcommand{\soft}[1]{\textsf{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\Sage}{\soft{Sage}}
+\newcommand{\SM}{\soft{SageManifolds}}
 
 \usepackage{color}
 \usepackage{tikz}
@@ -11,10 +14,12 @@
 \begin{document}
 
 \tikzset{
-base/.style={draw, thick, align=left},
+base/.style={draw, thick, align=center},
 native/.style={base, fill=cyan!30},
 alg/.style={base, fill=red!40, rounded corners},
 diff/.style = {base, fill=yellow!50, rounded corners},
+dict/.style={base, fill=pink!40, draw=red},
+tens/.style = {base, fill=yellow!25, align=left},
 empty/.style={align=left},
 % 
 legend/.style = {minimum width=2em, minimum height=1em},
@@ -24,49 +29,56 @@ diff_legend/.style = {diff, legend},
 %
 line/.style = {->, draw, thick, >=triangle 45}
 }
-\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
-    
+
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum
+height=2em, auto]
+
 \node[diff](tensorfield)
-{TensorField\\ \footnotesize {\it Parent:}\\ \footnotesize TensorFieldModule};
+{TensorField\\ \scriptsize {\it parent:}\\ \scriptsize
+TensorFieldModule};
 
 \node[diff, below=of tensorfield](vectorfield)
-{VectorField\\ \footnotesize {\it Parent:}\\ \footnotesize VectorFieldModule};
+{VectorField\\ \scriptsize {\it parent:}\\ \scriptsize
+VectorFieldModule};
 
 \path[line] (vectorfield) -- (tensorfield);
 
 \node[diff, right=of vectorfield](tensorfieldparal)
-{TensorFieldParal\\ \footnotesize {\it Parent:}\\ \footnotesize TensorFieldFreeModule};
+{TensorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize
+TensorFieldFreeModule};
 
 \node[diff, below=of tensorfieldparal](Vectorfieldparal)
-{VectorFieldParal\\ \footnotesize {\it Parent:}\\ \footnotesize VectorFieldFreeModule};
+{VectorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize
+VectorFieldFreeModule};
 
 \path[line] (Vectorfieldparal) -- (tensorfieldparal);
 \path[line] (Vectorfieldparal) -- (vectorfield);
 \path[line] (tensorfieldparal) -- (tensorfield);
 
 \node[alg, right=6cm of tensorfield](freemoduletensor)
-{FreeModuleTensor\\ \footnotesize {\it Parent:}\\ \footnotesize TensorFreeModule};
+{FreeModuleTensor\\ \scriptsize {\it parent:}\\ \scriptsize
+TensorFreeModule};
 
 \node[alg, below=of freemoduletensor](finiterankfreemoduleelement)
-{FiniteRankFreeModuleElement\\ \footnotesize {\it Parent:}\\ \footnotesize
+{FiniteRankFreeModuleElement\\ \scriptsize {\it parent:}\\ \scriptsize
 FiniteRankFreeModule};
 
 \node[diff, below=of finiterankfreemoduleelement](tangentvector)
-{TangentVector\\ \footnotesize {\it Parent:}\\ \footnotesize 
+{TangentVector\\ \scriptsize {\it parent:}\\ \scriptsize
 TangentSpace};
 
 \node[native, above=4cm of tensorfieldparal]
 (element){Element};
 
 \node[native, below=of element]
-(module_element){ModuleElement\\ {\footnotesize {\it Parent:} Module}};
+(module_element){ModuleElement\\ {\scriptsize {\it parent:} Module}};
 
 \path[line] (module_element) -- (element);
 
 \path[line] (tensorfield) -- (module_element);
 
 \path[line] (finiterankfreemoduleelement) -- (freemoduletensor);
-\path[line] (Vectorfieldparal) -- (finiterankfreemoduleelement); 
+\path[line] (Vectorfieldparal) -- (finiterankfreemoduleelement);
 
 \path[line] (tangentvector) -- (finiterankfreemoduleelement);
 
@@ -78,19 +90,18 @@ TangentSpace};
 \node[native_legend, left=4cm of Vectorfieldparal]
 (native_legend){};
 \node[empty, right=0.5em of native_legend]
-{Native Sage class};
+{Native \Sage{} class};
 
 \node[alg_legend, below=1.em of native_legend]
 (alg_legend){};
 \node[empty, right=0.5em of alg_legend]
-{Sagemanifolds class\\ \footnotesize (algebraic part)};
+{\SM{} class\\ \footnotesize (algebraic part)};
 
 \node[diff_legend, below=1.5em of alg_legend]
 (diff_legend){};
 \node[empty, right=0.5em of diff_legend]
-{Sagemanifolds class\\ \footnotesize (differential part)};
+{\SM{} class\\ \footnotesize (differential part)};
 
 \end{tikzpicture}
-
 
 \end{document}
