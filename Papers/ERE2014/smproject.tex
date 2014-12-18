@@ -38,10 +38,10 @@ CNRS, Observatoire de Paris, Universit\'e Paris Diderot,
 
 \begin{abstract}
 The \SM{} project aims at extending the mathematics software system \Sage{} towards
-differential geometry and tensor calculus. As \Sage{} itself, it is free,
+differential geometry and tensor calculus. Like \Sage{}, \SM{} is free,
 open-source and is based on the Python programming language.
 We discuss here some details of the implementation, which relies 
-on \Sage{}'s category pattern, and present a concrete example of use.
+on \Sage{}'s parent/element framework, and present a concrete example of use.
 \end{abstract}
 
 \tikzset{
@@ -65,12 +65,14 @@ line/.style = {->, draw, thick, >=triangle 45}
 
 Computer algebra for general relativity (GR) has a long history, which started
 almost as soon as computer algebra itself in the 1960s. 
-The first GR software was \soft{ALAM} (for \emph{Atlas Lisp Algebraic Manipulator})
-written by R.A. d'Inverno in 1969; he used it to compute
+The first GR program was \soft{GEOM}, written by J.G.~Fletcher
+in 1965 \cite{Fletc67}. Its main capability was to compute the Riemann tensor
+of a given metric. In 1969, R.A. d'Inverno developed \soft{ALAM}
+(for \emph{Atlas Lisp Algebraic Manipulator}) and used it to compute
 the Riemann and Ricci tensors of the Bondi metric.
 According to \cite{Skea94}, 
 the original calculations took Bondi and collaborators 6 months to finish,
-while the computation with \soft{ALAM} took 4 minutes and yield to the 
+while the computation with \soft{ALAM} took 4 minutes and yielded the 
 discovery of 6 errors in the original paper. 
 Since then, numerous packages have been developed: the reader is referred to \cite{MacCa02}
 for a review of computer algebra
@@ -90,7 +92,8 @@ classified in two categories:
 Notable examples are 
 the \soft{xAct} suite \cite{Marti08} and \soft{Ricci} \cite{Ricci}, both
 running atop \soft{Mathematica},
-\soft{DifferentialGeometry} \cite{AnderT12} integrated into \soft{Maple}, and \soft{Atlas 2}
+\soft{DifferentialGeometry} \cite{AnderT12} integrated into \soft{Maple},
+\soft{GRTensorII} \cite{GRTensorII} atop \soft{Maple} and \soft{Atlas 2}
 \cite{Atlas2} for \soft{Mathematica} and \soft{Maple}.
 \item Standalone applications. Recent examples are \soft{Cadabra}  (field theory) \cite{Peete07},
 \soft{SnapPy} (topology and geometry of 3-manifolds) \cite{SnapPy} and
@@ -98,18 +101,18 @@ running atop \soft{Mathematica},
 \end{enumerate}
 All applications listed in the second category are free software. In
 the first category, \soft{xAct} and \soft{Ricci} are also free software, but
-they require a proprietary product, the sources of which are closed (\soft{Mathematica}).
+they require a proprietary product, the source code of which is closed (\soft{Mathematica}).
 
 As far as tensor calculus is concerned, the above packages can be distinguished by 
-the type of computation that they perform: abstract index manipulations 
-(\soft{xAct/xTensor}, \soft{Ricci}, \soft{Cadabra}, \soft{Redberry})
-or component calculus (\soft{xAct/xCoba}, \soft{DifferentialGeometry},
+the type of computation that they perform:
+abstract calculus (\soft{xAct/xTensor}, \soft{Ricci}, \soft{Cadabra}, \soft{Redberry}),
+or component calculus (\soft{xAct/xCoba}, \soft{DifferentialGeometry}, \soft{GRTensorII},
 \soft{Atlas 2}). 
 In the first category, tensor operations such as contraction or covariant differentiation 
 are performed by manipulating the indices themselves rather than the components 
-to which they correspond. In the second category, vector bases are explicitly 
+to which they correspond. In the second category, vector frames are explicitly 
 introduced on the manifold and tensor operations are carried out on the components 
-in a given basis.
+in a given frame.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,44 +120,45 @@ in a given basis.
 \section{An overview of Sage}
 
 \Sage{} \cite{sage} is a free, open-source mathematics software system, which is
-based on the Python programming language. It makes use of 90 open-sources packages, 
-among which \soft{Maxima} and \soft{Pynac} (symbolic calculations),
+based on the Python programming language. It makes use of over 90 open-source packages, 
+among which are \soft{Maxima} and \soft{Pynac} (symbolic calculations),
 \soft{GAP} (group theory), 
 \soft{PARI/GP} (number theory), \soft{Singular} (polynomial computations), 
 and \soft{matplotlib} (high quality 2D figures). 
 \Sage{} provides a uniform Python interface to all these packages; however, 
 \Sage{} is much more than a mere interface: it contains a large and increasing part of 
 original code (more than 750,000 lines of Python and Cython, involving 5344 classes). 
-\Sage{} has been created in 2005 by W. Stein \cite{SteinJ05} and since
+\Sage{} was created in 2005 by W. Stein \cite{SteinJ05} and since
 then its development has been sustained by more than a hundred researchers
 (mostly mathematicians). Very good introductory textbooks about \Sage{} are
 \cite{JoyneS14,Zimme13,Bard15}. 
  
-Apart from the syntax, which is based on a real programming language and not on some specific script 
-language, a difference between \Sage{} and e.g. \soft{Maple} or \soft{Mathematica}
-is a consequent use of the \emph{parent/element pattern}. The latter  
-feature closely reflects actual mathematics. 
+Apart from the syntax, which is based on a popular programming language and not
+a custom script 
+language, a difference between \Sage{} and, e.g., \soft{Maple} or \soft{Mathematica}
+is the usage of the \emph{parent/element pattern}. This framework more closely
+reflects actual mathematics. 
 For instance, in \soft{Mathematica}, all objects 
-are trees of symbols and the language is essentially a set of 
+are trees of symbols and the program is essentially a set of 
 sophisticated rules to manipulate symbols. On the contrary, in \Sage{}
 each object has a given type (i.e. is an instance of a given
 Python class\footnote{Let us
 recall that within an object-oriented programming language (as Python),
 a \emph{class} is a structure to declare and store the
-properties common to a set of objects; these properties 
+properties common to a set of objects. These properties 
 are data (called 
 \emph{attributes} or \emph{state variables}) and functions acting 
-on the data (called \emph{methods}); a specific realization of an object 
+on the data (called \emph{methods}). A specific realization of an object 
 within a given class is called an \emph{instance} of that class.}), 
 and one distinguishes \emph{parent} types, which model mathematical
 sets with some structure (e.g. algebraic structure), from \emph{element} types,
-which model set elements. Moreover, each parent belong to some 
+which model set elements. Moreover, each parent belongs to some 
 dynamically generated class that encodes informations 
-about its \emph{category}, in the mathematical sense of the word.
-Calculus rules on elements are determined not by the elements themselves
-but by the category to which their parents belong. Automatic conversion rules, called \emph{coercions},
+about its \emph{category}, in the mathematical sense of the word
+(see \cite{sage_categories} for a discussion of \Sage{}'s category framework).
+Automatic conversion rules, called \emph{coercions},
 prior to a binary operation, e.g. $x+y$ with $x$ and $y$ having different 
-parents, are defined at the level of the parents.
+parents, are implemented.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -171,22 +175,22 @@ the 3-dimensional Euclidean space recently added
  by M.~Malakhaltsev and J.~Vankerschaver
 \cite{sage_param_surf}. 
 
-The aim of \SM{} \cite{SM} is to introduce differential manifolds and tensor fields
-in \Sage{}, and to do it in a coordinate-independent manner. 
-More precisely, one should be able to introduce various coordinate charts
-on a manifold, and not be restricted to a single coordinate patch. 
-Tensor fields must be manipulated as such and not through 
+The aim of \SM{} \cite{SM} is to introduce smooth manifolds and tensor fields
+in \Sage{}, with the following requirements:
+(i) one should be able to introduce various coordinate charts
+on a manifold, with the relevant transition maps; (ii)
+tensor fields must be manipulated as such and not through 
 their components with respect to a specific (possibly coordinate) vector frame. 
 
 Concretely, the project amounts to creating new Python classes,
  such as 
 \code{Manifold}, \code{Chart}, \code{TensorField} or \code{Metric},
 to implement them within the parent/element pattern and to 
-code the relevant mathematical operations as class methods.
+code mathematical operations as class methods.
 For instance the class \code{Manifold}, devoted to real smooth manifolds,
-is a parent class, i.e. it inherits from Sage native class \code{Parent}.
-On the other hand, the class devoted to manifold points, \code{Point}, 
-is an element class and therefore inherits from Sage native class 
+is a parent class, i.e. it inherits from \Sage{}'s class \code{Parent}.
+On the other hand, the class devoted to manifold points, \code{ManifoldPoint}, 
+is an element class and therefore inherits from \Sage{}'s class 
 \code{Element}.
 This is illustrated by the inheritance diagram of Fig.~\ref{f:domain_classes}.
 In this diagram, each class at the base of some arrow is a subclass (also
@@ -196,89 +200,33 @@ class taking into account the mathematical category to which it belongs.
 For instance, the actual type of a smooth manifold is not \code{Manifold}, but a
 subclass of it named \code{Manifold\_with\_category}, 
 reflecting the fact that \code{Manifold} is
-declared in the category of sets\footnote{A tighter category would be
+declared in the category of \code{Sets}\footnote{A tighter category would be
 topological spaces, but such a category has been not implemented in \Sage{} yet.}.
-Note also that the class \code{Manifold} inherits from \Sage{} native class
+Note also that the class \code{Manifold} inherits from \Sage{}'s class
 \texttt{UniqueRepresentation}, which ensures that there is a unique
 manifold instance for a given dimension and given name. 
 
 \begin{figure}
 \begin{center}
-
-\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
-    
-\node[native]
-(unique_represenation){UniqueRepresentation};
-
-\node[native, right=of unique_represenation]
-(parent){Parent};
-
-\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
-
-\node[diff, below=1.5cm of Middle]
-(domain) {Domain\\ {\scriptsize {\it element:} Point}};
-
-\path[line] (domain) -- (unique_represenation);
-\path[line] (domain) -- node [near start, yshift=-1em, xshift=7em] 
-{\footnotesize {\it category:} Sets} (parent);
-
-\node[diff, below=of domain]
-(opendomain) {OpenDomain};
-
-\path[line] (opendomain) -- (domain);
-
-\node[diff, below=of opendomain]
-(manifold) {Manifold};
-
-\path[line] (manifold) -- (opendomain);
-
-\node[diff, below=of manifold]
-(submanifold) {Submanifold};
-\path[line] (submanifold) -- (manifold);
-
-\node[diff, right=of submanifold]
-(realline) {RealLine};
-\path[line] (realline) -- (manifold);
-%
-\node[native, right=1.5cm of parent]
-(element){Element};
-
-\node[diff, below=1.225cm of element]
-(point){Point}; 
-
-\path[line] (point) -- (element);
-
-% legend 
-
-\node[native_legend, left=5cm of opendomain]
-(native_legend){};
-\node[empty, right=0.5em of native_legend]
-{Native \soft{Sage} class};
-
-\node[diff_legend, below=1.em of native_legend]
-(diff_legend){};
-\node[empty, right=0.5em of diff_legend]
-{\soft{SageManifolds} class\\ \footnotesize (differential part)};
-
-\end{tikzpicture}
+\include{domain_classes_tikz}
 \end{center}
 \caption{\label{f:domain_classes} Python classes for 
 smooth manifolds (\code{Manifold}), generic subsets of them 
-(\code{Domain}), open subsets of them (\code{OpenDomain})
-and points on them (\code{Point}).}
+(\code{ManifoldSubset}), open subsets of them (\code{ManifoldOpenSubset})
+and points on them (\code{ManifoldPoint}).}
 \end{figure}
 
 \subsection{Implementation of charts}
 
-Given a manifold $\mathcal{M}$ of dimension $n$, a coordinate chart 
+Given a smooth manifold $\mathcal{M}$ of dimension $n$, a coordinate chart 
 on some open subset $U\subset\mathcal{M}$ is implemented in \SM{} 
 via the class \code{Chart}, whose main data is 
 a $n$-tuple of \Sage{} symbolic variables $(x_1,\ldots,x_n)$, each of 
 them representing a coordinate.
 In general, more than one (regular) chart is required to cover the entire manifold.
 For instance, at least 2 charts are necessary for the $n$-dimensional sphere 
-$\mathbb{S}^n$ ($n\geq 1$), 3 charts for the real projective plane
-$\mathbb{RP}^2$ (see Fig.~\ref{f:boy} below), and 4 charts for the torus $\mathbb{T}^2$. 
+$\mathbb{S}^n$ ($n\geq 1$) and the torus $\mathbb{T}^2$ and 3 charts for the real projective plane
+$\mathbb{RP}^2$ (see Fig.~\ref{f:boy} below). 
 Accordingly, \SM{} allows for an arbitrary number of charts. 
 To fully specify the manifold, one shall also provide the transition maps
 (changes of coordinates) on
@@ -318,52 +266,7 @@ automatic simplifications in all arithmetic operations.
 
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
-    
-\node[native]
-(unique_represenation){UniqueRepresentation};
-
-\node[native, right=of unique_represenation]
-(parent){Parent};
-
-\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
-
-\node[diff, below=1.5cm of Middle]
-(scalar_field_algebra)
-{ScalarFieldAlgebra\\ 
-{\scriptsize {\it ring:} SR}\\
-{\scriptsize {\it element:} ScalarField}};
-
-\path[line] (scalar_field_algebra) -- (unique_represenation);
-\path[line] (scalar_field_algebra) -- node [near start, yshift=-1em, xshift=13em] 
-{\footnotesize {\it category:} CommutativeAlgebras} (parent);
-
-\node[native, right=3cm of parent]
-(caelement){CommutativeAlgebraElement};
-
-\node[diff, below=1.25cm of caelement](scalarfield)
-{ScalarField\\ \scriptsize{\it parent:} ScalarFieldAlgebra}; 
-
-\path[line] (scalarfield) -- (caelement);
-
-\node[diff, below=of scalarfield](zeroscalarfield)
-{ZeroScalarField\\ \scriptsize {\it parent:} ScalarFieldAlgebra}; 
-
-\path[line] (zeroscalarfield) -- (scalarfield);
-
-% legend 
-
-\node[native_legend, left=8cm of zeroscalarfield]
-(native_legend){};
-\node[empty, right=0.5em of native_legend]
-{Native \Sage{} class};
-
-\node[diff_legend, below=1.em of native_legend]
-(diff_legend){};
-\node[empty, right=0.5em of diff_legend]
-{\SM{} class\\ \footnotesize (differential part)};
-
-\end{tikzpicture}
+\include{scalar_classes_tikz}
 \end{center}
 \caption{\label{f:scalar_classes} Python classes for scalar fields
 on a manifold.}
@@ -403,8 +306,10 @@ cardinality, which is called the \emph{rank} of the module
 (for vector spaces, which are free modules, the word \emph{dimension}
 is used instead of \emph{rank}). 
 
-If $\mathscr{X}(U)$ is a free module, a basis of it is nothing but a \emph{vector frame}
-$(\w{e}_a)_{1\leq a \leq n}$ on $U$:
+If $\mathscr{X}(U)$ is a free module (examples are provided in Sec.~\ref{s:vector_fields} below),
+a basis of it is nothing but a \emph{vector frame}
+$(\w{e}_a)_{1\leq a \leq n}$ on $U$
+(often called a \emph{tetrad} in the context of 4-dimensional GR):
 \be \label{e:v_expand}
     \forall \w{v}\in\mathscr{X}(U),\quad \w{v} = v^a \w{e}_a,\quad\mbox{with\ } v^a \in C^\infty(U) .
 \ee
@@ -415,118 +320,21 @@ dimension of $\mathscr{X}(U)$ is infinite, while as a free module over
 $C^\infty(U)$, $\mathscr{X}(U)$ has a finite rank. Note also that if $\mathscr{X}(U)$
 is not free (i.e. no global vector frame exists on $U$), the notion of rank 
 is meaningless.}.
-
-At any point $p\in U$, Eq.~(\ref{e:v_expand}) translates into an identity in 
+At any point $p\in U$, Eq.~(\ref{e:v_expand}) gives birth to an identity in 
 the tangent vector space $T_p \mathcal{M}$:
 \be 
     \w{v}(p) = v^a(p)  \; \w{e}_a(p),\quad\mbox{with\ } v^a(p) \in \mathbb{R} , 
 \ee
 which means that 
-the set $(\w{e}_a(p))_{1\leq a \leq n}$ is a basis of the vector space $T_p \mathcal{M}$.
-This is the very definition of a vector frame on $U$ (often called a \emph{tetrad} in
-the context of 4-dimensional general relativity). Note that if $U$ is covered
-by a chart $(x^a)_{1\leq a \leq n}$, then $(\partial/\partial x^a)_{1\leq a \leq n}$
+the set $(\w{e}_a(p))_{1\leq a \leq n}$ is a basis of $T_p \mathcal{M}$.
+Note that if $U$ is covered by a chart $(x^a)_{1\leq a \leq n}$,
+then $(\partial/\partial x^a)_{1\leq a \leq n}$
 is a vector frame on $U$, usually called \emph{coordinate frame}
-or \emph{natural basis}. 
+or \emph{natural basis}. Note also that, being a
+vector space over $\mathbb{R}$, the tangent space $T_p \mathcal{M}$
+represents another kind of free module which occurs naturally in the
+current context. 
 
-
-Another kind of free modules which occur naturally in the current context
-is that of the tangent spaces to manifold $\mathcal{M}$: 
-for each $p\in \mathcal{M}$, $T_p\mathcal{M}$ is a free module over 
-$\mathbb{R}$, since it is a vector space over $\mathbb{R}$. 
-
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[font=\footnotesize, node distance=0.75cm, minimum height=2em, auto]
-    
-\node[native]
-(unique_represenation){UniqueRepresentation};
-
-\node[native, right=of unique_represenation]
-(parent){Parent};
-
-\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
-
-\node[diff, below=3.5cm of Middle]
-(vectorfieldmodule)
-{VectorFieldModule\\ 
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} VectorField}};
-
-\path[line] (vectorfieldmodule) -- (unique_represenation);
-\path[line] (vectorfieldmodule) -- node [near start, yshift=5em,
-xshift=2.2em, rotate=70] 
-{\footnotesize {\it category:} Modules} (parent);
-
-\node[diff, left=of vectorfieldmodule]
-(tensorfieldmodule)
-{TensorFieldModule\\ 
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} TensorField}};
-
-\path[line] (tensorfieldmodule) -- (unique_represenation);
-\path[line] (tensorfieldmodule) -- node [near start, xshift=3em,
-yshift=1.5em, rotate=35] 
-{\footnotesize {\it category:} Modules} (parent);
-
-\node[diff, below=of vectorfieldmodule](vectorfieldfreemodule)
-{VectorFieldFreeModule\\ 
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} VectorFieldParal}};
-
-\node[diff, below=of vectorfieldfreemodule](tensorfieldfreemodule)
-{TensorFieldFreeModule\\
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} TensorFieldParal}};
-
-\node[alg, right=1cm of vectorfieldmodule](finiterankfreemodule)
-{FiniteRankFreeModule\\
-{\scriptsize {\it ring:} CommutativeRing}\\
-{\scriptsize {\it element:} FiniteRankFreeModuleElement}};
-
-\node[alg, right=of vectorfieldfreemodule](tensorfreemodule)
-{TensorFreeModule\\
-{\scriptsize {\it element:}}\\ 
-{\scriptsize FreeModuleTensor}};
-
-\node[diff, right=of tensorfreemodule](tangentspace)
-{TangentSpace\\
-{\scriptsize {\it ring:} SR}\\
-{\scriptsize {\it element:}}\\
-{\scriptsize TangentVector}};
-
-\path[line] (finiterankfreemodule) -- (unique_represenation);
-\path[line] (finiterankfreemodule) -- node [near start,
-xshift=2.5em, rotate=-45]
-{\footnotesize {\it category:} Modules} (parent);
-
-\path[line] (tangentspace) -- (finiterankfreemodule);
-\path[line] (tensorfreemodule) -- (finiterankfreemodule);
-
-\path[line] (vectorfieldfreemodule) -- (finiterankfreemodule);
-\path[line] (tensorfieldfreemodule) -- (tensorfreemodule); 
-
-% legend 
-\node[native_legend, left=4cm of vectorfieldfreemodule]
-(native_legend){};
-\node[empty, right=0.5em of native_legend]
-{Native \Sage{} class};
-
-\node[alg_legend, below=1.em of native_legend]
-(alg_legend){};
-\node[empty, right=0.5em of alg_legend]
-{\SM{} class\\ \footnotesize (algebraic part)};
-
-\node[diff_legend, below=1.5em of alg_legend]
-(diff_legend){};
-\node[empty, right=0.5em of diff_legend]
-{\SM{} class\\ \footnotesize (differential part)};
-
-\end{tikzpicture}
-\end{center}
-\caption{\label{f:module_classes} Various module classes.}
-\end{figure}
 
 It turns out that so far only free modules \emph{with a distinguished basis} were 
 implemented in \Sage{}. This means that, given a free module $M$ of rank $n$, 
@@ -537,8 +345,8 @@ coordinate-independent way.
 For instance, there is no canonical 
 isomorphism between $T_p\mathcal{M}$ and $\mathbb{R}^n$ when no coordinate
 system is privileged in the neighborhood of $p$.
-Therefore we have started a pure algebraic branch of \SM{} to implement
-generic free modules, with an arbitrary number of bases in them, 
+Therefore we have started a pure algebraic part of \SM{} to implement
+generic free modules, with an arbitrary number of bases, 
 none of them being distinguished. This resulted in (i) the parent class 
 \code{FiniteRankFreeModule}, within \Sage{}'s category \code{Modules}, and (ii)
 the element class 
@@ -547,81 +355,17 @@ the element class
 a free module) and \code{TangentSpace} (for $T_p\mathcal{M}$)
 inherit from \code{FiniteRankFreeModule} (see Fig.~\ref{f:module_classes}). 
 
-
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum height=2em, auto]
-    
-\node[diff](tensorfield)
-{TensorField\\ \scriptsize {\it parent:}\\ \scriptsize TensorFieldModule};
-
-\node[diff, below=of tensorfield](vectorfield)
-{VectorField\\ \scriptsize {\it parent:}\\ \scriptsize VectorFieldModule};
-
-\path[line] (vectorfield) -- (tensorfield);
-
-\node[diff, right=of vectorfield](tensorfieldparal)
-{TensorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize TensorFieldFreeModule};
-
-\node[diff, below=of tensorfieldparal](Vectorfieldparal)
-{VectorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize VectorFieldFreeModule};
-
-\path[line] (Vectorfieldparal) -- (tensorfieldparal);
-\path[line] (Vectorfieldparal) -- (vectorfield);
-\path[line] (tensorfieldparal) -- (tensorfield);
-
-\node[alg, right=6cm of tensorfield](freemoduletensor)
-{FreeModuleTensor\\ \scriptsize {\it parent:}\\ \scriptsize TensorFreeModule};
-
-\node[alg, below=of freemoduletensor](finiterankfreemoduleelement)
-{FiniteRankFreeModuleElement\\ \scriptsize {\it parent:}\\ \scriptsize
-FiniteRankFreeModule};
-
-\node[diff, below=of finiterankfreemoduleelement](tangentvector)
-{TangentVector\\ \scriptsize {\it parent:}\\ \scriptsize 
-TangentSpace};
-
-\node[native, above=4cm of tensorfieldparal]
-(element){Element};
-
-\node[native, below=of element]
-(module_element){ModuleElement\\ {\scriptsize {\it parent:} Module}};
-
-\path[line] (module_element) -- (element);
-
-\path[line] (tensorfield) -- (module_element);
-
-\path[line] (finiterankfreemoduleelement) -- (freemoduletensor);
-\path[line] (Vectorfieldparal) -- (finiterankfreemoduleelement); 
-
-\path[line] (tangentvector) -- (finiterankfreemoduleelement);
-
-\path[line] (tensorfieldparal) -- (freemoduletensor);
-
-\path[line] (freemoduletensor) -- (module_element);
-
-% legend 
-\node[native_legend, left=4cm of Vectorfieldparal]
-(native_legend){};
-\node[empty, right=0.5em of native_legend]
-{Native \Sage{} class};
-
-\node[alg_legend, below=1.em of native_legend]
-(alg_legend){};
-\node[empty, right=0.5em of alg_legend]
-{\SM{} class\\ \footnotesize (algebraic part)};
-
-\node[diff_legend, below=1.5em of alg_legend]
-(diff_legend){};
-\node[empty, right=0.5em of diff_legend]
-{\SM{} class\\ \footnotesize (differential part)};
-
-\end{tikzpicture}
+\include{module_classes_tikz}
 \end{center}
-\caption{\label{f:tensor_classes} Classes implementing tensors and tensor fields.}
+\caption{\label{f:module_classes} Python classes for modules. For each of them,
+the class of the base ring is indicated, as well as
+the class for the elements.}
 \end{figure}
 
-\subsection{Implementation of vector fields}
+
+\subsection{Implementation of vector fields} \label{s:vector_fields}
 
 Ultimately, in \SM{}, vector fields are described by their 
 components with respect to various vector frames, according to 
@@ -641,8 +385,8 @@ Examples of parallelizable manifolds are \cite{Lee13}
 \item the Cartesian space $\mathbb{R}^n$ for $n=1,2,\ldots$, 
 \item the circle $\mathbb{S}^1$, 
 \item the torus $\mathbb{T}^2 = \mathbb{S}^1\times \mathbb{S}^1$, 
-\item the 3-sphere $\mathbb{S}^3 \simeq \mathrm{SU}(2)$, as any Lie group, 
-\item the 7-sphere $\mathbb{S}^7$, 
+\item the sphere $\mathbb{S}^3 \simeq \mathrm{SU}(2)$, as any Lie group, 
+\item the sphere $\mathbb{S}^7$, 
 \item any orientable 3-manifold (Steenrod theorem \cite{Steen51}).
 \end{itemize}
 On the other hand, examples of non-parallelizable manifolds are
@@ -655,13 +399,22 @@ Actually, ``most'' manifolds are non-parallelizable.
 As noticed above, if a manifold is covered by a single chart, it is 
 parallelizable (the prototype being $\mathbb{R}^n$). But the reverse is not 
 true: $\mathbb{S}^1$ and $\mathbb{T}^2$ are parallelizable and require 
-at least two and four charts to cover them, respectively. 
+at least two charts to cover them. 
+
+\begin{figure}
+\begin{center}
+\include{tensorfield_classes_tikz}
+\end{center}
+\caption{\label{f:tensor_classes} Python classes implementing tensors and tensor fields.}
+\end{figure}
 
 
 If the manifold $\mathcal{M}$ is not parallelizable,
-we assume that it can be decomposed into a finite number $N$
+we assume that it can be covered by a finite number $N$
 of parallelizable open subsets $U_i$ ($1\leq i \leq N$).
-We then consider the restrictions of vector fields to these domains.
+In particular, this holds if $\mathcal{M}$ is compact, for any compact
+manifold admits a finite atlas. 
+We then consider the restrictions of vector fields to the $U_i$'s.
 For each $i$, $\mathscr{X}(U_i)$ is a free module of rank $n=\mathrm{dim}\, \mathcal{M}$ and is implemented in \SM{} as an instance of 
 \code{VectorFieldFreeModule} (cf. Sec.~\ref{s:modules} and Figs.~\ref{f:module_classes}
 and \ref{f:tensor_classes}). 
@@ -695,7 +448,7 @@ of $\mathcal{M}$, $U_i$ ($1\leq i\leq N$) and then considers
 the components on various vector frames on each subset $U_i$.
 For each vector frame $(\w{e}_a)$, the set of components $(T^a_{\ \, b})$
 is stored in a devoted class (named \code{Components}), which takes into account
-all the tensor monoterm symmetries and antisymmetries: only non-redundant
+all the tensor monoterm symmetries: only non-redundant
 components are stored, the other ones being deduced by (anti)symmetry. 
 This is illustrated in Fig.~\ref{f:tensorfield_structure}, which depicts the
 internal storage of tensor fields in \SM{}. Note that each component
@@ -710,111 +463,7 @@ The last level is constituted by \Sage{}'s symbolic expressions
 
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[font=\footnotesize, remember picture, 
-node distance=0.5em, minimum height=0.5em, auto]
-
-\node[tens, align=center](tensorfield)
-{\code{TensorField}\\ \normalsize $T$};
-
-% Restrictions
-\node[dict, below=of tensorfield](restrictions){
-\begin{tikzpicture}
-  \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{\code{TensorField.\_restrictions}}}; 
-  \node[empty, below left=of description](domain1)
-  {domain 1:\\ {\normalsize $U_1$}}; 
-  \node[tens, right=0em of domain1](tensorfield1)
-  {\code{TensorFieldParal}\\ 
-  {\normalsize $T|_{U_1}=T^a_{\ \, b} e_a\otimes
-e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes \varepsilon^{\hat{b}}=\dots$}};
-  \node[empty, right=of tensorfield1](domain2)
-  {domain 2:\\ {\normalsize $U_2$}};
-  \node[tens, align=center, right=0em of domain2](tensorfield2)
-  {\code{TensorFieldParal}\\ {\normalsize $T|_{U_2}$}};
-  \node[empty, right=of tensorfield2](more)
-  {\large $\dots$};
-\end{tikzpicture}
-};
-
-% Components
-\node[dict, below=of restrictions](components){
-\begin{tikzpicture}
-  \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{\code{TensorFieldParal.\_components}}};
-  \node[empty, below left=of description](frame1)
-  {frame 1:\\ {\normalsize $(e_a)$}};
-  \node[tens, right=0em of frame1](components1)
-  {\code{Components}\\
-  {\normalsize $(T^a_{\ \, b})_{1\le a,\,b\,\le n}$}};
-  \node[empty, right=of components1](frame2)
-  {frame 2:\\ {\normalsize $(\varepsilon_{\hat{a}})$}};
-  \node[tens, right=0em of frame2](components2)
-  {\code{Components}\\ 
-  {\normalsize $(T^{\hat{a}}_{\ \, \hat{b}})_{1\le \hat{a},\,\hat{b}\,\le n}$}};
-  \node[empty, right=of components2](more)
-  {\large $\dots$};
-\end{tikzpicture}
-};
-
-% comp Scalarfields 
-\node[dict, below=of components](comp){
-\begin{tikzpicture}
-  \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{\code{Components.\_comp}}};
-  \node[empty, below left=of description](comp1)
-  {\normalsize $(1,1):$};
-  \node[tens, align=center, right=0em of comp1](scalarfield1)
-  {\code{ScalarField}\\
-  {\normalsize $T^1_{\ \, 1}$}};
-  \node[empty, right=of scalarfield1](comp2)
-  {\normalsize $(1,2):$};
-  \node[tens, align=center, right=0em of comp2](scalarfield2)
-  {\code{ScalarField}\\
-  {\normalsize $T^1_{\ \, 2}$}};
-  \node[empty, right=of scalarfield2](more)
-  {\large $\dots$};
-\end{tikzpicture}
-};
-
-% Scalarfield express 
-\node[dict, below=of comp](express){
-\begin{tikzpicture}
-  \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{\code{ScalarField.\_express}}};
-  \node[empty, below left=of description](chart1)
-  {chart 1:\\
-  {\normalsize $\left(x^a\right)$}};
-  \node[tens, right=0em of chart1](functionchart1)
-  {\code{FunctionChart}\\
-  {\normalsize $T^1_{\ \, 1}\left(x^1,\dots,x^n\right)$}};
-  \node[empty, right=of functionchart1](chart2)
-  {chart 2:\\
-  {\normalsize $\left(y^a\right)$}};
-  \node[tens, right=0em of chart2](functionchart2)
-  {\code{FunctionChart}\\
-  {\normalsize $T^1_{\ \, 1}\left(y^1,\dots,y^n\right)$}};
-  \node[empty, right=of functionchart2](more)
-  {\large $\dots$};
-\end{tikzpicture}
-};
-
-% expressions 
-\node[tens, below=2em of functionchart1](express1)
-{\code{Expression}\\
-{\normalsize $x^1\cos x^2$}};
-\node[tens, below=2em of functionchart2](express2)
-{\code{Expression}\\
-{\normalsize $\left(y^1 + y^2\right)\cos\left(y^1 - y^2\right)$}};
-
-% lines 
-\draw[thick, line width=0.2em, black!60,-] (restrictions) -- (tensorfield);
-\draw[thick, line width=0.2em, black!60,-] (components) -- (tensorfield1);
-\draw[thick, line width=0.2em, black!60,-] (comp) -- (components1);
-\draw[thick, line width=0.2em, black!60,-] (express) -- (scalarfield1);
-\draw[thick, line width=0.2em, black!60,-] (express1) -- (functionchart1);
-\draw[thick, line width=0.2em, black!60,-] (express2) -- (functionchart2);
-
-\end{tikzpicture}
+\include{tensorfield_structure_tikz}
 \end{center}
 \caption{\label{f:tensorfield_structure} Storage of tensor fields in \SM{}.
 Each red box represents a Python dictionary; the dictionary values are
@@ -832,13 +481,12 @@ box.}
 At present (version 0.6), the functionalities included in \SM{} are as
 follows:  
 \begin{itemize}
-\item maps between manifolds, pullback operator,
-\item submanifolds, pushforward operator,
+\item maps between manifolds and  pullback operator,
+\item submanifolds and pushforward operator,
 \item standard tensor calculus (tensor product, 
 contraction, symmetrization, etc.), even on non-parallelizable manifolds,
-\item taking in charge all monoterm tensor symmetries, 
-\item exterior calculus (wedge product and exterior derivative of differential forms,
-Hodge duality),
+\item arbitrary monoterm tensor symmetries, 
+\item exterior calculus (wedge product and exterior derivative, Hodge duality),
 \item Lie derivatives along a vector field,
 \item affine connections (curvature, torsion),
 \item pseudo-Riemannian metrics (Levi-Civita connection, Weyl tensor),
@@ -879,7 +527,6 @@ At the end of the computation a fourth phase is needed to retrieve the
 results.
 The choice to divide the work in $2n$ is a compromise between the 
 load balancing and the cost of creating multiple processes.
-
 The number of processors to be used in the parallelization can be controlled by the
 user. 
 
@@ -890,7 +537,7 @@ user.
 \section{SageManifolds at work: Kerr spacetime and Simon-Mars tensor}
 
 We give hereafter a short illustration of \SM{} focused on tensor 
-calculus in 4-dimensional general relativity.
+calculus in 4-dimensional GR.
 Another example, to be found at \cite{SM_examples}, is
 based on the manifold $\mathbb{S}^2$ and 
 focuses more on the use of multiple charts and on the treatment of non-parallelizable 
@@ -929,9 +576,9 @@ $\mathbb{RP}^2$ (see the text for the color code).}
 
 
 
-Let us consider a 4-dimensional spacetime, i.e. a 4-dimensional smooth 
-manifold $\mathcal{M}$ endowed with a Lorentzian metric $\w{g}$. 
-We assume that the spacetime is stationary and denote by $\w{\xi}$ 
+Let us consider a 4-dimensional spacetime, i.e. a smooth 
+4-manifold $\mathcal{M}$ endowed with a Lorentzian metric $\w{g}$. 
+We assume that $(\mathcal{M},\w{g})$ is stationary and denote by $\w{\xi}$ 
 the corresponding Killing vector field. 
 The \emph{Simon-Mars tensor w.r.t. $\w{\xi}$} is then
 the type-(0,3) tensor field $\w{S}$ defined by \cite{Mars99}
@@ -946,11 +593,10 @@ with $\lambda := - \xi_\mu \xi^\mu$;
 \item $\mathcal{C}_{\alpha\beta\mu\nu} := C_{\alpha\beta\mu\nu}
     + \frac{i}{2} \epsilon^{\rho\sigma}_{\ \ \, \mu\nu}\,  C_{\alpha\beta\rho\sigma} $,
 with $C^\alpha_{\ \, \beta\mu\nu}$ being the Weyl tensor and 
-$\epsilon_{\alpha\beta\mu\nu}$ the Levi-Civita volume form;
+$\epsilon_{\alpha\beta\mu\nu}$ the Levi-Civita volume 4-form;
 \item $\mathcal{F}_{\alpha\beta} := F_{\alpha\beta} + i\,  {}^*\!F_{\alpha\beta}$, 
 with $F_{\alpha\beta} := \nabla_\alpha\xi_\beta$ (Killing 2-form) and 
-${}^*\!F_{\alpha\beta} := \frac{1}{2} \epsilon^{\mu\nu}_{\ \ \, \alpha\beta} F_{\mu\nu}$
-(Hodge dual of $F_{\alpha\beta}$);
+${}^*\!F_{\alpha\beta} := \frac{1}{2} \epsilon^{\mu\nu}_{\ \ \, \alpha\beta} F_{\mu\nu}$;
 \item $\sigma_\alpha := 2 \mathcal{F}_{\mu\alpha} \xi^\mu$ (Ernst 1-form).
 \end{itemize}
 The Simon-Mars tensor provides a nice characterization of Kerr spacetime,
@@ -967,22 +613,20 @@ according to formula (\ref{e:def_Simon-Mars}) for the Kerr metric and check
 that we get zero (the ``if'' part of the above theorem). 
 The corresponding worksheet can be downloaded from \\
 \url{http://sagemanifolds.obspm.fr/examples/html/SM_Mars-Simon.html}.\\
-To fully understand what follows, the reader must be aware that, 
+For the sake of clarity, let us recall that, 
 as an object-oriented language, Python (and hence \Sage{}) makes use of 
 the following postfix notation:
 \begin{center}
 \textcolor{blue}{\texttt{result}} = \textcolor{red}{\texttt{object}}\texttt{.}\texttt{function(}\textcolor{green}{\texttt{arguments}}\texttt{)}
 \end{center}
-In a functional language, this would be written instead as
- \begin{center}
-\textcolor{blue}{\texttt{result}} = \texttt{function(}\textcolor{red}{\texttt{object}}\texttt{,}\textcolor{green}{\texttt{arguments}}\texttt{)}
-\end{center}
+In a functional language, this would correspond to 
+\textcolor{blue}{\texttt{result}} = \texttt{function(}\textcolor{red}{\texttt{object}}\texttt{,}\textcolor{green}{\texttt{arguments}}\texttt{)}.
 For instance, the Riemann tensor of a metric $\w{g}$ is obtained as 
 \verb+riem = g.riemann()+
 (in this case, there is no extra argument, hence the empty parentheses). 
 With this in mind, let us proceed with the computation by means of 
 \SM{}. In the text below, the blue color denotes the outputs as they appear in
-the \Sage{} notebook (note that all mathematical outputs are automatically
+the \Sage{} notebook (note that all outputs are automatically
 \LaTeX{}-formatted by \Sage).
 
 The first step is to declare the Kerr spacetime (or more precisely the part of the Kerr spacetime covered by Boyer-Lindquist coordinates) as a 4-dimensional manifold:
@@ -1154,7 +798,7 @@ r^{3}\right)} \cos\left(\theta\right) \sin\left(\theta\right)}{a^{4}
 \cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
 \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} \theta\wedge
 \mathrm{d} \phi$}
-The squared norm of the Killing vector is:
+The squared norm of the Killing vector is
 \begin{verbatim}
 lamb = - g(xi,xi)
 lamb.set_name('lambda', r'\lambda')
@@ -1176,7 +820,7 @@ or, using index notation as $\lambda = - \xi_a \xi^a$:
 lamb == - ( xi_form['_a']*xi['^a'] )
 \end{verbatim}
 \soutput{True}
-The Riemann curvature tensor associated with $\w{g}$ is:
+The Riemann curvature tensor associated with $\w{g}$ is
 \begin{verbatim}
 Riem = g.riemann()
 print Riem
@@ -1412,11 +1056,9 @@ It encompasses currently $\sim 35,000$ lines of Python code (including comments 
 doctests). 
 The last stable version (0.6), the functionalities of which are 
 listed in Sec.~\ref{s:functionalities},
-is freely downloadable from the project web page
+is freely downloadable from the project page
 \cite{SM}. The development version is also available 
-from that page.
-
-Among the future developments are 
+from that page. Among the future developments are 
 \begin{itemize}
 \item the extrinsic geometry of pseudo-Riemannian submanifolds,
 \item the computation of geodesics (numerical integration via \soft{Sage/GSL} or 
@@ -1440,16 +1082,20 @@ anybody interested in contributing to the project is very welcome!
 \ack
 This work has benefited from enlightening discussions with Volker Braun,
 Vincent Delecroix, Simon King, S\'ebastien Labb\'e, Jos\'e M. Mart\'\i n-Garc\'\i a, 
-Marc Mezzarobba, Thierry Monteil, Travis Scrimshaw and Nicolas Thi\'ery. 
-We also thank St\'ephane M\'en\'e for his technical help. 
+Marc Mezzarobba, Thierry Monteil, Travis Scrimshaw,  Nicolas M.  Thi\'ery
+and Anne Vaugon. 
+We also thank St\'ephane M\'en\'e for his technical help and
+Tolga Birkandan for reading the manuscript. 
 
 
 \section*{References}
 \begin{thebibliography}{10}
+\bibitem{Fletc67}
+Fletcher J G, Clemens R, Matzner R, Thorne K S and Zimmerman B A 1967
+{\it Astrophys. J.} {\bf 148}, L91
 \bibitem{Skea94}
 Skea J E F 1994 Applications of SHEEP {\it Lecture notes available at}
-\url{
-http://www.computeralgebra.nl/systemsoverview/special/tensoranalysis/sheep/}
+\url{http://www.computeralgebra.nl/systemsoverview/special/tensoranalysis/sheep/}
 \bibitem{MacCa02}
 MacCallum M A H 2002 {\it Int. J. Mod. Phys. A} {\bf 17}, 2707 
 \bibitem{KorolKS13}
@@ -1465,6 +1111,8 @@ Martin-Garcia J M 2008 {\it Comput. Phys. Commun.} {\bf 179}, 597;
 \bibitem{AnderT12}
 Anderson I M and Torre C G 2012 {\it J. Math. Phys.} {\bf 53}, 013511; 
 \url{http://digitalcommons.usu.edu/dg/}
+\bibitem{GRTensorII}
+\url{http://grtensor.phy.queensu.ca/}
 \bibitem{Atlas2}
 \url{http://digi-area.com/Maple/atlas/}
 \bibitem{Peete07}
@@ -1487,6 +1135,8 @@ freely downloadable from \url{http://sagebook.gforge.inria.fr/}
 \bibitem{Bard15}
 Bard G V 2015 {\it Sage for Undergraduates} (Americ. Math. Soc.) in press;
 preprint freely downloadable from \url{http://www.gregorybard.com/}
+\bibitem{sage_categories}
+\url{http://www.sagemath.org/doc/reference/categories/sage/categories/primer.html}
 \bibitem{sage_diff_form}
 \url{http://sagemath.org/doc/reference/tensor/}
 \bibitem{sage_param_surf}

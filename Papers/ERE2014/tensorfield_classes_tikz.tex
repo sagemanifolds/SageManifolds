@@ -1,0 +1,73 @@
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum
+height=2em, auto]
+
+\node[diff](tensorfield)
+{TensorField\\ \scriptsize {\it parent:}\\ \scriptsize
+TensorFieldModule};
+
+\node[diff, below=of tensorfield](vectorfield)
+{VectorField\\ \scriptsize {\it parent:}\\ \scriptsize
+VectorFieldModule};
+
+\path[line] (vectorfield) -- (tensorfield);
+
+\node[diff, right=of vectorfield](tensorfieldparal)
+{TensorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize
+TensorFieldFreeModule};
+
+\node[diff, below=of tensorfieldparal](Vectorfieldparal)
+{VectorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize
+VectorFieldFreeModule};
+
+\path[line] (Vectorfieldparal) -- (tensorfieldparal);
+\path[line] (Vectorfieldparal) -- (vectorfield);
+\path[line] (tensorfieldparal) -- (tensorfield);
+
+\node[alg, right=6cm of tensorfield](freemoduletensor)
+{FreeModuleTensor\\ \scriptsize {\it parent:}\\ \scriptsize
+TensorFreeModule};
+
+\node[alg, below=of freemoduletensor](finiterankfreemoduleelement)
+{FiniteRankFreeModuleElement\\ \scriptsize {\it parent:}\\ \scriptsize
+FiniteRankFreeModule};
+
+\node[diff, below=of finiterankfreemoduleelement](tangentvector)
+{TangentVector\\ \scriptsize {\it parent:}\\ \scriptsize
+TangentSpace};
+
+\node[native, above=4cm of tensorfieldparal]
+(element){Element};
+
+\node[native, below=of element]
+(module_element){ModuleElement\\ {\scriptsize {\it parent:} Module}};
+
+\path[line] (module_element) -- (element);
+
+\path[line] (tensorfield) -- (module_element);
+
+\path[line] (finiterankfreemoduleelement) -- (freemoduletensor);
+\path[line] (Vectorfieldparal) -- (finiterankfreemoduleelement);
+
+\path[line] (tangentvector) -- (finiterankfreemoduleelement);
+
+\path[line] (tensorfieldparal) -- (freemoduletensor);
+
+\path[line] (freemoduletensor) -- (module_element);
+
+% legend 
+\node[native_legend, left=4cm of Vectorfieldparal]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Native \Sage{} class};
+
+\node[alg_legend, below=1.em of native_legend]
+(alg_legend){};
+\node[empty, right=0.5em of alg_legend]
+{\SM{} class\\ \footnotesize (algebraic part)};
+
+\node[diff_legend, below=1.5em of alg_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{\SM{} class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}

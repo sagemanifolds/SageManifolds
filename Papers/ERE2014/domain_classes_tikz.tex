@@ -1,35 +1,3 @@
-%\documentclass{standalone}
-%% to produce png run pdflatex --shell-escape 
-\documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
-
-\newcommand{\soft}[1]{\textsf{#1}}
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\Sage}{\soft{Sage}}
-\newcommand{\SM}{\soft{SageManifolds}}
-
-\usepackage{color}
-\usepackage{tikz}
-\usetikzlibrary{calc,positioning,shapes,arrows,chains}
-
-\begin{document}
-
-\tikzset{
-base/.style={draw, thick, align=center},
-native/.style={base, fill=cyan!30},
-alg/.style={base, fill=red!40, rounded corners},
-diff/.style = {base, fill=yellow!50, rounded corners},
-dict/.style={base, fill=pink!40, draw=red},
-tens/.style = {base, fill=yellow!25, align=left},
-empty/.style={align=left},
-% 
-legend/.style = {minimum width=2em, minimum height=1em},
-native_legend/.style = {native, legend},
-alg_legend/.style = {alg, legend},
-diff_legend/.style = {diff, legend},
-%
-line/.style = {->, draw, thick, >=triangle 45}
-}
-
 \begin{tikzpicture}[font=\small, node distance=0.5cm, minimum
 height=2em, auto]
 
@@ -87,5 +55,3 @@ height=2em, auto]
 {\soft{SageManifolds} class\\ \footnotesize (differential part)};
 
 \end{tikzpicture}
-
-\end{document}
