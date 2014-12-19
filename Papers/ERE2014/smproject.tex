@@ -592,7 +592,7 @@ where
 with $\lambda := - \xi_\mu \xi^\mu$;
 \item $\mathcal{C}_{\alpha\beta\mu\nu} := C_{\alpha\beta\mu\nu}
     + \frac{i}{2} \epsilon^{\rho\sigma}_{\ \ \, \mu\nu}\,  C_{\alpha\beta\rho\sigma} $,
-with $C^\alpha_{\ \, \beta\mu\nu}$ being the Weyl tensor and 
+with $C^\alpha_{\ \, \beta\mu\nu}$ being the Weyl curvature tensor and 
 $\epsilon_{\alpha\beta\mu\nu}$ the Levi-Civita volume 4-form;
 \item $\mathcal{F}_{\alpha\beta} := F_{\alpha\beta} + i\,  {}^*\!F_{\alpha\beta}$, 
 with $F_{\alpha\beta} := \nabla_\alpha\xi_\beta$ (Killing 2-form) and 
@@ -612,7 +612,7 @@ In what follows, we use \SM{} to compute the Simon-Mars tensor
 according to formula (\ref{e:def_Simon-Mars}) for the Kerr metric and check 
 that we get zero (the ``if'' part of the above theorem). 
 The corresponding worksheet can be downloaded from \\
-\url{http://sagemanifolds.obspm.fr/examples/html/SM_Mars-Simon.html}.\\
+\url{http://sagemanifolds.obspm.fr/examples/html/SM_Simon-Mars_Kerr.html}.\\
 For the sake of clarity, let us recall that, 
 as an object-oriented language, Python (and hence \Sage{}) makes use of 
 the following postfix notation:
@@ -830,11 +830,17 @@ The component $R^0_{\ \, 123} = R^t_{\ \, r\theta\phi}$ is
 \begin{verbatim}
 Riem[0,1,2,3]
 \end{verbatim}
-\soutput{\tiny $-\frac{{\left(a^{7} m - 2 \, a^{5} m^{2} r + a^{5} m r^{2}\right)}
+\soutput{$-\frac{{\left(a^{7} m - 2 \, a^{5} m^{2} r + a^{5} m r^{2}\right)}
 \cos\left(\theta\right) \sin\left(\theta\right)^{5} + {\left(a^{7} m + 2
 \, a^{5} m^{2} r + 6 \, a^{5} m r^{2} - 6 \, a^{3} m^{2} r^{3} + 5 \,
 a^{3} m r^{4}\right)} \cos\left(\theta\right)
-\sin\left(\theta\right)^{3} - 2 \, {\left(a^{7} m - a^{5} m r^{2} - 5 \,
+\sin\left(\theta\right)^{3}}{a^{2} r^{6} - 2 \, m r^{7} + r^{8} +
+{\left(a^{8} - 2 \, a^{6} m r + a^{6} r^{2}\right)}
+\cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2 \, a^{4} m
+r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3 \,
+{\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
+\cos\left(\theta\right)^{2}}\\
++ \frac{2 \, {\left(a^{7} m - a^{5} m r^{2} - 5 \,
 a^{3} m r^{4} - 3 \, a m r^{6}\right)} \cos\left(\theta\right)
 \sin\left(\theta\right)}{a^{2} r^{6} - 2 \, m r^{7} + r^{8} +
 {\left(a^{8} - 2 \, a^{6} m r + a^{6} r^{2}\right)}
@@ -898,7 +904,7 @@ FF.set_name('FF', r'\mathcal{F}')
 print FF ; FF.view()
 \end{verbatim}
 \soutput{2-form 'FF' on the 4-dimensional manifold 'M'\\
-$\mathcal{F} = \left( -\frac{a^{2} m \cos\left(\theta\right)^{2} + 2 i \,
+\small $\mathcal{F} = \left( -\frac{a^{2} m \cos\left(\theta\right)^{2} + 2 i \,
 a m r \cos\left(\theta\right) - m r^{2}}{a^{4}
 \cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
 \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} t\wedge
@@ -907,20 +913,47 @@ a m r \cos\left(\theta\right) - m r^{2}}{a^{4}
 \, a m r^{2}\right)} \sin\left(\theta\right)}{a^{4}
 \cos\left(\theta\right)^{4} + 2 \, a^{2} r^{2}
 \cos\left(\theta\right)^{2} + r^{4}} \right) \mathrm{d} t\wedge
-\mathrm{d} \theta + \left( \frac{-4 i \, a^{4} m^{2} r^{2}
+\mathrm{d} \theta\\ 
++ 
+%\left( \frac{-4 i \, a^{4} m^{2} r^{2}
+%\cos\left(\theta\right) \sin\left(\theta\right)^{4} + {\left(a^{3} m
+%r^{4} - 2 \, a m^{2} r^{5} + a m r^{6} - {\left(a^{7} m - 2 \, a^{5}
+%m^{2} r + a^{5} m r^{2}\right)} \cos\left(\theta\right)^{4} - {\left(2 i
+%\, a^{6} m r + 2 i \, a^{4} m r^{3}\right)} \cos\left(\theta\right)^{3}
+%- {\left(-4 i \, a^{4} m^{2} r^{2} + 2 i \, a^{4} m r^{3} - 4 i \, a^{2}
+%m^{2} r^{4} + 2 i \, a^{2} m r^{5}\right)}
+%\cos\left(\theta\right)\right)} \sin\left(\theta\right)^{2}}{a^{2} r^{6}
+%- 2 \, m r^{7} + r^{8} + {\left(a^{8} - 2 \, a^{6} m r + a^{6}
+%r^{2}\right)} \cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2
+%\, a^{4} m r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3
+%\, {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
+%\cos\left(\theta\right)^{2}} \right) \mathrm{d} r\wedge \mathrm{d} \phi
+\left(\frac{-4 i \, a^{4} m^{2} r^{2}
 \cos\left(\theta\right) \sin\left(\theta\right)^{4} + {\left(a^{3} m
 r^{4} - 2 \, a m^{2} r^{5} + a m r^{6} - {\left(a^{7} m - 2 \, a^{5}
-m^{2} r + a^{5} m r^{2}\right)} \cos\left(\theta\right)^{4} - {\left(2 i
-\, a^{6} m r + 2 i \, a^{4} m r^{3}\right)} \cos\left(\theta\right)^{3}
-- {\left(-4 i \, a^{4} m^{2} r^{2} + 2 i \, a^{4} m r^{3} - 4 i \, a^{2}
-m^{2} r^{4} + 2 i \, a^{2} m r^{5}\right)}
-\cos\left(\theta\right)\right)} \sin\left(\theta\right)^{2}}{a^{2} r^{6}
+m^{2} r + a^{5} m r^{2}\right)} \cos\left(\theta\right)^{4} 
+\right)} \sin\left(\theta\right)^{2}}
+{a^{2} r^{6}
 - 2 \, m r^{7} + r^{8} + {\left(a^{8} - 2 \, a^{6} m r + a^{6}
 r^{2}\right)} \cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2
 \, a^{4} m r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3
 \, {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
-\cos\left(\theta\right)^{2}} \right) \mathrm{d} r\wedge \mathrm{d} \phi
-+ \left( -\frac{{\left(i \, a^{4} m + i \, a^{2} m r^{2}\right)}
+\cos\left(\theta\right)^{2}}\right.\\
+-\left.\frac{
+\left(
+{\left(2 i
+\, a^{6} m r + 2 i \, a^{4} m r^{3}\right)} \cos\left(\theta\right)^{3}
++{\left(-4 i \, a^{4} m^{2} r^{2} + 2 i \, a^{4} m r^{3} - 4 i \, a^{2}
+m^{2} r^{4} + 2 i \, a^{2} m r^{5}\right)}
+\cos\left(\theta\right)\right)\sin\left(\theta\right)^{2}}
+{a^{2} r^{6}
+- 2 \, m r^{7} + r^{8} + {\left(a^{8} - 2 \, a^{6} m r + a^{6}
+r^{2}\right)} \cos\left(\theta\right)^{6} + 3 \, {\left(a^{6} r^{2} - 2
+\, a^{4} m r^{3} + a^{4} r^{4}\right)} \cos\left(\theta\right)^{4} + 3
+\, {\left(a^{4} r^{4} - 2 \, a^{2} m r^{5} + a^{2} r^{6}\right)}
+\cos\left(\theta\right)^{2}}\right)\mathrm{d} r\wedge \mathrm{d} \phi\\
++ 
+\left( -\frac{{\left(i \, a^{4} m + i \, a^{2} m r^{2}\right)}
 \sin\left(\theta\right)^{3} + {\left(-i \, a^{4} m + i \, m r^{4} + 2 \,
 {\left(a^{3} m r + a m r^{3}\right)} \cos\left(\theta\right)\right)}
 \sin\left(\theta\right)}{a^{4} \cos\left(\theta\right)^{4} + 2 \, a^{2}
@@ -954,10 +987,16 @@ CC[0,1,2,3]
 \soutput{$\frac{{\left(a^{5} m \cos\left(\theta\right)^{5} + 3 i \, a^{4} m r
 \cos\left(\theta\right)^{4} + 3 i \, a^{2} m r^{3} + 2 i \, m r^{5} -
 {\left(3 \, a^{5} m + 5 \, a^{3} m r^{2}\right)}
-\cos\left(\theta\right)^{3} + {\left(-9 i \, a^{4} m r - 7 i \, a^{2} m
+\cos\left(\theta\right)^{3}\right)}
+\sin\left(\theta\right)}
+{a^{6} \cos\left(\theta\right)^{6} + 3 \, a^{4}
+r^{2} \cos\left(\theta\right)^{4} + 3 \, a^{2} r^{4}
+\cos\left(\theta\right)^{2} + r^{6}}\\
++\frac{{\left({\left(-9 i \, a^{4} m r - 7 i \, a^{2} m
 r^{3}\right)} \cos\left(\theta\right)^{2} + 3 \, {\left(3 \, a^{3} m
 r^{2} + 2 \, a m r^{4}\right)} \cos\left(\theta\right)\right)}
-\sin\left(\theta\right)}{a^{6} \cos\left(\theta\right)^{6} + 3 \, a^{4}
+\sin\left(\theta\right)}
+{a^{6} \cos\left(\theta\right)^{6} + 3 \, a^{4}
 r^{2} \cos\left(\theta\right)^{4} + 3 \, a^{2} r^{4}
 \cos\left(\theta\right)^{2} + r^{6}}$}
 The Ernst 1-form $\sigma_\alpha = 2 \mathcal{F}_{\mu\alpha} \, \xi^\mu$ (0 = contraction on the first index of $\w{\mathcal{F}}$):
@@ -1057,8 +1096,8 @@ doctests).
 The last stable version (0.6), the functionalities of which are 
 listed in Sec.~\ref{s:functionalities},
 is freely downloadable from the project page
-\cite{SM}. The development version is also available 
-from that page. Among the future developments are 
+\cite{SM}. The development version (to become version 0.7 soon)
+is also available from that page. Among future developments are 
 \begin{itemize}
 \item the extrinsic geometry of pseudo-Riemannian submanifolds,
 \item the computation of geodesics (numerical integration via \soft{Sage/GSL} or 
@@ -1085,7 +1124,10 @@ Vincent Delecroix, Simon King, S\'ebastien Labb\'e, Jos\'e M. Mart\'\i n-Garc\'\
 Marc Mezzarobba, Thierry Monteil, Travis Scrimshaw,  Nicolas M.  Thi\'ery
 and Anne Vaugon. 
 We also thank St\'ephane M\'en\'e for his technical help and
-Tolga Birkandan for reading the manuscript. 
+Tolga Birkandan for fruitful comments about the manuscript.
+EG acknowledges the warm hospitality of the Organizers of the
+\emph{Encuentros Relativistas Espa\~noles 2014}, where this work was
+presented. 
 
 
 \section*{References}
