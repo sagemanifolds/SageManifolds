@@ -1134,8 +1134,7 @@ class Components(SageObject):
                 # So we use a loop specific to the current case and return the
                 # result:
                 for ind in result.non_redundant_index_generator():
-                    result._comp[ind] = self._comp[(ind[0],)] * \
-                                                          self._comp[(ind[1],)]
+                    result[[ind]] = self[[ind[0]]] * self[[ind[1]]]
                 return result
             else:
                 result = Components(self._ring, self._frame, 2, self._sindex, 
