@@ -1,3 +1,10 @@
+Changes 0.6 --> 0.7
+===================
+view() --> display()
+open_domain() --> open_subset()
+
+
+
 ===========
 Version 0.4 (10 February 2014)
 ===========
