@@ -2,7 +2,9 @@ Changes 0.6 --> 0.7
 ===================
 view() --> display()
 open_domain() --> open_subset()
-
+Domain -> ManifoldSubset
+OpenDomain -> ManifoldOpenSubset
+Point -> ManifoldPoint
 
 
 ===========
