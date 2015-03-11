@@ -1,11 +1,40 @@
+===================
 Changes 0.6 --> 0.7
 ===================
+
 view() --> display()
+view_bases() --> print_bases()
 open_domain() --> open_subset()
 Domain -> ManifoldSubset
 OpenDomain -> ManifoldOpenSubset
 Point -> ManifoldPoint
 
+New classes:
+-----------
+- FreeModuleHomset
+- FiniteRankFreeModuleMorphism
+- FreeModuleLinearGroup
+- ExtPowerFreeModule
+- ManifoldHomset
+- ManifoldCurveSet
+- ManifoldCurve
+- AutomorphismFieldParalGroup
+- AutomorphismFieldGroup
+- DiffFormModule
+- DiffFormFreeModule
+
+
+Deleted classes:
+---------------
+- FreeModuleEndomorphism
+- FreeModuleIdentityMap
+- FreeModuleLinForm
+- IdentityMap
+- EndomorphismField
+- EndomorphismFieldParal
+- TangentIdentityField
+- TangentIdentityFieldParal
+- OneForm
 
 ===========
 Version 0.4 (10 February 2014)
