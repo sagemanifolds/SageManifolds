@@ -2,13 +2,6 @@
 Changes 0.6 --> 0.7
 ===================
 
-view() --> display()
-view_bases() --> print_bases()
-open_domain() --> open_subset()
-Domain -> ManifoldSubset
-OpenDomain -> ManifoldOpenSubset
-Point -> ManifoldPoint
-
 New classes:
 -----------
 - FreeModuleHomset
@@ -18,11 +11,11 @@ New classes:
 - ManifoldHomset
 - ManifoldCurveSet
 - ManifoldCurve
+- OpenInterval
 - AutomorphismFieldParalGroup
 - AutomorphismFieldGroup
 - DiffFormModule
 - DiffFormFreeModule
-
 
 Deleted classes:
 ---------------
@@ -35,6 +28,23 @@ Deleted classes:
 - TangentIdentityField
 - TangentIdentityFieldParal
 - OneForm
+
+For the end user, new features are
+
+- the introduction of curves in manifolds (with some plotting capabilities)
+- improvements in differential mappings between manifolds, including mapping
+  composition and mapping differential
+- the introduction of homomorphisms between free modules
+
+Some semantic changes have also been performed:
+
+- Methods view() have been renamed display() (with disp() as an abbreviation);
+  view() is still usable but generates a deprecation warning.
+- Method open_domain() has been renamed open_subset().
+- Method view_bases() has been renamed print_bases().
+- Class Domain has been renamed ManifoldSubset.
+- Class OpenDomain has been renamed ManifoldOpenSubset.
+- Class Point has been renamed ManifoldPoint.
 
 ===========
 Version 0.4 (10 February 2014)
