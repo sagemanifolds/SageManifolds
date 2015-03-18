@@ -15,4 +15,9 @@
     24734 lines of Python code in src/sage/geometry/manifolds (including comments and doctests)
     10423 lines of Python code in src/sage/tensor/modules (including comments and doctests)
     total = 35157 lines
+12 March 2015: version 0.7 released (git commit = aef587d9ae7cdf9a1248022974289d78089ffe2e); 
+    29943 lines of Python code in src/sage/geometry/manifolds (including comments and doctests)
+    17152 lines of Python code in src/sage/tensor/modules (including comments and doctests)
+    total = 47095 lines
     
+

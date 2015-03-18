@@ -42,11 +42,11 @@ height=2em, auto]
 \coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
 
 \node[diff, below=1.5cm of Middle]
-(domain) {ManifoldSubset\\ {\scriptsize {\it element:} ManifoldPoint}};
+(domain) {ManifoldSubset};
 
 \path[line] (domain) -- (unique_represenation);
-\path[line] (domain) -- node [near start, yshift=-1em, xshift=6em]
-{\footnotesize {\it category:} Sets} (parent);
+\path[line] (domain) -- node [near start, yshift=-1em, xshift=6.7em]
+{\footnotesize {\it category:} Sets()} (parent);
 
 \node[diff, below=of domain]
 (opendomain) {ManifoldOpenSubset};
@@ -54,7 +54,7 @@ height=2em, auto]
 \path[line] (opendomain) -- (domain);
 
 \node[diff, below=of opendomain]
-(manifold) {Manifold};
+(manifold) {Manifold\\ {\scriptsize {\it element:} ManifoldPoint}};
 
 \path[line] (manifold) -- (opendomain);
 
