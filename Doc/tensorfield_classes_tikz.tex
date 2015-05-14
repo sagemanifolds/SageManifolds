@@ -1,5 +1,5 @@
 %\documentclass{standalone}
-%% to produce png run pdflatex --shell-escape 
+%% to produce png run pdflatex --shell-escape
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
 \newcommand{\soft}[1]{\textsf{#1}}
@@ -21,7 +21,7 @@ diff/.style = {base, fill=yellow!50, rounded corners},
 dict/.style={base, fill=pink!40, draw=red},
 tens/.style = {base, fill=yellow!25, align=left},
 empty/.style={align=left},
-% 
+%
 legend/.style = {minimum width=2em, minimum height=1em},
 native_legend/.style = {native, legend},
 alg_legend/.style = {alg, legend},
@@ -86,7 +86,7 @@ TangentSpace};
 
 \path[line] (freemoduletensor) -- (module_element);
 
-% legend 
+% legend
 \node[native_legend, left=4cm of Vectorfieldparal]
 (native_legend){};
 \node[empty, right=0.5em of native_legend]
@@ -95,7 +95,7 @@ TangentSpace};
 \node[alg_legend, below=1.em of native_legend]
 (alg_legend){};
 \node[empty, right=0.5em of alg_legend]
-{\SM{} class\\ \footnotesize (algebraic part)};
+{\SM{} class\\ \footnotesize (algebraic part; \textsl{in Sage 6.6})};
 
 \node[diff_legend, below=1.5em of alg_legend]
 (diff_legend){};

@@ -1,5 +1,5 @@
 %\documentclass{standalone}
-%% to produce png run pdflatex --shell-escape 
+%% to produce png run pdflatex --shell-escape
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
 \newcommand{\soft}[1]{\textsf{#1}}
@@ -21,7 +21,7 @@ diff/.style = {base, fill=yellow!50, rounded corners},
 dict/.style={base, fill=pink!40, draw=red},
 tens/.style = {base, fill=yellow!25, align=left},
 empty/.style={align=left},
-% 
+%
 legend/.style = {minimum width=2em, minimum height=1em},
 native_legend/.style = {native, legend},
 alg_legend/.style = {alg, legend},
@@ -60,14 +60,10 @@ xshift=14.3em]
 
 \path[line] (scalarfield) -- (caelement);
 
-\node[diff, below=of scalarfield](zeroscalarfield)
-{ZeroScalarField\\ \scriptsize {\it parent:} ScalarFieldAlgebra};
 
-\path[line] (zeroscalarfield) -- (scalarfield);
+% legend
 
-% legend 
-
-\node[native_legend, left=8cm of zeroscalarfield]
+\node[native_legend, below=1cm of scalar_field_algebra]
 (native_legend){};
 \node[empty, right=0.5em of native_legend]
 {Native \Sage{} class};
