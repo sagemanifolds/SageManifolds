@@ -1,22 +1,11 @@
-DEFECTS:
-
-- Object constructed by means of methods
-   linear_form(), alt_form()
-   endomorphim(), automorphism(), identity_map()
-  of FiniteRankFreeModule do not inherit from Modules(R).element_class,
-  where R is the ring over which the module is defined.
-
-
 IMPROVED EFFICIENCY:
 
 - compute the action of a tensor on vectors and linear forms by taking into
   account the tensor symmetries/antisymmetries
 
-- parallelisation of tensor arithmetics
-
 - define operators == and != in Manifold ?
 
-- include simplify_chain in chart.py ? 
+- include simplify_chain in chart.py ?
 
 
 NEW FUNCTIONALITIES:
@@ -25,10 +14,10 @@ NEW FUNCTIONALITIES:
 
 - restore the (anti)symmetries after a up(g) or down(g) (raising/lowering on all the indices)
 
-- tensor product in Components: treat the symmetry of the output in the case of 
+- tensor product in Components: treat the symmetry of the output in the case of
   tensor product with self in the case nid>1, e.g. A_{ij} A_{kl} (for the time
   being, only the case A_i A_j is treated)
-  
+
 - define "cuts" as submanifolds with some coordinate(s) set to constant
 
 - extrinsic geometry of pseudo-riemannian submanifolds
@@ -43,7 +32,7 @@ NEW FUNCTIONALITIES:
 
 - permute the arguments of a tensor, e.g. from the (0,3)-tensor A, define a
   (0,3)-tensor B such that B(u,v,w) = A(w,v,u)
-  
+
 - catalog of pre-defined manifolds
 
 

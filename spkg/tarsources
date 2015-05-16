@@ -1,5 +1,5 @@
 #!/bin/bash
-SM_VERSION=0.7
+SM_VERSION=0.8
 tar -cvf manifolds-$SM_VERSION.tar  src/doc/en/reference/manifolds/*.py src/doc/en/reference/manifolds/*.rst src/doc/en/reference/tensor_free_modules/*.py src/doc/en/reference/tensor_free_modules/*.rst  src/sage/geometry/manifolds/*.py src/sage/tensor/modules/*.py
 gzip manifolds-$SM_VERSION.tar
 exit 0
