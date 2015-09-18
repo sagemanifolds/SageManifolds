@@ -65,6 +65,7 @@ fi
 #
 # Re-building sage
 #
+touch src/sage/tensor/modules/*.py
 echo -e "\n$(tput bold)$(tput setaf 4)Running ./sage -b to re-build Sage.$(tput sgr 0)"
 ./sage -b
 
