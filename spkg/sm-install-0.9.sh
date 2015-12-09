@@ -44,6 +44,16 @@ if [ -d src/sage/tensor/modules ]; then
 	echo  -e "$(tput setaf 4)Removing previous version of src/sage/tensor/modules$(tput sgr 0)"
     rm -fr src/sage/tensor/modules/*
 fi
+if [[ -n $(grep "sage.geometry.manifolds.all" src/sage/all.py) ]]; then
+   echo "$(tput setaf 4)Delete old manifolds import from all.py...$(tput sgr 0)"
+   sed -i '/^from sage.geometry.manifolds.all/d' src/sage/all.py || \
+   gsed -i '/^from sage.geometry.manifolds.all/d' src/sage/all.py
+fi
+if [[ -n $(grep "sage.tensor.modules.all" src/sage/all.py) ]]; then
+   echo "$(tput setaf 4)Delete old tensor modules import from all.py...$(tput sgr 0)"
+   sed -i '/^from sage.tensor.modules.all/d' src/sage/all.py || \
+   gsed -i '/^from sage.tensor.modules.all/d' src/sage/all.py
+fi
 
 # Untaring the SM tree (src/sage/manifolds, src/sage/tensor/modules,
 # src/sage/parallel and the documentation files)
