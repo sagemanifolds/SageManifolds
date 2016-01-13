@@ -35,3 +35,8 @@
     17940 lines of Python code in src/sage/tensor/modules (including comments and doctests)
     total = 51253 lines
 
+10 Decembre 2015: version 0.9 released (git commit = 98810dff8d2f493d701b0fb20e1fb6e7e1794365);
+    http://git.sagemath.org/sage.git/commit/?id=98810dff8d2f493d701b0fb20e1fb6e7e1794365
+    46646 lines of Python code in src/sage/manifolds (including comments and doctests)
+    17936 lines of Python code in src/sage/tensor/modules (including comments and doctests)
+    total = 64582 lines
