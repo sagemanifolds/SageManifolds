@@ -1,0 +1,21 @@
+#!/bin/bash
+SM_VERSION=0.9.1-oldsage
+#
+tar -cvf manifolds-$SM_VERSION.tar  \
+src/doc/en/reference/manifolds/*.py \
+src/doc/en/reference/manifolds/*.rst \
+src/doc/en/reference/tensor_free_modules/*.py \
+src/doc/en/reference/tensor_free_modules/*.rst  \
+src/doc/en/reference/parallel/*.py \
+src/doc/en/reference/parallel/*.rst \
+src/sage/manifolds/*.py \
+src/sage/manifolds/differentiable/*.py \
+src/sage/tensor/all.py \
+src/sage/tensor/modules/*.py \
+src/sage/parallel/all.py \
+src/sage/parallel/parallelism.py \
+src/sage/categories/category_with_axiom.py \
+src/sage/categories/manifolds.py
+#
+gzip manifolds-$SM_VERSION.tar
+exit 0

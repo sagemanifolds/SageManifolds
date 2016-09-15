@@ -15,9 +15,9 @@ fi
 if [ "$1" != "no-download" ]; then
     echo -e "\n$(tput setaf 4)Downloading the sources of SageManifolds 0.9.1...$(tput sgr 0)"
     # Downloading with either wget or curl
-    wget -N http://sagemanifolds.obspm.fr/spkg/manifolds-0.9.1.tar.gz || curl -O http://sagemanifolds.obspm.fr/spkg/manifolds-0.9.1.tar.gz
+    wget -N http://sagemanifolds.obspm.fr/spkg/manifolds-0.9.1-oldsage.tar.gz || curl -O http://sagemanifolds.obspm.fr/spkg/manifolds-0.9.1-oldsage.tar.gz
 
-    if [ ! -f "manifolds-0.9.1.tar.gz" ]; then
+    if [ ! -f "manifolds-0.9.1-oldsage.tar.gz" ]; then
         echo  -e "\n$(tput setaf 1)Download the package manually and run again$(tput sgr 0)"
         exit 0
     fi
@@ -58,7 +58,7 @@ fi
 # Untaring the SM tree (src/sage/manifolds, src/sage/tensor/modules,
 # src/sage/parallel and the documentation files)
 echo "$(tput setaf 4)Unpacking...$(tput sgr 0)"
-tar -zxvf manifolds-0.9.1.tar.gz
+tar -zxvf manifolds-0.9.1-oldsage.tar.gz
 
 # Altering src/sage/all.py for import
 if [[ -z $(grep "sage.manifolds.all" src/sage/all.py) ]]; then
