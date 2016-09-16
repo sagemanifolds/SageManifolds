@@ -2,8 +2,8 @@ SageManifolds
 =============
 
 This repository contains the files of the SageManifolds project, except for
-the Python source files and Sphinx source files, which are in the git repository
-https://github.com/sagemanifolds/sage.git
+the Python source files and Sphinx source files, which are hosted at
+https://trac.sagemath.org/ticket/18528
 
 Contents:
 --------
@@ -17,7 +17,7 @@ is generated from the Sphinx source files)
 ./spkg: SageManifolds packages released on http://sagemanifolds.obspm.fr/ and
 the install scripts
 
-./Worksheets: Sage worksheets illustrating the use of SageManifolds, most of
-              them being posted on http://sagemanifolds.obspm.fr/
+./Worksheets: Sage (sws) and Jupyter (ipynb) worksheets illustrating the use of
+SageManifolds, most of them being posted on http://sagemanifolds.obspm.fr/
 
 
