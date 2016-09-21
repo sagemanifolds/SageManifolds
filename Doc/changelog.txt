@@ -1,3 +1,6 @@
+*** This is no longer updated ***
+*** see http://sagemanifolds.obspm.fr/changelog.html instead ***
+
 ===================
 Changes 0.6 --> 0.7
 ===================
@@ -59,7 +62,7 @@ Version 0.4 (10 February 2014)
     member express: now a dictionary with keys being the charts (and
     no longer their names)
 - class DiffMapping:
-    member coord_expression: now a dictionary with keys being the charts 
+    member coord_expression: now a dictionary with keys being the charts
     (and no longer their names)
 - class TensorField:
     member components: now a dictionary with keys being the vector frames
@@ -71,7 +74,7 @@ Version 0.4 (10 February 2014)
     method __call__ changed to __getitem__
 - class CoordBasis renamed to CoordFrame
 - class CompWithSym:
-    corrected treatment of pre-existing symmetries in methods symmetrize and antisymmetrize 
+    corrected treatment of pre-existing symmetries in methods symmetrize and antisymmetrize
 
 ===========
 Version 0.3 (24 November 2013)
@@ -79,19 +82,19 @@ Version 0.3 (24 November 2013)
 
 - New classes to deal with manifold subdomains:
     Domain, OpenDomain
-    introduced factory methods to build the various objects (charts, frames, 
+    introduced factory methods to build the various objects (charts, frames,
     fields) on the domains
 - class Manifold:
     inherits from OpenDomain and Sage's Parent class
 - class Point:
     inherits from Sage's Element class
 - class Chart:
-    the coordinates are no longer set by default to global variables: the 
-    operator <,> must be used for this 
+    the coordinates are no longer set by default to global variables: the
+    operator <,> must be used for this
     added coordinate restrictions, subcharts and supercharts
     new methods subchart(), transition_map(), valid_coordinates(), __getitem__()
     method __call__() applies now to a point and returns the point's coordinates
-- class Components: 
+- class Components:
     major change: construction is now on the vector frame + number of indices
 - class VectorFrame:
     added subframes and superframes to deal with subdomains
@@ -102,7 +105,7 @@ Version 0.3 (24 November 2013)
     method gradient() renamed to differential()
 - class TensorField:
     tensor fields are now defined on subdomains instead of the whole manifold
-    new method add_comp() in addition to set_comp() 
+    new method add_comp() in addition to set_comp()
     method show() renamed to view()
 - class DiffMapping:
     mappings between manifolds are now defined on subdomains
@@ -117,17 +120,17 @@ Version 0.2 (12 September 2013)
 svn revision 395
 
 - class Chart:
-    the coordinate ranges are now passed in the arguments (as intervals) and are 
+    the coordinate ranges are now passed in the arguments (as intervals) and are
     used to set assumptions on the coordinates
 - class MultiFunctionChart:
-    the various functions are now stored as instances of class FunctionChart 
+    the various functions are now stored as instances of class FunctionChart
     (and no longer as symbolic expressions)
     new method: expr()
     modified method: jacobian(): returns an array of FunctionChart instances
     modified method: jacobian_det(): returns a instance of FunctionChart
 - class Point:
     added fields name and latex_name
-    suppressed method change_coord(): the change-of-coordinate computation is 
+    suppressed method change_coord(): the change-of-coordinate computation is
     now taken in charge by method coord()
 - class DiffMapping:
     new methods: multi_function_chart(), expr(), show(), pullback()
@@ -136,7 +139,7 @@ svn revision 395
     new method: mtrace()
 - class TensorField:
     new method: mtrace()
-- Many doctests changed to comply with Sage 5.11 (new ordering in symbolic 
+- Many doctests changed to comply with Sage 5.11 (new ordering in symbolic
     expressions resulting from some change in pynac, cf. ticket 9880 on Sage Trac)
 
 ===========
