@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install script for SageManifolds 1.0 (useless for SageMath >= 7.5)
+
 if [ "$1" = "doc" ]; then
     echo -e "\n$(tput bold)$(tput setaf 4)Building the html documentation (may take some time).$(tput sgr 0)"
     ./sage -docbuild reference/tensor_free_modules html
