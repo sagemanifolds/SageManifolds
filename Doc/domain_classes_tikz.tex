@@ -1,5 +1,5 @@
 %\documentclass{standalone}
-%% to produce png run pdflatex --shell-escape 
+%% to produce png run pdflatex --shell-escape
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
 \newcommand{\soft}[1]{\textsf{#1}}
@@ -21,7 +21,7 @@ diff/.style = {base, fill=yellow!50, rounded corners},
 dict/.style={base, fill=pink!40, draw=red},
 tens/.style = {base, fill=yellow!25, align=left},
 empty/.style={align=left},
-% 
+%
 legend/.style = {minimum width=2em, minimum height=1em},
 native_legend/.style = {native, legend},
 alg_legend/.style = {alg, legend},
@@ -42,29 +42,27 @@ height=2em, auto]
 \coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
 
 \node[diff, below=1.5cm of Middle]
-(domain) {ManifoldSubset};
+(subset) {ManifoldSubset\\ {\scriptsize {\it element:} ManifoldPoint}};
+\path[line] (subset) -- (unique_represenation);
+\path[line] (subset) -- (parent);
 
-\path[line] (domain) -- (unique_represenation);
-\path[line] (domain) -- node [near start, yshift=-1em, xshift=6.7em]
-{\footnotesize {\it category:} Sets()} (parent);
-
-\node[diff, below=of domain]
-(opendomain) {ManifoldOpenSubset};
-
-\path[line] (opendomain) -- (domain);
-
-\node[diff, below=of opendomain]
-(manifold) {Manifold\\ {\scriptsize {\it element:} ManifoldPoint}};
-
-\path[line] (manifold) -- (opendomain);
+\node[diff, below=of subset]
+(manifold) {TopologicalManifold};
+\path[line] (manifold) -- (subset);
 
 \node[diff, below=of manifold]
-(submanifold) {Submanifold};
-\path[line] (submanifold) -- (manifold);
+(diffmanifold) {DifferentiableManifold};
+\path[line] (diffmanifold) -- (manifold);
 
-\node[diff, right=of submanifold]
+\node[diff, below=of diffmanifold]
+(interval) {OpenInterval};
+\path[line] (interval) -- (diffmanifold);
+
+\node[diff, below=of interval]
 (realline) {RealLine};
-\path[line] (realline) -- (manifold);
+\path[line] (realline) -- (interval);
+
+
 %
 \node[native, right=1.5cm of parent]
 (element){Element};
@@ -74,9 +72,9 @@ height=2em, auto]
 
 \path[line] (point) -- (element);
 
-% legend 
+% legend
 
-\node[native_legend, left=5cm of opendomain]
+\node[native_legend, left=5cm of subset]
 (native_legend){};
 \node[empty, right=0.5em of native_legend]
 {Native \soft{Sage} class};
