@@ -3,8 +3,8 @@
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
 \newcommand{\soft}[1]{\textsf{#1}}
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\Sage}{\soft{Sage}}
+\newcommand{\code}[1]{\textsf{#1}}
+\newcommand{\Sage}{\soft{SageMath}}
 \newcommand{\SM}{\soft{SageManifolds}}
 
 \usepackage{color}
@@ -33,42 +33,41 @@ line/.style = {->, draw, thick, >=triangle 45}
 \begin{tikzpicture}[font=\small, node distance=0.5cm, minimum
 height=2em, auto]
 
-\node[native]
-(unique_represenation){UniqueRepresentation};
+\node[native](unique_representation)
+{\code{UniqueRepresentation}};
 
-\node[native, right=of unique_represenation]
-(parent){Parent};
+\node[native, right=of unique_representation](parent)
+{\code{Parent}};
 
-\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
+\coordinate (Middle) at ($(unique_representation)!0.5!(parent)$);
 
-\node[diff, below=1.5cm of Middle]
-(subset) {ManifoldSubset\\ {\scriptsize {\it element:} ManifoldPoint}};
-\path[line] (subset) -- (unique_represenation);
+\node[diff, below=1.5cm of Middle](subset)
+{\code{ManifoldSubset}\\ {\scriptsize {\it element:} \code{ManifoldPoint}}};
+\path[line] (subset) -- (unique_representation);
 \path[line] (subset) -- (parent);
 
-\node[diff, below=of subset]
-(manifold) {TopologicalManifold};
+\node[diff, below=of subset](manifold)
+{\code{TopologicalManifold}};
 \path[line] (manifold) -- (subset);
 
-\node[diff, below=of manifold]
-(diffmanifold) {DifferentiableManifold};
+\node[diff, below=of manifold](diffmanifold)
+{\code{DifferentiableManifold}};
 \path[line] (diffmanifold) -- (manifold);
 
-\node[diff, below=of diffmanifold]
-(interval) {OpenInterval};
+\node[diff, below=of diffmanifold](interval)
+{\code{OpenInterval}};
 \path[line] (interval) -- (diffmanifold);
 
-\node[diff, below=of interval]
-(realline) {RealLine};
+\node[diff, below=of interval](realline)
+{\code{RealLine}};
 \path[line] (realline) -- (interval);
 
-
 %
-\node[native, right=1.5cm of parent]
-(element){Element};
+\node[native, right=1.5cm of parent](element)
+{\code{Element}};
 
-\node[diff, below=1.225cm of element]
-(point){ManifoldPoint};
+\node[diff, below=1.225cm of element](point)
+{\code{ManifoldPoint}};
 
 \path[line] (point) -- (element);
 
@@ -77,7 +76,7 @@ height=2em, auto]
 \node[native_legend, left=5cm of subset]
 (native_legend){};
 \node[empty, right=0.5em of native_legend]
-{Native \soft{Sage} class};
+{Native \Sage{} class};
 
 \node[diff_legend, below=1.em of native_legend]
 (diff_legend){};

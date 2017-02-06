@@ -3,8 +3,8 @@
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
 \newcommand{\soft}[1]{\textsf{#1}}
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\Sage}{\soft{Sage}}
+\newcommand{\code}[1]{\textsf{#1}}
+\newcommand{\Sage}{\soft{SageMath}}
 \newcommand{\SM}{\soft{SageManifolds}}
 
 \usepackage{color}
@@ -34,44 +34,43 @@ line/.style = {->, draw, thick, >=triangle 45}
 height=2em, auto]
 
 \node[diff](tensorfield)
-{TensorField\\ \scriptsize {\it parent:}\\ \scriptsize
-TensorFieldModule};
+{\code{TensorField}\\ \scriptsize {\it parent:}\\ \scriptsize
+\code{TensorFieldModule}};
 
 \node[diff, below=of tensorfield](vectorfield)
-{VectorField\\ \scriptsize {\it parent:}\\ \scriptsize
-VectorFieldModule};
-
+{\code{VectorField}\\ \scriptsize {\it parent:}\\ \scriptsize
+\code{VectorFieldModule}};
 \path[line] (vectorfield) -- (tensorfield);
 
 \node[diff, right=of vectorfield](tensorfieldparal)
-{TensorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize
-TensorFieldFreeModule};
+{\code{TensorFieldParal}\\ \scriptsize {\it parent:}\\ \scriptsize
+\code{TensorFieldFreeModule}};
 
 \node[diff, below=of tensorfieldparal](Vectorfieldparal)
-{VectorFieldParal\\ \scriptsize {\it parent:}\\ \scriptsize
-VectorFieldFreeModule};
+{\code{VectorFieldParal}\\ \scriptsize {\it parent:}\\ \scriptsize
+\code{VectorFieldFreeModule}};
 
 \path[line] (Vectorfieldparal) -- (tensorfieldparal);
 \path[line] (Vectorfieldparal) -- (vectorfield);
 \path[line] (tensorfieldparal) -- (tensorfield);
 
-\node[alg, right=6cm of tensorfield](freemoduletensor)
-{FreeModuleTensor\\ \scriptsize {\it parent:}\\ \scriptsize
-TensorFreeModule};
+\node[alg, right=4.8cm of tensorfield](freemoduletensor)
+{\code{FreeModuleTensor}\\ \scriptsize {\it parent:}\\ \scriptsize
+\code{TensorFreeModule}};
 
 \node[alg, below=of freemoduletensor](finiterankfreemoduleelement)
-{FiniteRankFreeModuleElement\\ \scriptsize {\it parent:}\\ \scriptsize
-FiniteRankFreeModule};
+{\code{FiniteRankFreeModuleElement}\\ \scriptsize {\it parent:}\\ \scriptsize
+\code{FiniteRankFreeModule}};
 
 \node[diff, below=of finiterankfreemoduleelement](tangentvector)
-{TangentVector\\ \scriptsize {\it parent:}\\ \scriptsize
-TangentSpace};
+{\code{TangentVector}\\ \scriptsize {\it parent:}\\ \scriptsize
+\code{TangentSpace}};
 
-\node[native, above=4cm of tensorfieldparal]
-(element){Element};
+\node[native, above=3.5cm of tensorfieldparal](element)
+{\code{Element}};
 
-\node[native, below=of element]
-(module_element){ModuleElement\\ {\scriptsize {\it parent:} Module}};
+\node[native, below=of element](module_element)
+{\code{ModuleElement}};
 
 \path[line] (module_element) -- (element);
 
@@ -95,7 +94,7 @@ TangentSpace};
 \node[alg_legend, below=1.em of native_legend]
 (alg_legend){};
 \node[empty, right=0.5em of alg_legend]
-{\SM{} class\\ \footnotesize (algebraic part; \textsl{in Sage 6.6})};
+{\SM{} class\\ \footnotesize (algebraic part)};
 
 \node[diff_legend, below=1.5em of alg_legend]
 (diff_legend){};

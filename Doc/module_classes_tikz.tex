@@ -3,8 +3,8 @@
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
 \newcommand{\soft}[1]{\textsf{#1}}
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\Sage}{\soft{Sage}}
+\newcommand{\code}[1]{\textsf{#1}}
+\newcommand{\Sage}{\soft{SageMath}}
 \newcommand{\SM}{\soft{SageManifolds}}
 
 \usepackage{color}
@@ -33,66 +33,64 @@ line/.style = {->, draw, thick, >=triangle 45}
 \begin{tikzpicture}[font=\footnotesize, node distance=0.75cm, minimum
 height=2em, auto]
 
-\node[native]
-(unique_represenation){UniqueRepresentation};
+\node[native](unique_representation)
+{\code{UniqueRepresentation}};
 
-\node[native, right=of unique_represenation]
-(parent){Parent};
+\node[native, right=of unique_representation](parent)
+{\code{Parent}};
 
-\coordinate (Middle) at ($(unique_represenation)!0.5!(parent)$);
+\coordinate (Middle) at ($(unique_representation)!0.5!(parent)$);
 
-\node[diff, below=3.5cm of Middle]
-(vectorfieldmodule)
-{VectorFieldModule\\
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} VectorField}};
+\node[diff, below=3cm of Middle](vectorfieldmodule)
+{\code{VectorFieldModule}\\
+{\scriptsize {\it ring:} \code{DiffScalarFieldAlgebra}}\\
+{\scriptsize {\it element:} \code{VectorField}}};
 
-\path[line] (vectorfieldmodule) -- (unique_represenation);
+\path[line] (vectorfieldmodule) -- (unique_representation);
 \path[line] (vectorfieldmodule) -- node [near start, yshift=5em,
-xshift=2.2em, rotate=70]
-{\footnotesize {\it category:} Modules} (parent);
+xshift=2.5em, rotate=68]
+{\footnotesize {\it category:} \code{Modules}} (parent);
 
-\node[diff, left=of vectorfieldmodule]
-(tensorfieldmodule)
-{TensorFieldModule\\
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} TensorField}};
+\node[diff, left=of vectorfieldmodule](tensorfieldmodule)
+{\code{TensorFieldModule}\\
+{\scriptsize {\it ring:} \code{DiffScalarFieldAlgebra}}\\
+{\scriptsize {\it element:} \code{TensorField}}};
 
-\path[line] (tensorfieldmodule) -- (unique_represenation);
+\path[line] (tensorfieldmodule) -- (unique_representation);
 \path[line] (tensorfieldmodule) -- node [near start, xshift=3em,
-yshift=1.5em, rotate=35]
-{\footnotesize {\it category:} Modules} (parent);
+yshift=1.2em, rotate=32]
+{\footnotesize {\it category:} \code{Modules}} (parent);
 
 \node[diff, below=of vectorfieldmodule](vectorfieldfreemodule)
-{VectorFieldFreeModule\\
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} VectorFieldParal}};
+{\code{VectorFieldFreeModule}\\
+{\scriptsize {\it ring:} \code{DiffScalarFieldAlgebra}}\\
+{\scriptsize {\it element:} \code{VectorFieldParal}}};
 
 \node[diff, below=of vectorfieldfreemodule](tensorfieldfreemodule)
-{TensorFieldFreeModule\\
-{\scriptsize {\it ring:} ScalarFieldAlgebra}\\
-{\scriptsize {\it element:} TensorFieldParal}};
+{\code{TensorFieldFreeModule}\\
+{\scriptsize {\it ring:} \code{DiffScalarFieldAlgebra}}\\
+{\scriptsize {\it element:} \code{TensorFieldParal}}};
 
 \node[alg, right=1cm of vectorfieldmodule](finiterankfreemodule)
-{FiniteRankFreeModule\\
-{\scriptsize {\it ring:} CommutativeRing}\\
-{\scriptsize {\it element:} FiniteRankFreeModuleElement}};
+{\code{FiniteRankFreeModule}\\
+{\scriptsize {\it ring:} \code{CommutativeRing}}\\
+{\scriptsize {\it element:} \code{FiniteRankFreeModuleElement}}};
 
 \node[alg, right=of vectorfieldfreemodule](tensorfreemodule)
-{TensorFreeModule\\
+{\code{TensorFreeModule}\\
 {\scriptsize {\it element:}}\\
-{\scriptsize FreeModuleTensor}};
+{\scriptsize \code{FreeModuleTensor}}};
 
 \node[diff, right=of tensorfreemodule](tangentspace)
-{TangentSpace\\
-{\scriptsize {\it ring:} SR}\\
+{\code{TangentSpace}\\
+{\scriptsize {\it ring:} \code{SR}}\\
 {\scriptsize {\it element:}}\\
-{\scriptsize TangentVector}};
+{\scriptsize \code{TangentVector}}};
 
-\path[line] (finiterankfreemodule) -- (unique_represenation);
+\path[line] (finiterankfreemodule) -- (unique_representation);
 \path[line] (finiterankfreemodule) -- node [near start,
-xshift=2.5em, rotate=-47]
-{\footnotesize {\it category:} Modules} (parent);
+xshift=2.2em, rotate=-45]
+{\footnotesize {\it category:} \code{Modules}} (parent);
 
 \path[line] (tangentspace) -- (finiterankfreemodule);
 \path[line] (tensorfreemodule) -- (finiterankfreemodule);
@@ -109,7 +107,7 @@ xshift=2.5em, rotate=-47]
 \node[alg_legend, below=1.em of native_legend]
 (alg_legend){};
 \node[empty, right=0.5em of alg_legend]
-{\SM{} class\\ \footnotesize (algebraic part; \textsl{in Sage 6.6})};
+{\SM{} class\\ \footnotesize (algebraic part)};
 
 \node[diff_legend, below=1.5em of alg_legend]
 (diff_legend){};

@@ -1,5 +1,8 @@
 %\documentclass{standalone}
-%% to produce png run pdflatex --shell-escape 
+%% to produce png run pdflatex --shell-escape
+\providecommand{\pgfsyspdfmark}[3]{}  % workaround, cf.
+% http://tex.stackexchange.com/questions/319983/undefined-control-sequence-pgfsyspdfmark-converting-standalone-tikz-with-pdflat
+
 \documentclass[convert={density=300,size=640x480,outext=.png}]{standalone}
 
 \newcommand{\soft}[1]{\textsf{#1}}
@@ -21,7 +24,7 @@ diff/.style = {base, fill=yellow!50, rounded corners},
 dict/.style={base, fill=pink!40, draw=red},
 tens/.style = {base, fill=yellow!25, align=left},
 empty/.style={align=left},
-% 
+%
 legend/.style = {minimum width=2em, minimum height=1em},
 native_legend/.style = {native, legend},
 alg_legend/.style = {alg, legend},
@@ -79,7 +82,7 @@ e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes
 \end{tikzpicture}
 };
 
-% comp Scalarfields 
+% comp Scalarfields
 \node[dict, below=of components](comp){
 \begin{tikzpicture}
   \node[empty, align=left](description)
@@ -87,41 +90,41 @@ e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes
   \node[empty, below left=of description](comp1)
   {\normalsize $(1,1):$};
   \node[tens, align=center, right=0em of comp1](scalarfield1)
-  {\code{ScalarField}\\
+  {\code{DiffScalarField}\\
   {\normalsize $T^1_{\ \, 1}$}};
   \node[empty, right=of scalarfield1](comp2)
   {\normalsize $(1,2):$};
   \node[tens, align=center, right=0em of comp2](scalarfield2)
-  {\code{ScalarField}\\
+  {\code{DiffScalarField}\\
   {\normalsize $T^1_{\ \, 2}$}};
   \node[empty, right=of scalarfield2](more)
   {\large $\dots$};
 \end{tikzpicture}
 };
 
-% Scalarfield express 
+% Scalarfield express
 \node[dict, below=of comp](express){
 \begin{tikzpicture}
   \node[empty, align=left](description)
-  {\bf dictionary \textcolor{red}{\code{ScalarField.\_express}}};
+  {\bf dictionary \textcolor{red}{\code{DiffScalarField.\_express}}};
   \node[empty, below left=of description](chart1)
   {chart 1:\\
   {\normalsize $\left(x^a\right)$}};
   \node[tens, right=0em of chart1](functionchart1)
-  {\code{FunctionChart}\\
+  {\code{CoordFunction}\\
   {\normalsize $T^1_{\ \, 1}\left(x^1,\dots,x^n\right)$}};
   \node[empty, right=of functionchart1](chart2)
   {chart 2:\\
   {\normalsize $\left(y^a\right)$}};
   \node[tens, right=0em of chart2](functionchart2)
-  {\code{FunctionChart}\\
+  {\code{CoordFunction}\\
   {\normalsize $T^1_{\ \, 1}\left(y^1,\dots,y^n\right)$}};
   \node[empty, right=of functionchart2](more)
   {\large $\dots$};
 \end{tikzpicture}
 };
 
-% expressions 
+% expressions
 \node[tens, below=2em of functionchart1](express1)
 {\code{Expression}\\
 {\normalsize $x^1\cos x^2$}};
@@ -129,7 +132,7 @@ e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes
 {\code{Expression}\\
 {\normalsize $\left(y^1 + y^2\right)\cos\left(y^1 - y^2\right)$}};
 
-% lines 
+% lines
 \draw[thick, line width=0.2em, black!60,-] (restrictions) --
 (tensorfield);
 \draw[thick, line width=0.2em, black!60,-] (components) --
