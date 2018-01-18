@@ -1,0 +1,14 @@
+#!/bin/bash
+SM_VERSION=1.0.1
+#
+tar -cvf manifolds-$SM_VERSION.tar  \
+src/doc/en/reference/manifolds/*.py \
+src/doc/en/reference/manifolds/*.rst \
+src/doc/en/reference/tensor_free_modules/*.py \
+src/doc/en/reference/tensor_free_modules/*.rst  \
+src/sage/manifolds/*.py \
+src/sage/manifolds/differentiable/*.py \
+src/sage/tensor/modules/*.py
+#
+gzip manifolds-$SM_VERSION.tar
+exit 0
