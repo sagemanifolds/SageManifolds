@@ -111,13 +111,13 @@ e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes
   {chart 1:\\
   {\normalsize $\left(x^a\right)$}};
   \node[tens, right=0em of chart1](functionchart1)
-  {\code{CoordFunction}\\
+  {\code{ChartFunction}\\
   {\normalsize $T^1_{\ \, 1}\left(x^1,\dots,x^n\right)$}};
   \node[empty, right=of functionchart1](chart2)
   {chart 2:\\
   {\normalsize $\left(y^a\right)$}};
   \node[tens, right=0em of chart2](functionchart2)
-  {\code{CoordFunction}\\
+  {\code{ChartFunction}\\
   {\normalsize $T^1_{\ \, 1}\left(y^1,\dots,y^n\right)$}};
   \node[empty, right=of functionchart2](more)
   {\large $\dots$};
@@ -125,24 +125,32 @@ e^b=T^{\hat{a}}_{\ \, \hat{b}}\varepsilon_{\hat{a}}\otimes
 };
 
 % expressions
-\node[tens, below=2em of functionchart1](express1)
-{\code{Expression}\\
-{\normalsize $x^1\cos x^2$}};
-\node[tens, below=2em of functionchart2](express2)
-{\code{Expression}\\
-{\normalsize $\left(y^1 + y^2\right)\cos\left(y^1 - y^2\right)$}};
+\node[dict, below=0.3cm of functionchart1](chartfexpress){
+\begin{tikzpicture}
+  \node[empty, align=left](description)
+  {\bf dictionary \textcolor{red}{\code{ChartFunction.\_express}}};
+  \node[empty, below left=of description](methSR)
+  {SR:};
+  \node[tens, right=0em of methSR](exprSR)
+  {\code{Expression}\\
+  {\normalsize $x^1\cos x^2$}};
+  \node[empty, right=of exprSR](methSymPy)
+  {SymPy:};
+  \node[tens, right=0em of methSymPy](exprSymPy)
+  {\code{Basic}\\
+  {\normalsize $x^1\cos x^2$}};
+  \node[empty, right=of exprSymPy](more)
+  {\large $\dots$};
+\end{tikzpicture}
+};
+
 
 % lines
-\draw[thick, line width=0.2em, black!60,-] (restrictions) --
-(tensorfield);
-\draw[thick, line width=0.2em, black!60,-] (components) --
-(tensorfield1);
+\draw[thick, line width=0.2em, black!60,-] (restrictions) -- (tensorfield);
+\draw[thick, line width=0.2em, black!60,-] (components) -- (tensorfield1);
 \draw[thick, line width=0.2em, black!60,-] (comp) -- (components1);
 \draw[thick, line width=0.2em, black!60,-] (express) -- (scalarfield1);
-\draw[thick, line width=0.2em, black!60,-] (express1) --
-(functionchart1);
-\draw[thick, line width=0.2em, black!60,-] (express2) --
-(functionchart2);
+\draw[thick, line width=0.2em, black!60,-] (chartfexpress) -- (functionchart1);
 
 \end{tikzpicture}
 
