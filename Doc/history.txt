@@ -62,3 +62,14 @@
     29415 in src/sage/manifolds/differentiable
     18055 in src/sage/tensor/modules
     total = 64859 lines
+
+7 December 2017: version 1.1 released
+    (git commit = 07d6c37d18811e2b377a9689790a7c5e24da16ba = Sage 8.1);
+    https://git.sagemath.org/sage.git/commit/?id=07d6c37d18811e2b377a9689790a7c5e24da16ba
+    Number of lines of Python code (including comments and doctests):
+    17599 in src/sage/manifolds
+    38052 in src/sage/manifolds/differentiable
+    19774 in src/sage/tensor/modules
+    total = 75425 lines
+
+
