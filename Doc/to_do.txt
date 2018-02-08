@@ -10,7 +10,7 @@ IMPROVED EFFICIENCY:
 
 NEW FUNCTIONALITIES:
 
-- d'Alembert operator
+- d'Alembert operator (ingoing, cf. #24622)
 
 - restore the (anti)symmetries after a up(g) or down(g) (raising/lowering on all the indices)
 
@@ -23,8 +23,6 @@ NEW FUNCTIONALITIES:
 - extrinsic geometry of pseudo-riemannian submanifolds
 
 - plots of tensor fields
-
-- compute geodesics
 
 - compute integrals
 
