@@ -1,0 +1,51 @@
+\begin{tikzpicture}[font=\small, node distance=0.5cm, minimum
+height=2em, auto]
+
+\node[native](unique_representation)
+{\code{UniqueRepresentation}};
+
+\node[native, right=of unique_representation](parent)
+{\code{Parent}};
+
+\coordinate (Middle) at ($(unique_representation)!0.5!(parent)$);
+
+\node[diff, below=1.5cm of Middle](scalar_field_algebra)
+{\code{ScalarFieldAlgebra}\\
+{\scriptsize {\it element:} \code{ScalarField}}};
+\path[line] (scalar_field_algebra) -- (unique_representation);
+\path[line] (scalar_field_algebra) -- node [near start, yshift=-0.5em,
+xshift=15.4em]
+{\scriptsize {\it category:} \code{CommutativeAlgebras(base\_field)}} (parent);
+
+\node[diff, below=1.25cm of scalar_field_algebra](diff_scalar_field_algebra)
+{\code{DiffScalarFieldAlgebra}\\
+{\scriptsize {\it element:} \code{DiffScalarField}}};
+\path[line] (diff_scalar_field_algebra) -- (scalar_field_algebra);
+
+% Elements:
+
+\node[native, right=3cm of parent](caelement)
+{\code{CommutativeAlgebraElement}};
+
+\node[diff, below=1.25cm of caelement](scalarfield)
+{\code{ScalarField}\\ \scriptsize{\it parent:} \code{ScalarFieldAlgebra}};
+\path[line] (scalarfield) -- (caelement);
+
+\node[diff, below=1.25cm of scalarfield](diff_scalarfield)
+{\code{DiffScalarField}\\ \scriptsize{\it parent:} \code{DiffScalarFieldAlgebra}};
+\path[line] (diff_scalarfield) -- (scalarfield);
+
+
+% legend
+
+\node[native_legend, below=0.5cm of diff_scalar_field_algebra]
+(native_legend){};
+\node[empty, right=0.5em of native_legend]
+{Generic \Sage{} class};
+
+\node[diff_legend, below=1.em of native_legend]
+(diff_legend){};
+\node[empty, right=0.5em of diff_legend]
+{\SM{} class\\ \footnotesize (differential part)};
+
+\end{tikzpicture}
