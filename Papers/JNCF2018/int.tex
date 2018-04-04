@@ -6,8 +6,8 @@
 
 While we shall provide precise definitions of the involved mathematical
 objects in Chaps.~\ref{s:man} and \ref{s:vec},
-let us present here some brief aperçu of what is generally meant by
-\emph{tensor calculus}. This is calculus on vector fields,
+we outline here briefly what is meant by
+\emph{tensor calculus}. Basically, this is calculus on vector fields,
 and more generally tensor fields, on differentiable manifolds, involving the following operations \cite{Lee13}:
 \begin{itemize}
 \item arithmetics of tensor fields;
@@ -42,8 +42,8 @@ the Riemann and Ricci tensors of the Bondi metric.
 According to \cite{Skea94},
 the original calculations took Bondi and collaborators 6 months to finish,
 while the computation with \soft{ALAM} took 4 minutes and yielded the
-discovery of 6 errors in the original paper.
-Since then, numerous packages have been developed: the reader is referred to \cite{MacCa02}
+discovery of 6 errors in the original paper by Bondi et al.
+Since then, numerous packages have been developed; the reader is referred to \cite{MacCa02}
 for a review of computer algebra
 systems for general relativity prior to 2002, and to \cite{KorolKS13} for a more recent review
 focused on tensor calculus.
@@ -70,7 +70,8 @@ for \soft{Mathematica} and \soft{Maple}, and
 \item Standalone applications. Recent examples are \soft{Cadabra}
 \cite{Peete07} (field theory),
 \soft{SnapPy} \cite{snappy} (topology and geometry of 3-manifolds)  and
-\soft{Redberry} \cite{BolotP13} (tensors).
+\soft{Redberry} \cite{BolotP13} (tensors); older examples can be found in
+Ref.~\cite{MacCa02}.
 \end{enumerate}
 All applications listed in the second category are free software. In
 the first category, \soft{xAct} and \soft{Ricci} are also free software, but
@@ -90,7 +91,10 @@ in a given frame.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{A quick overview of SageMath} \label{s:int:overview_Sage}
+\section{A brief overview of SageMath} \label{s:int:overview_Sage}
+
+Since the tensor calculus method presented here is implemented in \Sage{}, we
+give first a brief overview of it.
 
 \Sage{}\footnote{\url{http://www.sagemath.org}} is a free, open-source mathematics software system, which is
 based on the Python programming language. It makes use of over 90 open-source packages,
@@ -117,19 +121,20 @@ sophisticated rules to manipulate symbols. On the contrary, in \Sage{}
 each object has a given type (i.e. is an instance of a given
 Python class\footnote{Let us
 recall that within an object-oriented programming language (as Python),
-a \emph{class} is a structure to declare and store the
+a \defin{class} is a structure to declare and store the
 properties common to a set of objects. These properties
 are data (called
-\emph{attributes} or \emph{state variables}) and functions acting
-on the data (called \emph{methods}). A specific realization of an object
-within a given class is called an \emph{instance} of that class.}),
-and one distinguishes \emph{parent} types, which model mathematical
-sets with some structure (e.g. algebraic structure), from \emph{element} types,
+\defin{attributes} or \defin{state variables}) and functions acting
+on the data (called \defin{methods}). A specific realization of an object
+within a given class is called an \defin{instance} of that class.}),
+and one distinguishes \defin{parent} types, which model mathematical
+sets with some structure (e.g. algebraic structure), from \defin{element} types,
 which model set elements. Moreover, each parent belongs to some
 dynamically generated class that encodes information
-about its \emph{category}, in the mathematical sense of the word
-(see \cite{sage_categories} for a discussion of \Sage{}'s category framework).
-Automatic conversion rules, called \emph{coercions}\index{coercion},
+about its \emph{category}, in the mathematical sense of the word\footnote{See
+\url{http://doc.sagemath.org/html/en/reference/categories/sage/categories/primer.html}
+for a discussion of \Sage{}'s category framework}.
+Automatic conversion rules, called \defin{coercions}\index{coercion},
 prior to a binary operation, e.g. $x+y$ with $x$ and $y$ having different
 parents, are implemented.
 
@@ -140,7 +145,8 @@ a \emph{symbolic tensor calculus method} that
 \begin{itemize}
 \item runs on fully specified smooth manifolds (described by an atlas);
 \item is not limited to a single coordinate chart or vector frame;
-\item runs even on non-parallelizable manifolds;
+\item runs even on non-parallelizable manifolds (i.e. manifolds that cannot
+be covered by a single vector frame);
 \item is independent of the symbolic engine (e.g.  \soft{Pynac/Maxima},
 \soft{SymPy},...) used to perform calculus at the level of coordinate expressions.
 \end{itemize}

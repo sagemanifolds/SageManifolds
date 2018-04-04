@@ -4,11 +4,11 @@
 
 \section{Introduction}
 
-Starting from basic definitions, we present
+Starting from basic mathematical definitions, we present
 the implementation of manifolds and coordinate charts in \Sage{}
 (Sec.~\ref{s:bas:manif}).
 We then focus on the algebra of scalar fields on a manifold (\ref{s:man:scalar_field_algebra}).
-As we shall see in Chap.~\ref{s:vec}, this algebra plays a central role in the implementation of vector fields, which are considered as forming a module
+As we shall see in Chap.~\ref{s:vec}, this algebra plays a central role in the implementation of vector fields, the latter being considered as forming a module
 over it.
 
 \section{Differentiable manifolds} \label{s:bas:manif}
@@ -35,17 +35,25 @@ Property~3 expresses the essence of a manifold: it means that, locally,
 $\M$ ``resembles'' $\K^n$.
 
 Let us start to discuss the implementation of manifolds in \Sage{}. We shall
-do it on a concrete example, exposed in a Jupyter notebook that can be downloaded
+do it on a concrete example, exposed in a Jupyter notebook which can be downloaded
 from the page devoted to these lectures:
 \begin{center}
 \url{http://sagemanifolds.obspm.fr/jncf2018/}
 \end{center}
+As for all \Sage{}, the syntax used in this notebook is \soft{Python} one. However, no
+a priori knowledge of \soft{Python} is required, since we shall explain the
+main notations as they appear.
+
 In \Sage{}, manifolds are constructed by means of the global function \code{Manifold}:
 \jup{ex01.png}
 \jup{ex02.png}
 By default, the function \code{Manifold} returns a manifold over $\K=\R$:
 \jup{ex03.png}
-Other base fields
+Note the use of the standard object-oriented notation (ubiquitous in
+\soft{Python}): the method \code{base\_field()} is called on the object \code{M};
+since this method does not require any extra argument (all the information lies
+in \code{M}), its argument list is empty, hence the final \code{()}.
+Base fields different from $\mathbb{R}$
 must be specified with the optional keyword \code{field}, like
 \begin{flushleft}
 \code{M = Manifold(2, 'M', field='complex')}
@@ -54,7 +62,8 @@ We may check that $M$ is a topological space:
 \jup{ex04.png}
 Actually, $M$ belongs to the following categories:
 \jup{ex05.png}
-As we can see, by default, \code{Manifold} constructs a smooth manifold.
+As we can see from the first category in the above list, \code{Manifold}
+constructs a smooth manifold by default.
 If one would like to stick to the topological level, one should add
 the keyword argument \code{structure='topological'} to \code{Manifold},
 i.e. \code{M = Manifold(2, 'M', structure='topological')}: $M$ would have
@@ -87,8 +96,8 @@ for generic subsets of a manifold), which reflects the fact that $M\subset M$.
 
 \subsection{Coordinate charts} \label{s:man:coord_chart}
 
-Property~3 above means that
-one can label the points of $\M$ in a
+Property~3 in the definition of a topological manifold (Sec.~\ref{s:bas:def_manif})
+means that one can label the points of $\M$ in a
 continuous way by $n$ numbers $(x^\alpha)_{\alpha\in\{0,\ldots,n-1\}}\in \K^n$,
 which are called \defin{coordinates}\index{coordinate}.
 More precisely, given an open subset $U\subset\M$, a \defin{coordinate chart}\index{coordinate!chart}
@@ -96,7 +105,7 @@ More precisely, given an open subset $U\subset\M$, a \defin{coordinate chart}\in
 on $U$ is a homeomorphism\footnote{Let us recall that a  \defin{homeomorphism}\index{homeomorphism} between two topological spaces
 (here $U$ and $X(U)$) is a bijective map $X$ such
 that both $X$ and $X^{-1}$ are continuous.}
-\be
+\be \label{e:man:def_chart}
     \begin{array}{rccl}
     X: & U\subset \M & \longrightarrow & X(U)\subset \K^n \\
         & p & \longmapsto & (x^0, \ldots, x^{n-1}) .
@@ -105,11 +114,11 @@ that both $X$ and $X^{-1}$ are continuous.}
 We declare a chart, along with the symbols used to denote the coordinates
 (here $x=x^0$ and $y=x^1$) by
 \jup{ex09.png}
-Open subsets are implemented by a (dynamically generated) subclass of\\
-\code{DifferentiableManifold}, since they are manifolds in their own:
+Open subsets of a differentiable manifold are implemented by a (dynamically generated) subclass of
+\code{DifferentiableManifold}, since they are differentiable manifolds in their own:
 \jup{ex10.png}
 
-Points on $M$ are created by passing their coordinates in a given
+Points on $M$ are created from their coordinates in a given
 chart:
 \jup{ex11.png}
 The syntax \code{U(...)} used to create $p$ as an element of $U$
@@ -120,15 +129,23 @@ Points are implemented by a dynamically generated subclass of
 \code{ManifoldPoint} (cf. Fig.~\ref{f:man:domain_classes}).
 The principal attribute of this class is the one storing the point's coordinates
 in various charts; it is implemented as
-a Python dictionary\footnote{A \emph{dictionary}\index{dictionary},
-also known as \emph{associative array}, is a
+a Python dictionary\footnote{A \defin{dictionary}\index{dictionary},
+also known as \defin{associative array}, is a
 data structure that generalizes the concept of array in the sense that the
 key to access to an element is not restricted to an integer or a tuple of integers.}, whose keys are the charts:
 \jup{ex13.png}
-Of course, we can recover the point's coordinates by letting the chart act on
-the point:
+The leading underscore in the name \code{\_coordinates} is a notation
+convention to specify that this attribute is a \defin{private} one:
+the dictionary \code{\_coordinates} should
+not be manipulated by the end user or involved in some code
+outside of the class \code{ManifoldPoint}.
+It belongs to the internal implementation, which may be changed while
+the user interface of the class \code{ManifoldPoint} is kept fixed. We show
+this private attribute here
+because we are precisely interested in implementation features.
+The public way to recover the point's coordinates is to let the chart act on
+the point (reflecting thereby the definition (\ref{e:man:def_chart}) of a chart):
 \jup{ex14.png}
-
 
 Usually, one needs more than a single coordinate system to cover $\M$.
 An \defin{atlas}\index{atlas} on $\M$ is a set of pairs
@@ -195,7 +212,7 @@ The transition map \code{XV}~$\to$~\code{XU} is obtained by computing the invers
 of the one defined above:
 \jup{ex19.png}
 At this stage, the smooth manifold $M$ is fully specified, being covered by
-one atlas with all transition maps specified. One may have recognized that
+one atlas with all transition maps specified. The reader may have recognized that
 $M$ is nothing but the 2-dimensional sphere:
 \be
     M = \Sp ,
@@ -205,9 +222,11 @@ the chart of \defin{stereographic coordinates}\index{stereographic!coordinates}
 from the North pole $N$ (resp. the South pole $S$).
 
 Since the transition maps have been defined,
-we can ask for the coordinates $(x',y')$ of the point $p$:
+we can ask for the coordinates $(x',y')$ of the point $p$, whose $(x,y)$
+coordinates were $(1,2)$:
 \jup{ex20.png}
-This operation has updated the dictionary \code{\_coordinates}:
+This operation has updated the internal dictionary \code{\_coordinates}
+(compare with \code{Out~[13]}):
 \jup{ex21.png}
 
 \subsection{Smooth maps}
@@ -216,13 +235,15 @@ Given two smooth manifolds, $\M$ and $\M'$, of
 respective dimensions $n$ and $n'$, we say that a map
 $\Phi : \M \rightarrow \M'$ is \defin{smooth map}\index{smooth!map} iff in some (and hence all, thanks to the smoothness of (\ref{e:bas:transition_map})) coordinate systems
 of $\M$ and $\M'$ belonging to the smooth atlases of $\M$ and $\M'$,
-the coordinates of the image $\Phi(p)$ are smooth functions $\K^n\rightarrow \K^{n'}$ of the coordinates of $p$.
+the coordinates of the image $\Phi(p)$ of any point $p\in M$
+are smooth functions $\K^n\rightarrow \K^{n'}$ of the coordinates of $p$.
 The map $\Phi$ is said to be a \defin{diffeomorphism}\index{diffeomorphism} iff
 it is bijective and both $\Phi$ and $\Phi^{-1}$ are smooth. This implies $n=n'$.
 
 Back to our example manifold, a natural smooth map is the embedding of $\Sp$ in
 $\R^3$. To define it, we start by declaring $\R^3$ as a 3-dimensional smooth
-manifold, endowed with a single chart:
+manifold, canonically endowed with a single chart, that of Cartesian coordinates
+$(X,Y,Z)$:
 \jup{ex22.png}
 The embedding $\Phi: \Sp \to \R^3$ is then defined in terms of its coordinate
 expression in the two charts covering $M=\Sp$:
@@ -260,7 +281,7 @@ F(\underbrace{x^1,\ldots, x^n}_{\mbox{coord. of $p$}\atop\mbox{in chart $X$}})
 In \Sage{}, scalar fields are implemented by the class
 \code{DiffScalarField}\footurl{http://doc.sagemath.org/html/en/reference/manifolds/sage/manifolds/differentiable/scalarfield.html}
 and the various representations (\ref{e:man:repr_scalar_field}) are
-stored in the attribute \code{\_express} of this class, which is a
+stored in the private attribute \code{\_express} of this class, which is a
 Python dictionary
 whose keys are the various charts defined on $M$:
 \be \label{e:f_express}
@@ -272,7 +293,7 @@ devoted to functions of coordinates, allowing for different internal representat
 
 For instance, let us define a scalar field on our example manifold $M=\Sp$:
 \jup{ex25.png}
-The dictionary \code{\_express} is then
+The internal dictionary \code{\_express} is then
 \jup{ex26.png}
 The reader may wonder about the compatibility of the two coordinate expressions
 provided in the definition of $f$. Actually, to ensure the compatibility, it
@@ -282,7 +303,7 @@ from the expression in $W=U\cap V$, where both expressions are known, thanks
 to the transition map \code{XV}~$\to$~\code{XU}:
 \jup{ex27.png}
 The representation of the scalar field in a given chart, i.e. the public access
-to the directory \code{\_express}, is obtained via the method \code{coord\_function()}:
+to the private directory \code{\_express}, is obtained via the method \code{coord\_function()}:
 \jup{ex28.png}
 \jup{ex29.png}
 As mentioned above, each chart representation is an instance of the
@@ -292,28 +313,32 @@ Mathematically, \defin{chart functions}\index{chart!function} are $\K$-valued fu
 the considered chart. They map coordinates to elements of the base field $\K$:
 \jup{ex31.png}
 \jup{ex32.png}
-while scalar fields maps manifold points to $\K$:
+while scalar fields map manifold points to $\K$:
 \jup{ex33.png}
 Note that the equality between \code{Out[32]} and \code{Out[33]}
 reflects the identity $f = F \circ X$, where $F$ is the chart function
+(denoted \code{fU} above)
 representing the scalar field $f$ on the chart $X$
 (cf. Eq.~(\ref{e:man:repr_scalar_field})).
 
 Internally, each chart function stores coordinate expressions with respect
 to various computational engines:
 \begin{itemize}
-\item \Sage{} symbolic engine, based on the \soft{Pynac}\footnote{\url{http://pynac.org/}}\index{Pynac} backend, with \soft{Maxima} used for some simplifications
+\item \Sage{} symbolic engine, based on the \soft{Pynac}\footnote{\url{http://pynac.org}}\index{Pynac} backend, with \soft{Maxima} used for some simplifications
 or computation of integrals;
 \item \soft{SymPy}\footnote{\url{http://www.sympy.org}}\index{SymPy} (Python library for symbolic mathematics);
-\item in the future, more symbolic or numerical engines will be implemented
+\item in the future, more symbolic or numerical engines will be implemented.
 \end{itemize}
-The coordinate expressions are stored in the dictionary \code{\_express},
+The coordinate expressions are stored in the private dictionary \code{\_express}\footnote{not to be confused with
+the attribute \code{\_express} of class \code{DiffScalarField} presented
+at \code{In~[26]}}
+of the class \code{ChartFunction},
 whose keys are strings identifying the computational engines. By default
 only \Sage{} symbolic expressions, i.e. expressions pertaining
 to the so-called \Sage{}'s Symbolic Ring (\code{SR}),
 are stored:
 \jup{ex34.png}
-The public access to the dictionary \code{\_express} is performed via the
+The public access to the private dictionary \code{\_express} is performed via the
 method \code{expr()}:
 \jup{ex35.png}
 \jup{ex36.png}
@@ -324,7 +349,8 @@ The method \code{expr()} can also be invoked to get the expression in
 another symbolic engine, for instance \soft{SymPy}:
 \jup{ex37.png}
 \jup{ex38.png}
-This operation has updated the dictionary \code{\_express}:
+This operation has updated the internal dictionary \code{\_express}
+(compare with \code{Out~[34]}):
 \jup{ex39.png}
 The default calculus engine for chart functions of chart \code{XU} can
 changed thanks to the method \code{set\_calculus\_method()}:
@@ -348,7 +374,7 @@ Symbolic expressions can be accessed directly from the scalar field,
 \subsection{Scalar field algebra} \label{s:man:scal_algebra}
 
 The set $C^\infty(M)$
-of scalar fields on $M$ has naturally the structure of a
+of all scalar fields on $M$ has naturally the structure of a
 commutative algebra over $\K$: it is clearly a vector
 space over $\K$ and it is endowed with a commutative ring structure
 by pointwise multiplication:
@@ -357,12 +383,12 @@ by pointwise multiplication:
 (f.g)(p) := f(p) g(p) .
 \ee
 The algebra $C^\infty(M)$ is implemented in \Sage{} via the parent
-class \code{DiffScalarFieldAlgebra}\footurl{http://doc.sagemath.org/html/en/reference/manifolds/sage/manifolds/differentiable/scalarfield_algebra.html}, in the category
+class\\ \code{DiffScalarFieldAlgebra}\footurl{http://doc.sagemath.org/html/en/reference/manifolds/sage/manifolds/differentiable/scalarfield_algebra.html}, in the category
 \code{CommutativeAlgebras}. The corresponding element class
 is of course \code{DiffScalarField} (cf. Fig.~\ref{f:man:scalar_classes}).
 
-In the \Sage{} implementation, $C^\infty(M)$ is obtained from $M$ via the
-method\\ \code{scalar\_field\_algebra}:
+The \Sage{} object representing $C^\infty(M)$ is obtained from \code{M} via the
+method\\ \code{scalar\_field\_algebra()}:
 \jup{ex44.png}
 \jup{ex45.png}
 As for the manifold classes, the actual Python class implementing
@@ -373,7 +399,8 @@ The class \code{DiffScalarFieldAlgebra-with-category} is dynamically generated
 as a subclass of \code{DiffScalarFieldAlgebra} with extra functionalities, like
 for instance the method \code{is\_commutative()}:
 \jup{ex47.png}
-To get the corresponding code, we use the double question mark:
+To have a look at the corresponding code,
+we use the double question mark, owing to the fact that \Sage{} is open-source:
 \jup{ex48.png}
 \begin{lstlisting}
 def is_commutative(self):
@@ -388,8 +415,11 @@ def is_commutative(self):
     return True
 File: .../local/lib/python2.7/site-packages/sage/categories/magmas.py
 \end{lstlisting}
-We see from the \code{File} field that the code belongs to the category part of \Sage{}, not to the
+We see from the \code{File} field in line~11 that the code belongs to the category part of \Sage{}, not to the
 manifold part, where the class \code{DiffScalarFieldAlgebra} is defined.
+This shows that the method \code{is\_commutative()} has indeed be
+added to the methods of the base class \code{DiffScalarFieldAlgebra}, while
+dynamically generating the class  \code{DiffScalarFieldAlgebra-with-category}.
 
 Regarding the scalar field \code{f} introduced in Sec.~\ref{s:man:def_scalar}, we
 have of course
@@ -406,9 +436,10 @@ while its unit element is
 Let us consider some operation in the algebra $C^\infty(M)$:
 \jup{ex53.png}
 \jup{ex54.png}
-Let us investigate how the above addition is performed. For the Python interpreter
+Let us examine how the addition in \code{In~[53]} is performed. For the Python interpreter
 \code{h = f + 2*CM.one()} is equivalent to \code{h = f.\_\_add\_\_(2*CM.one())},
-i.e. the \code{+} operator amounts to calling the method \code{\_\_add\_\_()} on \code{f}.
+i.e. the \code{+} operator amounts to calling the method \code{\_\_add\_\_()} on its
+left operand, with the right operand as argument.
 To have a look at the source code of this method, we use the double question mark\footnote{In this
 transcript of code and in those that follow, some parts
 have been skipped, being not relevant for the discussion; they are marked
@@ -471,7 +502,7 @@ File: .../local/lib/python2.7/site-packages/sage/manifolds/scalarfield.py
 \end{lstlisting}
 This reflects a general strategy\footnote{See \url{http://doc.sagemath.org/html/en/thematic_tutorials/coercion_and_categories.html} for details.} in \Sage{}: the arithmetic Python operators
 \code{\_\_add\_\_()}, \code{\_\_sub\_\_()}, etc. are implemented at the
-top-level class \code{Element}, while the specific element subclasses,
+top-level class \code{Element}, while specific element subclasses,
 like \code{ScalarField} here, implement single-underscore methods
 \code{\_add\_()}, \code{\_sub\_()}, etc., which perform the actual computation
 when both operands have the same parent.
@@ -542,7 +573,8 @@ def common_charts(self, other):
         return resu
 File: .../local/lib/python2.7/site-packages/sage/manifolds/scalarfield.py
 \end{lstlisting}
-Once the list of charts in which both operands have a coordinate expression,
+Once the list of charts in which both operands have a coordinate expression
+has been found,
 the addition is performed at the chart function level (cf. Sec.~\ref{s:man:def_scalar}),
 via the loop on the charts in lines~19-21 of the code for \code{\_add\_()}.
 The code for the addition of chart functions defined on the same chart
@@ -578,9 +610,9 @@ by means of the method \code{set\_calculus\_method()}, applied either to
 a chart or to an open subset (possibly \code{M} itself).
 Besides, we notice on line~14 above that the result of the symbolic addition
 is automatically simplified, by means of the method \code{\_simplify}.
-It invokes a chain of simplification functions, which depends on the
-symbolic engine\footnote{See \url{
-https://github.com/sagemath/sage/blob/develop/src/sage/manifolds/utilities.py}
+The latter invokes a chain of simplifying functions, which depends on the
+symbolic engine\footnote{See
+\url{https://github.com/sagemath/sage/blob/develop/src/sage/manifolds/utilities.py}
 for details.}.
 
 Let us now discuss the second case in the \code{\_\_add\_\_()} method of

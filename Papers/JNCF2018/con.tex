@@ -37,20 +37,27 @@ via the Python library \code{multiprocessing};
 \item the possibility to use \soft{SymPy} as the symbolic engine, instead of
 \Sage{}'s default, which is \soft{Pynac} (with \soft{Maxima} for simplifications).
 \end{itemize}
+Only a subset of the above functionalities have been presented here. In particular,
+the exterior calculus on differential forms and multivector fields has not been
+touched, nor the computation of geodesics.
+
+\medskip
+
 The \soft{SageManifolds} project is still ongoing and future prospects include
 \begin{itemize}
-\item more symbolic engines (\soft{Giac}, \soft{FriCAS}, ...);
-\item extrinsic geometry of pseudo-Riemannian submanifolds;
-\item integrals on submanifolds;
-\item more graphical outputs;
-\item more functionalities: symplectic forms, fibre bundles,
+\item adding more symbolic engines (\soft{Giac}, \soft{FriCAS}, ...);
+\item treating the extrinsic geometry of pseudo-Riemannian submanifolds;
+\item computing integrals on submanifolds;
+\item adding more plotting capabilities;
+\item introducing new functionalities: symplectic forms, fibre bundles,
 spinors, variational calculus, etc.;
-\item connection with numerical relativity: using \Sage{} to explore
-numerically-generated spacetimes, by using \emph{numerical} engines, instead
-of \emph{symbolic} ones, in the last stage of the diagram
-shown in Fig.~\ref{f:vec:storage_tensor}.
+\item connecting with numerical relativity: using \Sage{} to explore
+numerically-generated spacetimes; this will be done by introducing
+\emph{numerical} engines, instead
+of \emph{symbolic} ones, in the last stage of the Fig.~\ref{f:vec:storage_tensor}
+diagram.
 \end{itemize}
-In the spirit of open-source software, anybody interested is welcome
+In the spirit of open-source software, anybody interested is very welcome
 to join the project. Please visit
 \begin{center}
 \url{http://sagemanifolds.obspm.fr/contact.html}
