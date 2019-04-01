@@ -14,10 +14,10 @@ is generated from the Sphinx source files)
 
 ./Papers: articles about SageManifolds
 
-./spkg: SageManifolds packages released on http://sagemanifolds.obspm.fr/ and
+./spkg: SageManifolds packages released on https://sagemanifolds.obspm.fr/ and
 the install scripts
 
 ./Worksheets: Sage (sws) and Jupyter (ipynb) worksheets illustrating the use of
-SageManifolds, most of them being posted on http://sagemanifolds.obspm.fr/
+SageManifolds, most of them being posted on https://sagemanifolds.obspm.fr/
 
 
