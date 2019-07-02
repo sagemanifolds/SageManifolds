@@ -1,9 +1,10 @@
 SageManifolds
 =============
 
-This repository contains the files of the SageManifolds project, except for
-the Python source files and Sphinx source files, which are hosted at
-https://trac.sagemath.org/ticket/18528
+This repository contains files of the
+[SageManifolds project](https://sagemanifolds.obspm.fr/), except for
+the Python source files and Sphinx source files, which 
+are part of the SageMath sources hosted at https://git.sagemath.org/sage.git (and mirrored at https://github.com/sagemath/sage); the code under development is managed at https://trac.sagemath.org/ticket/18528
 
 Contents:
 --------
@@ -12,12 +13,13 @@ is generated from the Sphinx source files)
 
 ./Gallery: some graphics produced with SageManifolds
 
-./Papers: articles about SageManifolds
+./Notebooks: example Jupyter notebooks, most of them being posted on https://sagemanifolds.obspm.fr/
 
-./spkg: SageManifolds packages released on https://sagemanifolds.obspm.fr/ and
-the install scripts
+./Papers: articles about the SageManifolds project
 
-./Worksheets: Sage (sws) and Jupyter (ipynb) worksheets illustrating the use of
-SageManifolds, most of them being posted on https://sagemanifolds.obspm.fr/
+./spkg: (deprecated) old SageManifolds packages and old install scripts (this is
+obsolete since all SageManifolds is now fully integrated in SageMath)
 
+./Worksheets: Sage (sws) and Jupyter (ipynb) worksheets, most of them being
+posted on https://sagemanifolds.obspm.fr/
 

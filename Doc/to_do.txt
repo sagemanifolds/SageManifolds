@@ -1,3 +1,5 @@
+*** THIS FILE IS LARGELY OBSOLETE ***
+
 IMPROVED EFFICIENCY:
 
 - compute the action of a tensor on vectors and linear forms by taking into
