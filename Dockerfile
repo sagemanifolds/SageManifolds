@@ -1,4 +1,4 @@
-FROM sagemath/sagemath:8.8.rc2
+FROM sagemath/sagemath:8.8
 
 #RUN sage -pip install tqdm RISE
 #RUN echo "jupyter-nbextension install rise --py --sys-prefix" | sage -sh
