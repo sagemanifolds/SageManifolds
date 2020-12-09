@@ -143,3 +143,11 @@
     20843 in src/sage/tensor/modules
     total = 106049 lines
 
+24 October 2020: SageMath 9.2
+    Number of lines of Python code (including comments and doctests):
+    30493 in src/sage/manifolds
+    57677 in src/sage/manifolds/differentiable
+      947 in src/sage/groups/lie_gps
+    21063 in src/sage/tensor/modules
+    total = 110180 lines
+
