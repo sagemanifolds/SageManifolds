@@ -1,9 +1,21 @@
-FROM sagemath/sagemath:9.3.beta8
+FROM sagemath/sagemath:9.7
 
-#RUN sage -pip install tqdm RISE
-#RUN echo "jupyter-nbextension install rise --py --sys-prefix" | sage -sh
-#RUN echo "jupyter-nbextension enable rise --py --sys-prefix" | sage -sh
+ARG NB_UID=1000
+ARG NB_USER=sage
 
-# Inspired from https://mybinder.readthedocs.io/en/latest/dockerfile.html#preparing-your-dockerfile
-# Make sure the contents of our repo are in ${HOME}
-COPY . ${HOME}
+USER root
+RUN apt update && apt install -y python3 python3-pip
+
+USER ${NB_UID}
+ENV PATH="${PATH}:${HOME}/.local/bin"
+RUN pip3 install notebook
+RUN ln -s $(sage -sh -c 'ls -d $SAGE_VENV/share/jupyter/kernels/sagemath') $HOME/.local/share/jupyter/kernels/sagemath-dev
+
+# partially superfluous -- create separate directory to hold notebooks
+WORKDIR ${HOME}/notebooks
+COPY --chown=${NB_UID}:${NB_UID} . .
+USER root
+RUN chown -R ${NB_UID}:${NB_UID} .
+USER ${NB_UID}
+
+ENTRYPOINT []
