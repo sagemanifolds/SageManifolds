@@ -1,4 +1,4 @@
-FROM sagemath/sagemath:9.7
+FROM sagemath/sagemath:latest
 
 ARG NB_UID=1000
 ARG NB_USER=sage
