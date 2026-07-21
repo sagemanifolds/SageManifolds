@@ -815,7 +815,7 @@ class DiffMapping(SageObject):
             # Case of a scalar field
             # ----------------------
             # A pair of chart (chart1_name, chart2_name) where the computation
-            # is feasable is searched, privileging the default chart of the 
+            # is feasible is searched, privileging the default chart of the 
             # start manifold for chart1_name
             if def_chart2_name in tensor.express and \
                    (def_chart1_name, def_chart2_name) in self.coord_expression:
@@ -847,7 +847,7 @@ class DiffMapping(SageObject):
             # Case of tensor field of rank >= 1
             # ---------------------------------
             # A pair of chart (chart1_name, chart2_name) where the computation
-            # is feasable is searched, privileging the default chart of the 
+            # is feasible is searched, privileging the default chart of the 
             # start manifold for chart1_name
             if def_chart2.frame.name in tensor.components and \
                    (def_chart1_name, def_chart2_name) in self.coord_expression:
