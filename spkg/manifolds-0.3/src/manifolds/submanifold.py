@@ -299,7 +299,7 @@ class Submanifold(Manifold):
             raise NotImplementedError("The case of a scalar field is not " + 
                                       "implemented yet.")
         # A pair of chart (chart1_name, chart2_name) where the computation
-        # is feasable is searched, privileging the default chart of the 
+        # is feasible is searched, privileging the default chart of the 
         # start domain for chart1_name
         chart1_name = None; chart2_name = None
         def_chart1 = dom1.def_chart ; def_chart1_name = def_chart1.name
